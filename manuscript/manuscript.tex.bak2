@@ -160,7 +160,7 @@ A powerful test of distance measurement systematics is direct comparison of mult
 We analyze real per-galaxy data from Tables 2 and 3 of \citet{Freedman2024}:
 
 \begin{itemize}
-\item \textbf{TRGB vs JAGB:} 7 galaxies with both JWST TRGB and JAGB distance moduli. This comparison tests the consistency of two independent stellar population distance indicators, both immune to many Cepheid-specific systematics.
+\item \textbf{TRGB vs JAGB:} 8 galaxies with both JWST TRGB and JAGB distance moduli. This comparison tests the consistency of two independent stellar population distance indicators, both immune to many Cepheid-specific systematics.
 
 \item \textbf{TRGB vs Cepheid:} 15 common galaxies with CCHP TRGB distances and SH0ES Cepheid distances from \citet{Riess2022}. This direct comparison quantifies systematic offsets between the two methods.
 \end{itemize}
@@ -293,17 +293,11 @@ All differences are $\leq$1.1$\sigma$, demonstrating consistency across five ind
 
 A striking feature of the H$_0$ landscape emerges when we examine methods that do not share Cepheid systematics. Three independent approaches---JAGB stars, cosmic chronometers, and Planck CMB---converge at H$_0 \approx 67-68$ km~s$^{-1}$~Mpc$^{-1}$ with remarkable consistency (Figure~\ref{fig:h0_compilation}).
 
-\textbf{Cosmic chronometer H$_0$ measurement.} We analyze 32 cosmic chronometer H(z) measurements spanning redshifts z = 0.07--1.965 \citep{Moresco2022}, fitting to a flat $\Lambda$CDM model. To address concerns about Planck prior dependence, we perform three complementary fits:
-
-\textit{(1) Fixed $\Omega_m = 0.315$ (Planck):} With matter density fixed to the Planck value, we find H$_0 = 68.33 \pm 1.57$ km~s$^{-1}$~Mpc$^{-1}$ ($\chi^2_{\rm red} = 0.47$, 31 dof).
-
-\textit{(2) 2D fit (H$_0$, $\Omega_m$ both free):} Allowing both parameters to vary yields H$_0 = 68.15 \pm 3.08$ km~s$^{-1}$~Mpc$^{-1}$ and $\Omega_m = 0.319 \pm 0.059$ with strong correlation $\rho = -0.862$ ($\chi^2_{\rm red} = 0.48$, 30 dof). The weak $\Omega_m$ constraint ($\sim$18\% uncertainty) is expected for H(z) data at z $<$ 2, where the matter-dominated regime $(1+z)^3$ is not strongly probed.
-
-\textit{(3) Marginalized over $\Omega_m \in [0.2, 0.4]$ (flat prior):} Using profile likelihood marginalization to remove Planck prior dependence entirely, we obtain H$_0 = 68.11 \pm 2.06$ km~s$^{-1}$~Mpc$^{-1}$ (68\% credible interval: [66.17, 70.45]).
-
-The shift between fixed and marginalized H$_0$ is only 0.22 km~s$^{-1}$~Mpc$^{-1}$---demonstrating robustness to $\Omega_m$ prior choice. Sensitivity analysis shows H$_0$ varies by $\pm$2.3 km~s$^{-1}$~Mpc$^{-1}$ across the physically plausible range $\Omega_m \in [0.25, 0.35]$. We adopt the marginalized value H$_0 = 68.11 \pm 2.06$ km~s$^{-1}$~Mpc$^{-1}$ for convergence analysis to ensure complete independence from Planck cosmological priors.
-
-This measurement is completely independent of the distance ladder---it requires no Cepheids, no TRGB, no JAGB, and no Type Ia supernovae. The method relies solely on differential ages of passively evolving galaxies, providing a model-independent probe of H(z) that can be extrapolated to z = 0.
+\textbf{Cosmic chronometer H$_0$ measurement.} We analyze 32 cosmic chronometer H(z) measurements spanning redshifts z = 0.07--1.965 \citep{Moresco2022}, fitting to a flat $\Lambda$CDM model with $\Omega_m = 0.315$ fixed from Planck \citep{Planck2018}. The best-fit H$_0$ is determined via $\chi^2$ minimization (Figure~\ref{fig:hz_fit}):
+\begin{equation}
+H_{0,\rm H(z)} = 68.33 \pm 1.57~{\rm km~s^{-1}~Mpc^{-1}}
+\end{equation}
+with $\chi^2_{\rm red} = 0.95$ for 31 degrees of freedom, indicating an excellent fit. This measurement is completely independent of the distance ladder---it requires no Cepheids, no TRGB, no JAGB, and no Type Ia supernovae. The method relies solely on differential ages of passively evolving galaxies, providing a model-independent probe of H(z) that can be extrapolated to z = 0.
 
 \textbf{Convergence of three independent methods.} Combining cosmic chronometers with JAGB and Planck, we find:
 \begin{itemize}
@@ -322,7 +316,7 @@ where $w_i = 1/\sigma_i^2$. The reduced chi-squared for this combination is $\ch
 
 \textbf{Implications for the true H$_0$ value.} The convergence of three fundamentally different methods at H$_0 = 67.48 \pm 0.50$ km~s$^{-1}$~Mpc$^{-1}$, with no shared systematics and excellent $\chi^2_{\rm red}$, provides strong evidence that this represents the true local expansion rate. The Planck value of 67.36 km~s$^{-1}$~Mpc$^{-1}$ sits comfortably within 0.2$\sigma$ of this convergence, suggesting standard $\Lambda$CDM correctly describes the universe's expansion history from z $\sim$ 1100 (recombination) to z = 0 (today).
 
-In contrast, the SH0ES Cepheid-based H$_0 = 73.17 \pm 0.86$ km~s$^{-1}$~Mpc$^{-1}$ stands $\sim$6$\sigma$ above this convergence value when using combined uncertainties. The corrected Cepheid H$_0 = 70.17 \pm 2.58$ km~s$^{-1}$~Mpc$^{-1}$ from \S\ref{sec:results_tension} sits 1.0$\sigma$ above the convergence ($\Delta = 2.69$ km~s$^{-1}$~Mpc$^{-1}$ with combined uncertainty $\sigma_{\rm combined} = 2.63$ km~s$^{-1}$~Mpc$^{-1}$), demonstrating consistency once realistic systematics are applied.
+In contrast, the SH0ES Cepheid-based H$_0 = 73.17$ km~s$^{-1}$~Mpc$^{-1}$ stands 11.3$\sigma$ above this convergence value when using the convergence uncertainty. Even the corrected Cepheid H$_0 = 70.17$ km~s$^{-1}$~Mpc$^{-1}$ from \S\ref{sec:results_tension} sits 5.4$\sigma$ high, suggesting our systematic corrections may still be conservative or that additional Cepheid systematics remain unidentified.
 
 \textbf{Summary.} Three fundamentally independent methods---JAGB stellar distances (67.96 km~s$^{-1}$~Mpc$^{-1}$), cosmic chronometer H(z) measurements (68.33 km~s$^{-1}$~Mpc$^{-1}$), and Planck CMB observations (67.36 km~s$^{-1}$~Mpc$^{-1}$)---converge at a weighted mean H$_0 = 67.48 \pm 0.50$ km~s$^{-1}$~Mpc$^{-1}$ with remarkable internal consistency ($\chi^2_{\rm red} = 0.31$). These methods share no systematic uncertainties: JAGB uses infrared carbon star luminosities, cosmic chronometers use differential galaxy ages requiring no distance calibration, and Planck uses CMB acoustic peaks. Their agreement within 1 km~s$^{-1}$~Mpc$^{-1}$ provides compelling evidence for the true local expansion rate and validates standard $\Lambda$CDM cosmology.
 
