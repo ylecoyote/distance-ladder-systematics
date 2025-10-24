@@ -1,0 +1,6 @@
+Stage,H0_km_s_Mpc,Sigma_km_s_Mpc,Tension_sigma,Description
+Baseline (stat only),73.17,0.8,6.0195134954743965,SH0ES 2024 statistical uncertainty only
+SH0ES total σ,73.17,1.312097557348538,4.094799782321698,SH0ES total (stat + sys)
+After parallax,72.17,1.312097557348538,3.3900149660873264,Parallax zero point corrected
+After period,71.17,1.312097557348538,2.6852301498529556,Period distribution corrected
+After metallicity + realistic σ,70.17,2.4269322199023193,1.130201476396404,"Metallicity corrected, realistic systematics"

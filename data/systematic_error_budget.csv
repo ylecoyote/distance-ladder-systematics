@@ -1,0 +1,12 @@
+Error_Source,SH0ES_Estimate_km_s_Mpc,Our_Assessment_km_s_Mpc,Confidence_Level,Notes,References
+Parallax_Zero_Point,0.3,1.0,High,"SH0ES uses Gaia EDR3; Dec 2024 finds ~0.017 mas offset → ~1 km/s/Mpc","Riess+ 2022; arXiv:2412.07840"
+Period_Distribution,0.0,1.0,Medium,"SH0ES doesn't account for P-L slope change; Dec 2024 finds p<0.001 significance","arXiv:2412.07840"
+Metallicity_Correction,0.4,1.0,Medium,"SH0ES uses γ=-0.2 mag/dex; empirical range -0.2 to -0.5; midrange ~-0.35 → additional ~1 km/s/Mpc","Riess+ 2022; Freedman+ 2025"
+Crowding_Direct,0.5,0.3,High,"SH0ES JWST validation shows no systematic bias (-0.01±0.03 mag)","Riess+ 2024 JWST"
+Crowding_Covariant,0.0,1.5,Medium,"Freedman: crowding→colors→dust→metallicity chain; not in SH0ES budget","Freedman+ 2025 CCHP"
+Photometric_Calibration,0.3,0.3,High,"Well-controlled with HST standards","Riess+ 2022"
+Extinction_Reddening,0.4,0.5,Medium,"Some uncertainty in dust law; partially correlated with crowding","Riess+ 2022"
+LMC_Distance,0.2,0.2,High,"Geometric distance well-constrained","Pietrzyński+ 2019"
+NGC4258_Distance,0.2,0.2,High,"Megamaser distance well-constrained","Humphreys+ 2013"
+SNe_Ia_Standardization,0.5,0.5,Medium,"Tripp parameters, host mass step; not focus of this analysis","Riess+ 2022"
+Statistical_Uncertainty,0.8,0.8,High,"Dominated by small number statistics in anchors","Riess+ 2022"
