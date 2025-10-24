@@ -118,9 +118,9 @@ We employ four complementary validation strategies, each providing an independen
 
 \subsection{Systematic Error Budget Reconstruction} \label{sec:methods_budget}
 
-We perform a line-by-line reconstruction of the systematic error budget for Cepheid-based H$_0$ measurements, comparing SH0ES claims \citep{Riess2022} against independent assessments from recent literature and alternative analyses. Our approach identifies 11 primary systematic error sources, selected based on the criterion that each contributes >0.5\% to distance uncertainties (equivalent to >0.3 km~s$^{-1}$~Mpc$^{-1}$ at H$_0 \approx 70$ km~s$^{-1}$~Mpc$^{-1}$). Minor systematics such as photometric aperture effects and background subtraction contribute <0.2 km~s$^{-1}$~Mpc$^{-1}$ combined and are not individually resolved.
+We perform a line-by-line reconstruction of the systematic error budget for Cepheid-based H$_0$ measurements, comparing SH0ES claims \citep{Riess2022} against independent assessments from recent literature and alternative analyses. Our approach identifies 10 primary systematic error sources, selected based on the criterion that each contributes >0.5\% to distance uncertainties (equivalent to >0.3 km~s$^{-1}$~Mpc$^{-1}$ at H$_0 \approx 70$ km~s$^{-1}$~Mpc$^{-1}$). Minor systematics such as sample selection effects, photometric aperture effects, and background subtraction contribute <0.2 km~s$^{-1}$~Mpc$^{-1}$ combined and are consolidated into the ``Other systematics'' category.
 
-The 11 sources we quantify are:
+The 10 sources we quantify are:
 
 \begin{enumerate}
 \item \textbf{Parallax zero point:} Systematic offsets in \textit{Gaia} parallaxes affect the calibration of Galactic Cepheids, which anchor the distance scale. We assess recent literature on \textit{Gaia} EDR3 zero points \citep{Lindegren2021} and independent Dec 2024 studies finding $\sim$0.017 mas offsets.
@@ -133,8 +133,6 @@ The 11 sources we quantify are:
 
 \item \textbf{Crowding (covariant):} Beyond direct photometric bias, crowding affects color measurements, which propagate through reddening corrections, dust extinction estimates, and metallicity determinations. We quantify this error chain following \citet{Freedman2024}.
 
-\item \textbf{Sample selection:} Selection effects from magnitude limits, period cuts, and detection thresholds can bias distance measurements. We assess literature estimates of sample selection systematics.
-
 \item \textbf{Extinction law:} Uncertainties in the reddening-to-extinction ratio $R_V$ and extinction curve shape affect distance moduli derived from multi-band photometry.
 
 \item \textbf{Photometric calibration:} Zero point uncertainties in HST and JWST photometric systems propagate to distance measurements.
@@ -143,12 +141,12 @@ The 11 sources we quantify are:
 
 \item \textbf{Statistical sampling:} Finite sample sizes in anchor and host galaxies contribute to statistical uncertainties that blend with systematics.
 
-\item \textbf{Other systematics:} Residual effects including phase coverage, template fitting, and outlier rejection.
+\item \textbf{Other systematics:} Residual effects including phase coverage, template fitting, outlier rejection, and sample selection biases (magnitude limits, period cuts, detection thresholds). These subdominant systematics each contribute $<$0.3 km~s$^{-1}$~Mpc$^{-1}$ individually and are consolidated into a single 0.5 km~s$^{-1}$~Mpc$^{-1}$ quadrature component.
 \end{enumerate}
 
 For each source, we compare the SH0ES estimate against independent assessments, assigning confidence levels (High, Medium, Low) based on the robustness of external validation. The total systematic uncertainty is calculated as the quadrature sum:
 \begin{equation}
-\sigma_{\rm sys} = \sqrt{\sum_{i=1}^{11} \sigma_i^2}
+\sigma_{\rm sys} = \sqrt{\sum_{i=1}^{10} \sigma_i^2}
 \end{equation}
 
 We validate our reconstruction by verifying that applying the SH0ES estimates reproduces their claimed $\sigma_{\rm sys} = 1.04$ km~s$^{-1}$~Mpc$^{-1}$ exactly, confirming our methodology is consistent with their approach.
@@ -242,18 +240,18 @@ This discrepancy arises from specific systematic sources where SH0ES estimates a
 
 Conversely, we find SH0ES estimates \textit{conservative} for direct crowding photometric bias: our assessment is 0.3 km~s$^{-1}$~Mpc$^{-1}$ (vs SH0ES 0.5 km~s$^{-1}$~Mpc$^{-1}$), consistent with the JWST validation showing no systematic offset. We also adopt SH0ES estimates for well-constrained systematics: photometric calibration (0.3 km~s$^{-1}$~Mpc$^{-1}$), geometric anchor distances for LMC and NGC~4258 (0.2 km~s$^{-1}$~Mpc$^{-1}$ each), and statistical uncertainties (0.8 km~s$^{-1}$~Mpc$^{-1}$).
 
-Computing the quadrature sum across all 11 systematic sources (excluding the 0.8 km~s$^{-1}$~Mpc$^{-1}$ statistical uncertainty, which is treated separately) yields:
+Computing the quadrature sum across all 10 systematic sources (excluding the 0.8 km~s$^{-1}$~Mpc$^{-1}$ statistical uncertainty, which is treated separately) yields:
 \begin{equation}
 \sigma_{\rm sys} = \sqrt{1.0^2 + 1.0^2 + 1.0^2 + 0.3^2 + 1.5^2 + 0.3^2 + 0.5^2 + 0.2^2 + 0.2^2 + 0.5^2} = 2.45~{\rm km~s^{-1}~Mpc^{-1}}
 \end{equation}
 
 This assessment is independently validated by the CCHP team's estimate of $\sigma_{\rm sys} = 3.10$ km~s$^{-1}$~Mpc$^{-1}$ for Cepheid-based measurements \citep{Freedman2024}, derived from entirely different observational data and analysis techniques. The agreement between two independent assessments (2.45 vs 3.10 km~s$^{-1}$~Mpc$^{-1}$), both finding factor $\sim$2--3$\times$ larger uncertainties than SH0ES claims, provides strong evidence that Cepheid systematic uncertainties have been underestimated.
 
-\textbf{Covariance sensitivity.} The quadrature sum in Eq.~(6) assumes independence among systematic sources. However, a covariant error pathway exists: crowding$\to$colors$\to$extinction$\to$metallicity. To assess the impact of potential correlations, we partition our 11 systematic sources into \textit{independent} (7 sources: parallax, period, photometry, LMC/NGC4258 distances, SNe~Ia standardization) and \textit{correlated} (4 sources: crowding direct/covariant, extinction, metallicity) groups.
+\textbf{Covariance sensitivity.} The quadrature sum in Eq.~(6) assumes independence among systematic sources. However, a covariant error pathway exists: crowding$\to$colors$\to$extinction$\to$metallicity. To assess the impact of potential correlations, we partition our 10 systematic sources into \textit{independent} (6 sources: parallax, period, photometry, LMC/NGC4258 distances, statistical sampling, other systematics) and \textit{correlated} (4 sources: crowding direct/covariant, extinction, metallicity) groups.
 
 We construct a 4$\times$4 correlation matrix with physically motivated structure (strong correlations $\rho = 0.5$ for crowding components, moderate correlations $\rho = 0.4$ for color-mediated effects, weaker correlations $\rho = 0.3$ for indirect pathways). Using Monte Carlo sampling via Cholesky decomposition \citep{Press1992} (100,000 samples), we find $\sigma_{\rm sys} = 2.19^{+0.77}_{-0.41}$ km~s$^{-1}$~Mpc$^{-1}$ for the baseline correlation ($\rho = 0.3$), comparable to the independent assumption ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$). Sensitivity analysis across $\rho \in [0.0, 0.5]$ shows the Stage-5 tension remains $\sim$1.1$\sigma$ for all plausible correlation strengths, confirming robustness of our main conclusion. Full details are provided in Appendix~B.
 
-\textbf{Summary.} Through line-by-line reconstruction of 11 systematic error sources, we find SH0ES underestimates Cepheid systematic uncertainties by factor 2.36$\times$ ($\sigma_{\rm sys} = 1.04$ vs 2.45 km~s$^{-1}$~Mpc$^{-1}$). Key discrepancies arise in parallax zero point (factor 3.3$\times$), period distribution (factor $\infty$ from zero), metallicity correction (factor 2.5$\times$), and crowding covariant effects (factor $\infty$ from zero). Our assessment is validated by independent CCHP estimate of 3.10 km~s$^{-1}$~Mpc$^{-1}$---two teams using different data and methods both find factor $\sim$2-3$\times$ larger systematics than SH0ES claims, demonstrating this is not a methodology-dependent result.
+\textbf{Summary.} Through line-by-line reconstruction of 10 systematic error sources, we find SH0ES underestimates Cepheid systematic uncertainties by factor 2.36$\times$ ($\sigma_{\rm sys} = 1.04$ vs 2.45 km~s$^{-1}$~Mpc$^{-1}$). Key discrepancies arise in parallax zero point (factor 3.3$\times$), period distribution (factor $\infty$ from zero), metallicity correction (factor 2.5$\times$), and crowding covariant effects (factor $\infty$ from zero). Our assessment is validated by independent CCHP estimate of 3.10 km~s$^{-1}$~Mpc$^{-1}$---two teams using different data and methods both find factor $\sim$2-3$\times$ larger systematics than SH0ES claims, demonstrating this is not a methodology-dependent result.
 
 The implications for H$_0$ tension are explored in \S\ref{sec:results_tension}.
 
