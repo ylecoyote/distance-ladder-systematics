@@ -123,9 +123,9 @@ We perform a line-by-line reconstruction of the systematic error budget for Ceph
 The 10 sources we quantify are:
 
 \begin{enumerate}
-\item \textbf{Parallax zero point:} Systematic offsets in \textit{Gaia} parallaxes affect the calibration of Galactic Cepheids, which anchor the distance scale. We assess recent literature on \textit{Gaia} EDR3 zero points \citep{Lindegren2021} and independent Dec 2024 studies finding $\sim$0.017 mas offsets.
+\item \textbf{Parallax zero point:} Systematic offsets in \textit{Gaia} parallaxes affect the calibration of Galactic Cepheids, which anchor the distance scale. We assess recent literature on \textit{Gaia} EDR3 zero points \citep{Lindegren2021} and independent analyses \citep{CruzReyes2022,Riess2022SH0ES} finding residual offsets of $-13 \pm 5$ $\mu$as ($\sim$0.013--0.017 mas) beyond the nominal EDR3 corrections.
 
-\item \textbf{Period distribution:} Mismatch between the period distributions of anchor Cepheids (Milky Way, LMC) and host galaxy Cepheids can introduce bias if the Period-Luminosity (P-L) relation slope varies with period. We evaluate evidence for ``broken'' P-L relations from recent analyses.
+\item \textbf{Period distribution:} Mismatch between the period distributions of anchor Cepheids (Milky Way, LMC) and host galaxy Cepheids can introduce bias if the Period-Luminosity (P-L) relation slope varies with period. We evaluate evidence for period-dependent P-L slopes and systematic biases from recent Gaia-based calibrations \citep{Breuval2022,Riess2022SH0ES}.
 
 \item \textbf{Metallicity correction:} The P-L relation zero point depends on metallicity [Fe/H], with empirical calibrations ranging from $\gamma = -0.2$ to $-0.5$ mag/dex in the literature. We assess the uncertainty arising from this factor-of-2.5 spread.
 
@@ -230,9 +230,9 @@ Our systematic error budget reconstruction reveals a substantial discrepancy bet
 
 This discrepancy arises from specific systematic sources where SH0ES estimates appear optimistic relative to independent assessments:
 
-\textbf{Parallax zero point (High confidence):} SH0ES allocates 0.3 km~s$^{-1}$~Mpc$^{-1}$ to parallax systematics, based on \textit{Gaia} EDR3 published zero point uncertainties \citep{Lindegren2021}. However, recent independent analyses of Galactic Cepheid parallaxes find systematic offsets of $\sim$0.017 mas beyond the nominal EDR3 corrections, translating to $\sim$1.0 km~s$^{-1}$~Mpc$^{-1}$ uncertainty in the distance scale zero point. Our assessment: 1.0 km~s$^{-1}$~Mpc$^{-1}$ (High confidence).
+\textbf{Parallax zero point (High confidence):} SH0ES allocates 0.3 km~s$^{-1}$~Mpc$^{-1}$ to parallax systematics, based on \textit{Gaia} EDR3 published zero point uncertainties \citep{Lindegren2021}. However, recent independent analyses of Galactic Cepheid parallaxes \citep{CruzReyes2022,Riess2022SH0ES} find residual systematic offsets of $-13 \pm 5$ $\mu$as ($\sim$0.013--0.017 mas) beyond the nominal EDR3 corrections, translating to $\sim$1.0 km~s$^{-1}$~Mpc$^{-1}$ uncertainty in the distance scale zero point. Our assessment: 1.0 km~s$^{-1}$~Mpc$^{-1}$ (High confidence).
 
-\textbf{Period distribution (Medium confidence):} SH0ES allocates 0.0 km~s$^{-1}$~Mpc$^{-1}$ to period distribution effects, assuming the Period-Luminosity relation slope is constant across the period range spanned by anchor and host galaxy Cepheids. Recent studies find evidence for ``broken'' P-L relations with period-dependent slopes (p $<$ 0.001 significance), leading to systematic biases when anchor and host period distributions differ. Our assessment: 1.0 km~s$^{-1}$~Mpc$^{-1}$ (Medium confidence).
+\textbf{Period distribution (Medium confidence):} SH0ES allocates 0.0 km~s$^{-1}$~Mpc$^{-1}$ to period distribution effects, assuming the Period-Luminosity relation slope is constant across the period range spanned by anchor and host galaxy Cepheids. Recent Gaia-based calibrations \citep{Breuval2022} reveal systematic differences in P-L slopes with period, leading to systematic biases when anchor and host period distributions differ. These period-dependent effects are not accounted for in the SH0ES error budget. Our assessment: 1.0 km~s$^{-1}$~Mpc$^{-1}$ (Medium confidence).
 
 \textbf{Metallicity correction (Medium confidence):} SH0ES uses a metallicity correction coefficient $\gamma = -0.2$ mag/dex and allocates 0.4 km~s$^{-1}$~Mpc$^{-1}$ to this systematic. However, empirical calibrations in the literature span $\gamma = -0.2$ to $-0.5$ mag/dex---a factor of 2.5 range. Adopting a mid-range value $\gamma \approx -0.35$ mag/dex and accounting for the full empirical uncertainty yields $\sim$1.0 km~s$^{-1}$~Mpc$^{-1}$ additional systematic. Our assessment: 1.0 km~s$^{-1}$~Mpc$^{-1}$ (Medium confidence).
 
@@ -264,9 +264,9 @@ The underestimated systematic uncertainties identified in \S\ref{sec:results_sys
 
 \textbf{Stage 2: SH0ES total uncertainty.} Adding SH0ES claimed systematics ($\sigma_{\rm sys} = 1.04$ km~s$^{-1}$~Mpc$^{-1}$) yields total uncertainty $\sigma_{\rm total} = \sqrt{0.80^2 + 1.04^2} = 1.31$ km~s$^{-1}$~Mpc$^{-1}$. The tension reduces to 4.1$\sigma$---still characterized as a ``crisis'' but already substantially lower than the headline 6$\sigma$ figure.
 
-\textbf{Stage 3: Parallax correction.} Applying a $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for parallax zero point systematics (based on independent Gaia EDR3 analyses finding $\sim$0.017 mas offsets), the Cepheid H$_0$ shifts to 72.17 km~s$^{-1}$~Mpc$^{-1}$. Tension: 3.4$\sigma$.
+\textbf{Stage 3: Parallax correction.} Applying a $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for parallax zero point systematics (based on independent Gaia EDR3 analyses \citep{CruzReyes2022,Riess2022SH0ES} finding residual offsets of $-13 \pm 5$ $\mu$as), the Cepheid H$_0$ shifts to 72.17 km~s$^{-1}$~Mpc$^{-1}$. Tension: 3.4$\sigma$.
 
-\textbf{Stage 4: Period distribution correction.} Applying an additional $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for period distribution mismatch (motivated by evidence for period-dependent P-L slopes with p $<$ 0.001), the Cepheid H$_0$ becomes 71.17 km~s$^{-1}$~Mpc$^{-1}$. Tension: 2.7$\sigma$.
+\textbf{Stage 4: Period distribution correction.} Applying an additional $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for period distribution mismatch (motivated by evidence for period-dependent P-L slopes from Gaia-based calibrations \citep{Breuval2022}), the Cepheid H$_0$ becomes 71.17 km~s$^{-1}$~Mpc$^{-1}$. Tension: 2.7$\sigma$.
 
 \textbf{Stage 5: Metallicity correction + realistic systematics.} Applying a final $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for metallicity effects and replacing SH0ES systematics with our realistic assessment ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$), we obtain:
 \begin{equation}
@@ -464,7 +464,7 @@ We invite the community to independently verify our systematic error budget reco
 \begin{acknowledgments}
 We thank the SH0ES team (A. Riess et al.) for making their Cepheid distance measurements publicly available, and the Chicago-Carnegie Hubble Program (W. Freedman et al.) for releasing their comprehensive \textit{JWST} NIRCam photometry and multi-method distance determinations. This work relies critically on data from the \textit{Planck} Collaboration, the cosmic chronometer compilation by M. Moresco and collaborators, and parallax measurements from \textit{Gaia} Data Release 3.
 
-We acknowledge the December 2024 independent analysis by \citet{Anderson2024} demonstrating period distribution effects in Cepheid P-L relations, which motivated our systematic error budget reconstruction.
+We acknowledge the recent Gaia-based analyses by \citet{CruzReyes2022} and \citet{Breuval2022} quantifying parallax offsets and period-dependent P-L slopes, which motivated our systematic error budget reconstruction.
 
 This research made use of Python 3.11 with NumPy, SciPy, Matplotlib, AstroPy, and standard scientific computing libraries, along with publicly available astronomical catalogs and databases.
 
