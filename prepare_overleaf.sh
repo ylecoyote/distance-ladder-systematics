@@ -26,6 +26,7 @@ echo "1. Copying files to temporary directory..."
 mkdir -p "$TEMP_DIR/manuscript"
 cp manuscript/manuscript.tex "$TEMP_DIR/manuscript/"
 cp manuscript/references.bib "$TEMP_DIR/manuscript/"
+cp manuscript/aastex701.cls "$TEMP_DIR/manuscript/"
 
 # Copy figures
 mkdir -p "$TEMP_DIR/figures"
