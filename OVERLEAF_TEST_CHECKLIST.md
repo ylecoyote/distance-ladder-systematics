@@ -1,8 +1,10 @@
 # Overleaf Compilation Test - Quick Checklist
 
-**File**: manuscript_overleaf.zip (581 KB)
+**File**: manuscript_overleaf.zip (584 KB)
 **Location**: `/Users/awiley/Code/distance-ladder-systematics/`
-**Ready to upload**: ✅
+**Ready to upload**: ✅ **UPDATED with bundled aastex701.cls**
+
+**✅ FIX APPLIED**: Package now includes aastex701.cls (392 KB) - no TeX Live version dependency!
 
 ---
 
@@ -41,8 +43,9 @@
 ### "Citation undefined" or "??"
 **Fix**: Click "Recompile" again (needs 2nd pass)
 
-### "Cannot find aastex7.cls"
-**Fix**: Menu → TeX Live → Select 2024
+### "Cannot find aastex7.cls" or "aastex701.cls"
+**Fix**: ✅ ALREADY FIXED - aastex701.cls is now bundled in the ZIP!
+(Should not see this error with updated package)
 
 ### Figure missing
 **Fix**: Check logs for "Cannot find file" errors
