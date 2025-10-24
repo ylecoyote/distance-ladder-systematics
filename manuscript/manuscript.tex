@@ -205,18 +205,16 @@ Our analysis proceeds through five stages:
 
 \item \textbf{+ SH0ES systematics:} Add SH0ES claimed $\sigma_{\rm sys} = 1.04$ km~s$^{-1}$~Mpc$^{-1}$ to Cepheid uncertainty.
 
-\item \textbf{+ Realistic systematics:} Replace SH0ES systematics with our assessed $\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$.
-
 \item \textbf{+ Parallax correction:} Apply $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for parallax zero point bias.
 
 \item \textbf{+ Period correction:} Apply $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for period distribution mismatch.
 
-\item \textbf{+ Metallicity correction:} Apply $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for metallicity effect using mid-range literature calibration.
+\item \textbf{+ Metallicity correction + realistic systematics:} Apply $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for metallicity effect using mid-range literature calibration, and replace SH0ES systematics with our assessed $\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$.
 \end{enumerate}
 
 At each stage, we recalculate the tension and compare the corrected Cepheid H$_0$ against not only Planck but also TRGB, JAGB, and cosmic chronometer values. This provides a comprehensive view of how systematic uncertainties affect the landscape of H$_0$ measurements.
 
-The corrections applied in stages 4--6 are informed by our systematic error budget reconstruction and the literature consensus on these effects. We emphasize that these are not arbitrary adjustments but rather reflect the best available estimates of systematic biases identified through independent analyses.
+The corrections applied in stages 3--5 are informed by our systematic error budget reconstruction and the literature consensus on these effects. We emphasize that these are not arbitrary adjustments but rather reflect the best available estimates of systematic biases identified through independent analyses.
 
 % ========================================================================
 % RESULTS
@@ -514,7 +512,7 @@ literature compilation. Upon acceptance, all materials will be archived on Zenod
 % Figure 4: H_0 Compilation
 \begin{figure}
 \includegraphics[width=\columnwidth]{../figures/figure4_h0_compilation.png}
-\caption{\textbf{H$_0$ measurement compilation revealing systematic gradient and multi-method convergence.} Forest plot showing H$_0$ values from five independent measurements with 1$\sigma$ error bars. Top to bottom: SH0ES Cepheid (73.17 $\pm$ 0.86 km~s$^{-1}$~Mpc$^{-1}$, red), corrected Cepheid after realistic systematics (70.17 $\pm$ 2.43, orange), CCHP TRGB (69.85 $\pm$ 2.33, green), JAGB (67.96 $\pm$ 2.65, blue), cosmic chronometers H(z) (68.33 $\pm$ 1.57, cyan), Planck CMB (67.36 $\pm$ 0.54, purple). Systematic gradient from 73 $\rightarrow$ 70 $\rightarrow$ 68 $\rightarrow$ 67 km~s$^{-1}$~Mpc$^{-1}$ cannot be explained by new physics (which would affect all late-time measurements equally) but is naturally explained by progressive Cepheid systematic underestimation. Gray shaded region shows three-method convergence: weighted mean H$_0 = 67.48 \pm 0.50$ km~s$^{-1}$~Mpc$^{-1}$ from JAGB, cosmic chronometers, and Planck ($\chi^2_{\rm red} = 0.31$, excellent internal consistency). These three methods share no systematic uncertainties, providing compelling evidence for true local expansion rate. Corrected Cepheid (orange) achieves consistency with all methods within 1.1$\sigma$, demonstrating resolution of Hubble tension through realistic systematic accounting.}
+\caption{\textbf{H$_0$ measurement compilation revealing systematic gradient and multi-method convergence.} Forest plot showing H$_0$ values from five independent measurements with 1$\sigma$ error bars. Top to bottom: SH0ES Cepheid (73.17 $\pm$ 0.86 km~s$^{-1}$~Mpc$^{-1}$, red), corrected Cepheid after realistic systematics (70.17 $\pm$ 2.58, orange), CCHP TRGB (69.85 $\pm$ 2.33, green), JAGB (67.96 $\pm$ 2.65, blue), cosmic chronometers H(z) (68.33 $\pm$ 1.57, cyan), Planck CMB (67.36 $\pm$ 0.54, purple). Systematic gradient from 73 $\rightarrow$ 70 $\rightarrow$ 68 $\rightarrow$ 67 km~s$^{-1}$~Mpc$^{-1}$ cannot be explained by new physics (which would affect all late-time measurements equally) but is naturally explained by progressive Cepheid systematic underestimation. Gray shaded region shows three-method convergence: weighted mean H$_0 = 67.48 \pm 0.50$ km~s$^{-1}$~Mpc$^{-1}$ from JAGB, cosmic chronometers, and Planck ($\chi^2_{\rm red} = 0.31$, excellent internal consistency). These three methods share no systematic uncertainties, providing compelling evidence for true local expansion rate. Corrected Cepheid (orange) achieves consistency with all methods within 1.1$\sigma$, demonstrating resolution of Hubble tension through realistic systematic accounting.}
 \label{fig:h0_compilation}
 \end{figure}
 
