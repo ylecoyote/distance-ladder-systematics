@@ -270,13 +270,22 @@ The underestimated systematic uncertainties identified in \S\ref{sec:results_sys
 
 \textbf{Stage 4: Period distribution correction.} Applying an additional $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for period distribution mismatch (motivated by evidence for period-dependent P-L slopes with p $<$ 0.001), the Cepheid H$_0$ becomes 71.17 km~s$^{-1}$~Mpc$^{-1}$. Tension: 2.7$\sigma$.
 
-\textbf{Stage 5: Metallicity correction + realistic systematics.} Applying a final $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for metallicity effects (adopting mid-range $\gamma \approx -0.35$ mag/dex rather than SH0ES $\gamma = -0.2$) and replacing SH0ES systematics with our realistic assessment ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$), we obtain:
+\textbf{Stage 5: Metallicity correction + realistic systematics.} Applying a final $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for metallicity effects and replacing SH0ES systematics with our realistic assessment ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$), we obtain:
 \begin{equation}
 H_{0,\rm Cepheid}^{\rm corrected} = 70.17 \pm 2.58~{\rm km~s^{-1}~Mpc^{-1}}
 \end{equation}
 where $\sigma_{\rm total} = \sqrt{0.80^2 + 2.45^2} = 2.58$ km~s$^{-1}$~Mpc$^{-1}$. The tension with Planck reduces to \textbf{1.1$\sigma$}---well within normal statistical fluctuations and \textit{not} evidence for new physics by conventional standards ($<$3$\sigma$).
 
-This dramatic reduction---from 6.0$\sigma$ to 1.1$\sigma$, a factor of 5.5$\times$---demonstrates that realistic accounting of systematic uncertainties and identified biases resolves the bulk of the reported tension. The 1.1$\sigma$ residual could plausibly arise from additional unidentified systematics (e.g., in TRGB calibrations, supernova standardization, or Planck foreground modeling) or simply statistical fluctuation.
+The metallicity correction warrants additional justification. Empirical calibrations of the metallicity coefficient $\gamma$ span a factor of 2.5 range in the literature, from $\gamma = -0.2$ mag/dex (adopted by SH0ES) to $\gamma = -0.5$ mag/dex, reflecting genuine uncertainty in the dependence of Cepheid luminosity on metallicity. We adopt a mid-range value of $\gamma \approx -0.35$ mag/dex, which yields the $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction. This choice is conservative: adopting the high end of the empirical range would increase the correction to $-2.0$ km~s$^{-1}$~Mpc$^{-1}$, further reducing H$_0$. Conversely, adopting the SH0ES value ($\gamma = -0.2$) would eliminate this specific correction but would not affect our conclusion, as demonstrated below. The uncertainty in $\gamma$ is reflected in our systematic error budget ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$), which includes a 1.0 km~s$^{-1}$~Mpc$^{-1}$ contribution from metallicity effects.
+
+\textbf{Robustness test: Conservative scenario without bias corrections.} To address the concern that our conclusion might depend critically on the specific magnitude of the three applied corrections (parallax, period distribution, metallicity), we present an alternative, maximally conservative analysis. If we apply \textit{no bias corrections whatsoever} but use only our realistic systematic uncertainty ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$), we obtain H$_0 = 73.17 \pm 2.58$ km~s$^{-1}$~Mpc$^{-1}$ (the original SH0ES central value with inflated errors). The tension with Planck in this conservative scenario is:
+\begin{equation}
+T_{\rm conservative} = \frac{|73.17 - 67.36|}{\sqrt{2.58^2 + 0.54^2}} = \frac{5.81}{2.64} = 2.2\sigma
+\end{equation}
+
+This 2.2$\sigma$ tension is still well below the conventional 3$\sigma$ threshold for claiming a cosmological anomaly. This demonstrates that the dramatic reduction in tension---from 6.0$\sigma$ to either 2.2$\sigma$ (conservative, no corrections) or 1.1$\sigma$ (with justified corrections)---is driven primarily by realistic assessment of systematic uncertainties, not by the specific bias corrections. The underestimation of Cepheid systematic errors is the dominant effect. Even in the most conservative scenario that applies no corrections at all, the ``Hubble tension crisis'' narrative is not supported at a statistically compelling level.
+
+This dramatic reduction---from 6.0$\sigma$ to 1.1$\sigma$ (or 2.2$\sigma$ in the conservative scenario), a factor of 3-6$\times$---demonstrates that realistic accounting of systematic uncertainties, with or without identified bias corrections, resolves the bulk of the reported tension. The residual could plausibly arise from additional unidentified systematics (e.g., in TRGB calibrations, supernova standardization, or Planck foreground modeling) or simply statistical fluctuation.
 
 \textbf{Comparison with other distance indicators.} The corrected Cepheid H$_0 = 70.17 \pm 2.58$ km~s$^{-1}$~Mpc$^{-1}$ shows excellent agreement with the distance ladder gradient observed in Figure~\ref{fig:h0_compilation}:
 \begin{itemize}
@@ -373,23 +382,23 @@ However, we emphasize that our findings do not preclude new physics at smaller a
 
 The reduction of Hubble tension from 6.0$\sigma$ to 1.1$\sigma$ through realistic systematic error accounting (\S\ref{sec:results_tension}) has profound implications for the allocation of observational resources. Multiple flagship missions including the \textit{Nancy Grace Roman Space Telescope} (\$4.2B), \textit{Euclid} (\$1.4B), and dedicated programs on ground-based facilities (Extremely Large Telescope, \textit{JWST}) have allocated >>\$100M specifically toward resolving the Hubble tension under the assumption it reflects new physics. Our findings suggest this investment strategy may require reassessment.
 
-\textbf{Recommended observational priorities.} Rather than targeting exotic physics signatures, we recommend future programs prioritize systematic error reduction in standard distance ladder measurements:
+\textbf{Suggested observational priorities.} In light of our findings, future programs could benefit from balancing searches for exotic physics with systematic error reduction in standard distance ladder measurements:
 
 \begin{enumerate}
-\item \textbf{\textit{JWST} multi-method campaigns:} Simultaneous TRGB, JAGB, and Cepheid observations in the same fields enable empirical quantification of method-dependent systematics (\S\ref{sec:results_jwst}). The factor 2.3$\times$ excess Cepheid scatter we observe validates this approach. Proposed programs should require multi-method validation for all distance ladder measurements.
+\item \textbf{\textit{JWST} multi-method campaigns:} Simultaneous TRGB, JAGB, and Cepheid observations in the same fields enable empirical quantification of method-dependent systematics (\S\ref{sec:results_jwst}). The factor 2.3$\times$ excess Cepheid scatter we observe supports this approach. Programs incorporating multi-method validation for distance ladder measurements would strengthen systematic error assessment.
 
-\item \textbf{Parallax refinement:} Upcoming \textit{Gaia} DR4 (2026) will provide improved parallaxes for Galactic Cepheids. Dedicated astrometric campaigns targeting Cepheids with complementary instruments (e.g., \textit{Hubble} FGS, \textit{Roman} astrometry mode) can independently validate \textit{Gaia} zero points and reduce the $\sim$1 km~s$^{-1}$~Mpc$^{-1}$ parallax systematic we identify (\S\ref{sec:results_systematics}).
+\item \textbf{Parallax refinement:} Upcoming \textit{Gaia} DR4 (2026) will provide improved parallaxes for Galactic Cepheids. Dedicated astrometric campaigns targeting Cepheids with complementary instruments (e.g., \textit{Hubble} FGS, \textit{Roman} astrometry mode) could independently validate \textit{Gaia} zero points and help reduce the $\sim$1 km~s$^{-1}$~Mpc$^{-1}$ parallax systematic we identify (\S\ref{sec:results_systematics}).
 
-\item \textbf{Period-Luminosity relation calibration:} Ground-based surveys (e.g., Vera Rubin Observatory LSST) will observe thousands of Cepheids across diverse environments. These data can definitively test for period-dependent P-L slope variations ("broken" relations) and quantify magnitude-period distribution effects contributing $\sim$1 km~s$^{-1}$~Mpc$^{-1}$ systematic uncertainty.
+\item \textbf{Period-Luminosity relation calibration:} Ground-based surveys (e.g., Vera Rubin Observatory LSST) will observe thousands of Cepheids across diverse environments. These data offer opportunities to test definitively for period-dependent P-L slope variations ("broken" relations) and quantify magnitude-period distribution effects contributing $\sim$1 km~s$^{-1}$~Mpc$^{-1}$ systematic uncertainty.
 
-\item \textbf{Metallicity effect calibration:} Spectroscopic campaigns targeting Cepheid metallicities in anchor galaxies (LMC, MW) and nearby hosts can empirically constrain the metallicity correction coefficient $\gamma$, currently uncertain by factor 2.5 ($-0.2$ to $-0.5$ mag/dex). \textit{JWST} NIRSpec IFU observations offer ideal capabilities for spatially resolved metallicity mapping.
+\item \textbf{Metallicity effect calibration:} Spectroscopic campaigns targeting Cepheid metallicities in anchor galaxies (LMC, MW) and nearby hosts could empirically constrain the metallicity correction coefficient $\gamma$, currently uncertain by factor 2.5 ($-0.2$ to $-0.5$ mag/dex). \textit{JWST} NIRSpec IFU observations offer promising capabilities for spatially resolved metallicity mapping.
 \end{enumerate}
 
-\textbf{Mission planning implications.} For \textit{Roman} and \textit{Euclid}, we suggest:
+\textbf{Mission planning considerations.} For \textit{Roman} and \textit{Euclid}, these findings suggest potential value in:
 \begin{itemize}
-\item De-emphasize deep fields optimized for detecting early dark energy signatures in favor of broader samples enabling systematic error characterization.
-\item Allocate observing time to multi-method distance indicator validation rather than maximizing supernova statistics alone.
-\item Prioritize astrometric precision for parallax anchor improvement over maximizing survey area.
+\item Balancing deep fields optimized for detecting early dark energy signatures with broader samples enabling systematic error characterization.
+\item Considering observing time allocation to multi-method distance indicator validation alongside supernova statistics.
+\item Evaluating the benefits of enhanced astrometric precision for parallax anchor improvement.
 \end{itemize}
 
 This reorientation does not abandon the search for new physics, but rather recognizes that claims of cosmological anomalies must first withstand rigorous scrutiny of measurement systematics. Our demonstration that realistic error accounting resolves the bulk of reported tension underscores the importance of this principle.
