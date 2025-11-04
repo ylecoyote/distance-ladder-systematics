@@ -26,7 +26,6 @@ echo "1. Copying files to temporary directory..."
 mkdir -p "$TEMP_DIR/manuscript"
 cp manuscript/manuscript.tex "$TEMP_DIR/manuscript/"
 cp manuscript/references.bib "$TEMP_DIR/manuscript/"
-cp manuscript/aastex701.cls "$TEMP_DIR/manuscript/"
 
 # Copy figures
 mkdir -p "$TEMP_DIR/figures"
@@ -36,12 +35,18 @@ cp figures/figure3_cchp_crossval_real.png "$TEMP_DIR/figures/"
 cp figures/figure4_h0_compilation.png "$TEMP_DIR/figures/"
 cp figures/figure5_h6_fit.png "$TEMP_DIR/figures/"
 
-# Copy tables
+# Copy tables (only existing ones)
 mkdir -p "$TEMP_DIR/data/tables"
 cp data/tables/table1_systematic_budget.tex "$TEMP_DIR/data/tables/"
 cp data/tables/table2_tension_evolution.tex "$TEMP_DIR/data/tables/"
 cp data/tables/table3_h0_compilation.tex "$TEMP_DIR/data/tables/"
 cp data/tables/table4_cchp_crossval.tex "$TEMP_DIR/data/tables/"
+cp data/tables/table_correlation_matrix.tex "$TEMP_DIR/data/tables/"
+
+# Copy optional tables if they exist
+[ -f "data/tables/table5_jwst_crossvalidation.tex" ] && cp data/tables/table5_jwst_crossvalidation.tex "$TEMP_DIR/data/tables/" || echo "   ⚠️  Skipping table5 (not found)"
+[ -f "data/tables/table6_cosmic_chronometers.tex" ] && cp data/tables/table6_cosmic_chronometers.tex "$TEMP_DIR/data/tables/" || echo "   ⚠️  Skipping table6 (not found)"
+[ -f "data/tables/table_anchor_weights.tex" ] && cp data/tables/table_anchor_weights.tex "$TEMP_DIR/data/tables/" || echo "   ⚠️  Skipping anchor_weights (not found)"
 
 echo "   ✓ Files copied"
 

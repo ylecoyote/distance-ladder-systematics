@@ -54,3 +54,11 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+_tmp/
+
+# Log directories
+logs/
+*/logs/
+
+# Claude AI assistant
+.claude/

@@ -1,0 +1,41 @@
+% LaTeX table: Anchor Distance Calibrators and Weighting
+% For Distance Ladder Systematics manuscript
+% Shows parallax dilution calculation
+
+\begin{deluxetable*}{lcccccc}
+\tablecaption{Cepheid Distance Anchor Calibrators and H$_0$ Weighting\label{tab:anchor_weights}}
+\tablewidth{0pt}
+\tablehead{
+\colhead{Anchor} &
+\colhead{Distance} &
+\colhead{Method} &
+\colhead{$\bar{\varpi}$} &
+\colhead{$\Delta\varpi$} &
+\colhead{Weight} &
+\colhead{$\Delta H_0$} \\
+\colhead{} &
+\colhead{(Mpc)} &
+\colhead{} &
+\colhead{(mas)} &
+\colhead{(mas)} &
+\colhead{(\%)} &
+\colhead{(km~s$^{-1}$~Mpc$^{-1}$)}
+}
+\startdata
+Milky Way Cepheids & 0.7--2.0 & Gaia parallax & 0.70 & +0.017 & 60 & +1.8 \\
+LMC & 0.050 & Geometric (DEBs) & --- & 0.000 & 25 & 0.0 \\
+NGC 4258 & 7.6 & Maser (H$_2$O) & --- & 0.000 & 15 & 0.0 \\
+\hline
+\multicolumn{6}{l}{Effective diluted bias:} & +1.1 \\
+\multicolumn{6}{l}{Adopted correction:} & $-1.0$ \\
+\enddata
+\tablecomments{
+Distance anchor calibrators used in SH0ES Cepheid-based H$_0$ measurements.
+\textbf{Milky Way}: Galactic Cepheids with Gaia EDR3 parallaxes (mean $\bar{\varpi} \approx 0.7$ mas).
+Systematic parallax offset $\Delta\varpi = +0.017$ mas \citep{Lindegren2021,Riess2021,Breuval2022} yields uncorrected bias $\Delta H_0 / H_0 = \Delta\varpi / \bar{\varpi} \approx 0.024$ or $+1.8$ km~s$^{-1}$~Mpc$^{-1}$ at H$_0 = 73$ km~s$^{-1}$~Mpc$^{-1}$.
+\textbf{LMC}: Large Magellanic Cloud distance from geometric methods (detached eclipsing binaries; \citealt{Pietrzynski2019}). No parallax systematics.
+\textbf{NGC 4258}: Megamaser distance from H$_2$O orbital kinematics \citep{Humphreys2013}. No parallax systematics.
+\textbf{Weights}: Approximate relative contributions to SH0ES anchor calibration based on sample sizes and precision \citep{Riess2022}.
+\textbf{Effective bias}: $\Delta H_0 = 0.60 \times 1.8 + 0.25 \times 0.0 + 0.15 \times 0.0 = +1.08$ km~s$^{-1}$~Mpc$^{-1}$, rounded to $+1.1$ km~s$^{-1}$~Mpc$^{-1}$, yielding correction $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ (\S\ref{sec:methods_bias_derivations}).
+}
+\end{deluxetable*}
