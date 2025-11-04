@@ -62,3 +62,14 @@ logs/
 
 # Claude AI assistant
 .claude/
+
+# Generated package files
+manuscript_overleaf.zip
+*_overleaf.zip
+
+# Large binary data files
+*.npz
+
+# Compiled PDFs
+manuscript/*.pdf
+Forensic_Analysis*.pdf

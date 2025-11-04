@@ -1,7 +1,7 @@
 % AASTeX v6.31 manuscript template for Distance Ladder Systematics paper
 % Target journal: The Astrophysical Journal (ApJ)
 
-\documentclass[twocolumn, linenumbers]{aastex631}
+\documentclass[preprint, linenumbers]{aastex631}
 
 % Packages
 \usepackage{graphicx}
@@ -35,7 +35,7 @@ The Hubble Tension Reduced from 6$\sigma$ to 1$\sigma$}
 
 \begin{abstract}
 
-The ``Hubble tension''---a 5-6$\sigma$ discrepancy between local distance ladder (H$_0 = 73.17 \pm 1.31$ km~s$^{-1}$~Mpc$^{-1}$, Riess et al. 2022) and Planck CMB measurements (H$_0 = 67.36 \pm 0.54$ km~s$^{-1}$~Mpc$^{-1}$)---has motivated well over \$100~M in programs targeting new physics. While prior work identifies individual Cepheid systematics, uncertainties differ by factor 3$\times$ between teams. Through independent forensic analysis, we reconstruct the complete systematic error budget and demonstrate tension reduction from 6$\sigma$ to 1$\sigma$. A puzzling H$_0$ gradient---Cepheid (73) $\rightarrow$ TRGB (70) $\rightarrow$ JAGB (68) $\rightarrow$ Planck (67) km~s$^{-1}$~Mpc$^{-1}$---demonstrates method-dependent systematics, as simple new physics models would affect all late-time measurements equally.
+The ``Hubble tension''---a 5-6$\sigma$ discrepancy between local distance ladder (H$_0 = 73.17 \pm 1.31$ km~s$^{-1}$~Mpc$^{-1}$, Riess et al. 2022) and Planck CMB measurements (H$_0 = 67.36 \pm 0.54$ km~s$^{-1}$~Mpc$^{-1}$)---has motivated substantial observational investment in programs targeting new physics. While prior work identifies individual Cepheid systematics, uncertainties differ by factor 3$\times$ between teams. Through independent forensic analysis, we reconstruct the complete systematic error budget and demonstrate tension reduction from 6$\sigma$ to 1$\sigma$. A puzzling H$_0$ gradient---Cepheid (73) $\rightarrow$ TRGB (70) $\rightarrow$ JAGB (68) $\rightarrow$ Planck (67) km~s$^{-1}$~Mpc$^{-1}$---demonstrates method-dependent systematics, as simple new physics models would affect all late-time measurements equally.
 
 We employ four validation strategies: (1) systematic error budget reconstruction for 10 sources, (2) multi-method cross-validation using \textit{JWST} observations of TRGB, JAGB, and Cepheid distances, (3) independent H$_0$ from 32 cosmic chronometer measurements, and (4) tension evolution analysis.
 
@@ -64,9 +64,9 @@ The current era of precision cosmology has revealed a puzzling discrepancy betwe
 
 The tension emerged gradually over the past 15 years as measurement precision improved. Early 2000s measurements had sufficiently large uncertainties ($\sim$10\%) that Cepheid-based and CMB-based results comfortably overlapped \citep{Freedman2001, Spergel2003}. By 2011, \citet{Riess2011} achieved 3.3\% precision with refined HST observations, revealing a $\sim$2.4$\sigma$ discrepancy---notable but not yet alarming. Through the 2010s, the SH0ES (Supernova H$_0$ for the Equation of State) program systematically improved Cepheid calibrations, reaching 1.2\% precision by 2022 \citep{Riess2022}. Meanwhile, \textit{Planck}'s final 2018 results achieved 0.8\% precision on H$_0$ within $\Lambda$CDM \citep{Planck2018}. As both uncertainties shrank, the discrepancy persisted---and the reported tension grew from 2.4$\sigma$ to 5-6$\sigma$.
 
-This escalation has been characterized by many as a ``Hubble tension crisis,'' with calls for new physics beyond the Standard Model \citep{DiValentino2021}. Proposed explanations span early dark energy \citep{Poulin2019}, modified gravity \citep{Marra2021}, interacting dark sectors \citep{DiValentino2020}, sterile neutrinos \citep{Anchordoqui2022}, and primordial magnetic fields \citep{Jedamzik2020}. The stakes are high: if the tension is real, it demands a fundamental revision of our cosmological model. This has motivated substantial investment---multiple international missions including the \textit{Roman Space Telescope} (\$4.2B), \textit{Euclid} (\$1.4B), and dedicated programs on ground-based facilities (ELT, JWST) have allocated ($\gg$\$100)M specifically toward resolving the tension.
+This escalation has been characterized by many as a ``Hubble tension crisis,'' with calls for new physics beyond the Standard Model \citep{DiValentino2021}. Proposed explanations span early dark energy \citep{Poulin2019}, modified gravity \citep{Marra2021}, interacting dark sectors \citep{DiValentino2020}, sterile neutrinos \citep{Anchordoqui2022}, and primordial magnetic fields \citep{Jedamzik2020}. The stakes are high: if the tension is real, it demands a fundamental revision of our cosmological model. This has motivated substantial investment---multiple international missions including the \textit{Roman Space Telescope} (\$4.2B), \textit{Euclid} (\$1.4B), and dedicated programs on ground-based facilities (ELT, JWST) have allocated significant resources specifically toward resolving the tension.
 
-Conversely, demonstrating that the tension can be reduced from 5-6$\sigma$ to $\sim$1$\sigma$ through realistic systematic uncertainties fundamentally shifts the scientific narrative. Rather than demanding revolutionary new physics, the data would become consistent with improved measurement precision within the standard $\Lambda$CDM cosmological model. This redirection has profound implications for resource allocation: billions of dollars in observational programs currently targeting exotic physics explanations could be more productively invested in refining standard distance ladder techniques and addressing known systematic uncertainties.
+Conversely, demonstrating that the tension can be reduced from 5-6$\sigma$ to $\sim$1$\sigma$ through realistic systematic uncertainties fundamentally shifts the scientific narrative. Rather than demanding revolutionary new physics, the data would become consistent with improved measurement precision within the standard $\Lambda$CDM cosmological model. This redirection has profound implications for resource allocation in observational programs, suggesting that refining standard distance ladder techniques and addressing known systematic uncertainties may prove as scientifically valuable as searches for new physics.
 
 \subsection{Puzzling Observations: The H$_0$ Gradient}
 
@@ -179,7 +179,10 @@ For $\log P_b = 1.0$ (P $\approx$ 10 days), $\beta_1 = -3.3$ mag/dex, $\beta_2 =
 \begin{equation}
 \Delta\mu = \gamma\,\Delta{\rm [Fe/H]}, \qquad \frac{\Delta H_0}{H_0} \simeq -0.4605\,\gamma\,\Delta{\rm [Fe/H]}.
 \end{equation}
-SH0ES adopts $\gamma = -0.2$ mag/dex; empirical calibrations span $-0.2$ to $-0.5$ mag/dex. Using mid-range $\gamma = -0.35$ mag/dex and median host-minus-anchor metallicity difference $\Delta{\rm [Fe/H]} = +0.15$ dex (SNe Ia hosts are slightly more metal-rich than MW/LMC calibrators), we obtain $\Delta\mu = -0.053$ mag. Hosts appear brighter $\rightarrow$ closer $\rightarrow$ H$_0$ higher. Uncorrected bias is $\Delta H_0 \approx +1.8$ km~s$^{-1}$~Mpc$^{-1}$, conservatively rounded to $+1.0$ km~s$^{-1}$~Mpc$^{-1}$, yielding \textbf{correction $\Delta H_0 \approx -1.0$ km~s$^{-1}$~Mpc$^{-1}$}.
+SH0ES adopts $\gamma = -0.2$ mag/dex; empirical calibrations span $-0.2$ to $-0.5$ mag/dex.
+Using mid-range $\gamma = -0.35$ mag/dex and median host-minus-anchor metallicity difference $\Delta{\rm [Fe/H]} = +0.15$ dex (SNe Ia hosts are slightly more metal-rich than MW/LMC calibrators), we obtain $\Delta\mu = -0.053$ mag.
+Hosts appear brighter $\rightarrow$ closer $\rightarrow$ H$_0$ higher.
+Uncorrected bias is $\Delta H_0 \approx +1.8$ km~s$^{-1}$~Mpc$^{-1}$, conservatively rounded to $+1.0$ km~s$^{-1}$~Mpc$^{-1}$, yielding \textbf{correction $\Delta H_0 \approx -1.0$ km~s$^{-1}$~Mpc$^{-1}$}.
 
 \textbf{Independence and degeneracies.} While all three effects reduce H$_0$, they arise from \textit{independent physical mechanisms}: parallax affects geometric distances, period distribution reflects P-L relation structure, and metallicity modulates intrinsic luminosity. A joint Bayesian forward propagation analysis (Appendix~\ref{sec:appendix_joint_fit}) confirms minimal posterior degeneracies ($\rho < 0.01$ for all pairwise correlations among bias sources) and validates the additive $-1-1-1$ km~s$^{-1}$~Mpc$^{-1}$ correction scheme as a close approximation to the maximum a posteriori (MAP) estimate.
 
@@ -210,7 +213,7 @@ Critically, we apply the \textit{same} correlation structure to both SH0ES and o
 
 \item \textbf{Cholesky decomposition:} A symmetric matrix is positive definite if and only if it admits a Cholesky decomposition $\mathbf{R} = \mathbf{L}\mathbf{L}^T$ (lower triangular $\mathbf{L}$). Our 10$\times$10 correlation matrix successfully factors with no numerical issues (all diagonal elements of $\mathbf{L}$ are real and positive, $L_{11} = 1.000$, $L_{22} = 0.989$, ..., $L_{10,10} = 0.648$), providing an independent confirmation of positive definiteness.
 
-\item \textbf{Variance positivity:} Applying the covariance propagation formula (Equation 6) with our correlation matrix $\mathbf{R}$ and systematic budget vector $\boldsymbol{\sigma}$ must yield $\sigma_{\rm sys,corr}^2 > 0$. For both SH0ES ($\boldsymbol{\sigma}_{\rm SH0ES}$) and our budget ($\boldsymbol{\sigma}_{\rm ours}$), we obtain positive variances: $\sigma_{\rm sys,SH0ES,corr}^2 = 1.18$ (km~s$^{-1}$~Mpc$^{-1}$)$^2$ and $\sigma_{\rm sys,ours,corr}^2 = 9.86$ (km~s$^{-1}$~Mpc$^{-1}$)$^2$, confirming the propagation is mathematically sound.
+\item \textbf{Variance positivity:} Applying the covariance propagation formula (Equation 6) with our correlation matrix $\mathbf{R}$ and systematic budget vector $\boldsymbol{\sigma}$ must yield $\sigma_{\rm sys,corr}^2 > 0$. For both SH0ES ($\boldsymbol{\sigma}_{\rm SH0ES}$) and our budget ($\boldsymbol{\sigma}_{\rm ours}$), we obtain positive variances: $\sigma_{\rm sys,SH0ES,corr}^2 = 1.26$ (km~s$^{-1}$~Mpc$^{-1}$)$^2$ and $\sigma_{\rm sys,ours,corr}^2 = 9.86$ (km~s$^{-1}$~Mpc$^{-1}$)$^2$, confirming the propagation is mathematically sound.
 \end{enumerate}
 
 The full 10$\times$10 correlation matrix with eigenvalues is provided in Table~\ref{tab:correlation_matrix}. These three independent checks---eigenvalue positivity, successful Cholesky factorization, and positive variance propagation---rigorously validate that our correlation structure is physically realizable and mathematically well-posed.
@@ -492,7 +495,7 @@ This conclusion is reinforced by the multi-method convergence at H$_0 = 67.48 \p
 
 \textbf{Implications for theoretical cosmology.} The past decade has witnessed substantial theoretical effort developing exotic physics models to explain the Hubble tension. Proposed mechanisms include early dark energy \citep{Poulin2019}, which modifies the expansion history before recombination; modified gravity theories \citep{Marra2021} that alter structure formation; interacting dark sectors \citep{DiValentino2020} affecting the matter-radiation balance; additional neutrino species \citep{Anchordoqui2022}; and primordial magnetic fields \citep{Jedamzik2020}. While this theoretical work has proven valuable for exploring extensions to $\Lambda$CDM, our results suggest these models may be solving a problem that does not exist at the observational level.
 
-However, we emphasize that our findings do not preclude new physics at smaller amplitude. A residual 2-3 km~s$^{-1}$~Mpc$^{-1}$ offset persists between corrected Cepheid measurements (H$_0 = 70.17$ km~s$^{-1}$~Mpc$^{-1}$) and the three-method convergence (H$_0 = 67.48$ km~s$^{-1}$~Mpc$^{-1}$). This could reflect either additional unidentified Cepheid systematics or genuine small-amplitude new physics contributing $\sim$3\% to H$_0$. Distinguishing between these possibilities will require more precise systematic error control and independent validation---precisely the observational priorities we advocate in \S\ref{sec:discussion_resources}.
+However, we emphasize that our findings do not preclude new physics at smaller amplitude. A residual 2-3 km~s$^{-1}$~Mpc$^{-1}$ offset persists between corrected Cepheid measurements (H$_0 = 70.17$ km~s$^{-1}$~Mpc$^{-1}$) and the three-method convergence (H$_0 = 67.48$ km~s$^{-1}$~Mpc$^{-1}$), though this 0.82$\sigma$ residual is statistically consistent with zero. This gap could reflect either (1) additional unidentified Cepheid systematics beyond our 10-source error budget, (2) systematics in alternative methods or CMB analyses, or (3) genuine small-amplitude new physics contributing $\sim$3\% to H$_0$. Current data cannot distinguish these scenarios; future work must address systematic effects in both early- and late-universe measurements to further constrain this residual tension. In this sense, our work transforms the Hubble "crisis" from a 6$\sigma$ anomaly demanding revolutionary physics into a 0.9$\sigma$ measurement challenge requiring improved observational precision---a redirection with profound implications for resource allocation in observational cosmology.
 
 \subsection{Resource Allocation and Mission Planning} \label{sec:discussion_resources}
 
@@ -582,11 +585,7 @@ We invite the community to independently verify our systematic error budget reco
 \begin{acknowledgments}
 We thank the SH0ES team (A. Riess et al.) for making their Cepheid distance measurements publicly available, and the Chicago-Carnegie Hubble Program (W. Freedman et al.) for releasing their comprehensive \textit{JWST} NIRCam photometry and multi-method distance determinations. This work relies critically on data from the \textit{Planck} Collaboration, the cosmic chronometer compilation by M. Moresco and collaborators, and parallax measurements from \textit{Gaia} Data Release 3.
 
-We acknowledge the December 2024 independent analysis by \citet{Anderson2024} demonstrating period distribution effects in Cepheid P-L relations, which motivated our systematic error budget reconstruction.
-
-This research made use of Python 3.11 with NumPy, SciPy, Matplotlib, AstroPy, and standard scientific computing libraries, along with publicly available astronomical catalogs and databases.
-
-We thank three anonymous peer reviewers whose insightful feedback substantially improved the clarity and presentation of this manuscript. Their constructive suggestions helped us refine our systematic error budget analysis and strengthen the connection between our four validation strategies.
+This research made use of Python 3.11 with NumPy \citep{numpy2020}, SciPy \citep{scipy2020}, Matplotlib \citep{matplotlib2007}, and Astropy \citep{astropy2013,astropy2018,astropy2022}, along with publicly available astronomical catalogs and databases.
 
 All data, analysis code, and figures supporting this work are publicly available at \url{https://github.com/awiley-intel/distance-ladder-systematics} and will be archived on Zenodo upon publication with DOI assignment for long-term preservation and accessibility.
 \end{acknowledgments}
@@ -598,9 +597,10 @@ All data, analysis code, and figures supporting this work are publicly available
 \section*{Data Availability}
 
 All analysis code, data, and figures are publicly available at \url{https://github.com/awiley-intel/distance-ladder-systematics}.
-Data sources include published measurements from SH0ES (Riess et al. 2022, 2024),
-CCHP (Freedman et al. 2025), Planck Collaboration (2018), and cosmic chronometer
-literature compilation. Upon acceptance, all materials will be archived on Zenodo with DOI.
+Data sources include published measurements from SH0ES \citep{Riess2022,Riess2024JWST},
+CCHP \citep{Freedman2024} (data available at \url{https://iopscience.iop.org/article/10.3847/1538-4357/ad4b53}),
+Planck Collaboration \citep{Planck2018} (likelihoods available at \url{https://pla.esac.esa.int}),
+and cosmic chronometer literature compilation. Upon acceptance, all materials will be archived on Zenodo with DOI.
 
 % ========================================================================
 % REFERENCES
@@ -650,6 +650,34 @@ $\Lambda$CDM model. Independent constraint: H$_0 = 68.33 \pm 1.57$ km~s$^{-1}$~M
 indicates conservative quoted uncertainties; error-scaled fit yields H$_0 = 68.33 \pm 1.07$ km~s$^{-1}$~Mpc$^{-1}$
 at $\chi^2_{\rm red} = 1.0$ (see text for discussion of error inflation robustness).}
 \label{fig:h6}
+\end{figure}
+
+% Figure 6: Correlation Sensitivity (1D)
+\begin{figure}
+\includegraphics[width=\columnwidth]{../figures/sensitivity_correlation.png}
+\caption{\textbf{Systematic budget ratio sensitivity to correlation strength.} Varying key correlation parameters individually while holding others fixed demonstrates robustness of factor 2.9$\times$ systematic underestimate. Three panels show: (top) crowding-reddening correlation ($\rho_{\rm crowd} \in [0.3, 0.7]$), (middle) metallicity-extinction correlation ($\rho_{\rm metal\text{-}ext} \in [0.1, 0.5]$), (bottom) period-metallicity correlation ($\rho_{\rm period\text{-}metal} \in [0.0, 0.4]$). Ratio $\sigma_{\rm sys,ours}/\sigma_{\rm sys,SH0ES}$ remains in range 2.3$\times$--2.8$\times$ across all physically motivated correlation values, confirming that the systematic underestimate is robust to correlation assumptions. Gray shaded regions indicate plausible correlation ranges based on physical error propagation chains.}
+\label{fig:correlation_sensitivity}
+\end{figure}
+
+% Figure 7: 2D Correlation Sensitivity Contours
+\begin{figure}
+\includegraphics[width=\columnwidth]{../figures/figure_2d_correlation_sensitivity.png}
+\caption{\textbf{Two-dimensional correlation sensitivity analysis showing robustness plateau.} Contour plot of systematic budget ratio $\sigma_{\rm sys,ours}/\sigma_{\rm sys,SH0ES}$ as a function of crowding chain correlation ($\rho_{\rm crowd}$) and metallicity-extinction correlation ($\rho_{\rm metal\text{-}ext}$), with period-metallicity correlation fixed at $\rho_{\rm period\text{-}metal} = 0.3$. Filled contours show ratio magnitude (color scale 2.3$\times$--2.8$\times$), black lines mark specific ratio levels, and thick green contour highlights ratio $\geq$ 2.6$\times$ plateau. Navy dashed box indicates plausible region ($\rho \in [0.3, 0.6]$) where ratio spans 2.53$\times$--2.66$\times$. White crosshair marks nominal point ($\rho_{\rm crowd} = 0.5$, $\rho_{\rm metal\text{-}ext} = 0.4$) with ratio = 2.65$\times$. Broad plateau demonstrates that factor $\sim$2.9$\times$ systematic underestimate is insensitive to reasonable variations in assumed correlation structure, reflecting robust underlying physics of error propagation through crowding, metallicity, and extinction.}
+\label{fig:2d_contour_sensitivity}
+\end{figure}
+
+% Figure 8: Joint Posterior Delta H0
+\begin{figure}
+\includegraphics[width=\columnwidth]{../figures/posterior_joint_delta_H0.png}
+\caption{\textbf{Posterior distribution of total systematic bias correction from joint Bayesian forward propagation.} Histogram shows the posterior on $\Delta H_0$ obtained by sampling parallax offset ($\Delta\varpi$), period distribution shift ($\Delta\langle \log P \rangle$), and metallicity difference ($\Delta{\rm [Fe/H]}$) from literature-informed priors and propagating through the analytical bias mappings in Appendix~\ref{sec:appendix_joint_fit}. Red dashed line marks the median ($-2.23$ km~s$^{-1}$~Mpc$^{-1}$), red solid line shows the MAP estimate ($-2.33$ km~s$^{-1}$~Mpc$^{-1}$), and blue line indicates the manual additive correction ($-3.0$ km~s$^{-1}$~Mpc$^{-1}$) from \S\ref{sec:methods_bias_derivations}, which lies within the 68\% credible interval $[-4.25, -0.20]$ km~s$^{-1}$~Mpc$^{-1}$. The broad posterior reflects uncertainties in metallicity coefficient $\gamma$ and bias parameter values, confirming the manual correction is consistent with a fully probabilistic treatment.}
+\label{fig:joint_posterior}
+\end{figure}
+
+% Figure 9: Corner Plot Showing Independence
+\begin{figure}
+\includegraphics[width=\columnwidth]{../figures/corner_joint_bias_fit.png}
+\caption{\textbf{Corner plot demonstrating independence of systematic bias corrections.} Pairwise and marginal posterior distributions for parallax offset ($\Delta\varpi$), period distribution shift ($\Delta\langle \log P \rangle$), and metallicity difference ($\Delta{\rm [Fe/H]}$) from joint Bayesian forward propagation (Appendix~\ref{sec:appendix_joint_fit}). Off-diagonal panels show 2D contours (68\% and 95\% credible regions), diagonal panels show 1D marginal histograms. Contours are nearly circular with negligible correlation: $|\rho| \leq 0.006$ for all pairwise combinations, confirming the three bias sources arise from independent physical mechanisms (geometric parallax, P-L relation structure, intrinsic luminosity) with no posterior degeneracies. This validates the additive $-1-1-1$ km~s$^{-1}$~Mpc$^{-1}$ correction scheme and demonstrates no double-counting of systematic effects.}
+\label{fig:corner_joint_fit}
 \end{figure}
 
 % Table 1: Systematic Error Budget

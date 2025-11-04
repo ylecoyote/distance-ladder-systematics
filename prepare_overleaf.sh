@@ -34,6 +34,10 @@ cp figures/figure2_error_budget.png "$TEMP_DIR/figures/"
 cp figures/figure3_cchp_crossval_real.png "$TEMP_DIR/figures/"
 cp figures/figure4_h0_compilation.png "$TEMP_DIR/figures/"
 cp figures/figure5_h6_fit.png "$TEMP_DIR/figures/"
+cp figures/sensitivity_correlation.png "$TEMP_DIR/figures/"
+cp figures/figure_2d_correlation_sensitivity.png "$TEMP_DIR/figures/"
+cp figures/posterior_joint_delta_H0.png "$TEMP_DIR/figures/"
+cp figures/corner_joint_bias_fit.png "$TEMP_DIR/figures/"
 
 # Copy tables (only existing ones)
 mkdir -p "$TEMP_DIR/data/tables"
