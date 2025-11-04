@@ -1,0 +1,34 @@
+# Conda environment specification for Distance Ladder Systematics analysis
+# Reproducibility metadata for manuscript: Forensic Analysis of Distance Ladder Systematics
+# Repository: https://github.com/awiley-intel/distance-ladder-systematics
+# Commit: 85c56c3
+
+name: distance-ladder-systematics
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy>=1.24.0
+  - pandas>=2.0.0
+  - matplotlib>=3.7.0
+  - scipy>=1.10.0
+  - seaborn>=0.12.0
+  - jupyter>=1.0.0
+  - notebook>=6.5.0
+
+  # Optional dependencies for development
+  - pytest>=7.0.0
+  - black>=23.0.0
+  - flake8>=6.0.0
+
+# Installation instructions:
+# 1. Install conda/miniconda if not already installed
+# 2. Create environment: conda env create -f environment.yml
+# 3. Activate environment: conda activate distance-ladder-systematics
+# 4. Run analysis scripts: python analysis/script_name.py
+# 5. Launch Jupyter notebooks: jupyter notebook
+
+# All analysis scripts in analysis/ directory
+# All figures generated in figures/ directory
+# All tables generated in data/tables/ directory
