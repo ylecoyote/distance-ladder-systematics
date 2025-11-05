@@ -299,7 +299,7 @@ Our systematic error budget reconstruction reveals a substantial discrepancy bet
 
 This discrepancy arises from specific systematic sources where SH0ES estimates appear optimistic relative to independent assessments:
 
-\textbf{Parallax zero point (High confidence):} SH0ES allocates 0.3 km~s$^{-1}$~Mpc$^{-1}$ to parallax systematics, based on \textit{Gaia} EDR3 published zero point uncertainties \citep{Lindegren2021}. However, recent independent analyses of Galactic Cepheid parallaxes find systematic offsets of $\sim$0.017 mas beyond the nominal EDR3 corrections, translating to $\sim$1.0 km~s$^{-1}$~Mpc$^{-1}$ uncertainty in the distance scale zero point. Our assessment: 1.0 km~s$^{-1}$~Mpc$^{-1}$ (High confidence).
+\textbf{Parallax zero point (Scenario-dependent):} SH0ES allocates 0.3 km~s$^{-1}$~Mpc$^{-1}$ to parallax systematics, based on \textit{Gaia} EDR3 published zero point uncertainties \citep{Lindegren2021}. Recent independent analyses of Galactic Cepheid parallaxes find systematic offsets of $\sim$0.017 mas beyond the nominal EDR3 corrections, translating to $\sim$1.0 km~s$^{-1}$~Mpc$^{-1}$ uncertainty in the distance scale zero point. However, because SH0ES solves for the parallax zero point internally as part of their calibration procedure, the appropriate uncertainty depends on whether we adopt their fitted value or an external prior. We present two scenarios: \textbf{Scenario A (Baseline):} Adopt SH0ES internally-fitted ZP with residual uncertainty 0.3 km~s$^{-1}$~Mpc$^{-1}$. \textbf{Scenario B (Sensitivity):} Apply external Gaia ZP prior with full uncertainty 1.0 km~s$^{-1}$~Mpc$^{-1}$ and $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ bias correction. Our baseline adopts Scenario A; Scenario B tests sensitivity to ZP assumptions.
 
 \textbf{Period distribution (High confidence):} SH0ES allocates 0.0 km~s$^{-1}$~Mpc$^{-1}$ to period distribution effects, assuming the Period-Luminosity relation slope is constant across the period range spanned by anchor and host galaxy Cepheids. Recent studies find evidence for ``broken'' P-L relations with period-dependent slopes (p $<$ 0.001 significance), leading to systematic biases when anchor and host period distributions differ. Explicit calculation using slope difference $\Delta\beta \in [0.3, 0.7]$ mag/dex, period offset $\Delta\langle \log P \rangle = 0.30$ dex, and dilution factors 0.5--0.7 yields correction bracket $[-1.5, -3.5]$ km~s$^{-1}$~Mpc$^{-1}$. Our assessment: $2.5 \pm 1.0$ km~s$^{-1}$~Mpc$^{-1}$ (High confidence, mid-range of explicit bracket).
 
@@ -329,7 +329,7 @@ To facilitate direct comparison, Table~\ref{tab:systematic_budget} presents our 
 
 \textbf{Sources where we find SH0ES \textit{underestimates} systematics:}
 \begin{itemize}
-\item \textbf{Parallax zero point:} 1.0 vs 0.3 km~s$^{-1}$~Mpc$^{-1}$ (factor 3.3$\times$). Independent Gaia EDR3 analyses \citep{Lindegren2021} find systematic offsets $\sim$0.017 mas beyond nominal corrections, substantially larger than SH0ES assessment.
+\item \textbf{Parallax zero point (scenario-dependent):} Scenario A (baseline): 0.3 vs 0.3 km~s$^{-1}$~Mpc$^{-1}$ (adopt SH0ES internal fit); Scenario B (sensitivity): 1.0 vs 0.3 km~s$^{-1}$~Mpc$^{-1}$ with $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ bias correction (external Gaia prior). Independent analyses find offsets $\sim$0.017 mas, but SH0ES solves for ZP internally, making residual uncertainty smaller.
 \item \textbf{Period distribution:} $2.5 \pm 1.0$ vs 0.0 km~s$^{-1}$~Mpc$^{-1}$ (factor $\infty$). SH0ES assumes constant P-L slope; empirical evidence for broken P-L relations (p $<$ 0.001) plus explicit derivation from period offset ($\Delta\langle \log P \rangle = 0.30$ dex) and slope difference ($\Delta\beta = 0.3$--0.7 mag/dex) yields bracket $[-1.5, -3.5]$ km~s$^{-1}$~Mpc$^{-1}$.
 \item \textbf{Metallicity correction:} 1.0 vs 0.4 km~s$^{-1}$~Mpc$^{-1}$ (factor 2.5$\times$). Literature calibrations span $\gamma = -0.2$ to $-0.5$ mag/dex (factor 2.5 range); SH0ES uses optimistic end ($\gamma = -0.2$) without accounting for full empirical uncertainty.
 \end{itemize}
@@ -368,30 +368,30 @@ This represents the maximum possible tension under optimistic uncertainty assump
 \end{equation}
 Still characterized as a ``crisis'' but already substantially lower than the headline 6$\sigma$ figure.
 
-\textbf{Stage 3: Parallax correction.} Applying a $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for parallax zero point systematics (based on independent Gaia EDR3 analyses finding $\sim$0.017 mas offsets), the Cepheid H$_0$ shifts to 72.17 km~s$^{-1}$~Mpc$^{-1}$. With SH0ES total uncertainty ($\sigma_{\rm total} = 1.31$ km~s$^{-1}$~Mpc$^{-1}$) and Planck ($\sigma = 0.54$ km~s$^{-1}$~Mpc$^{-1}$), combined uncertainty is $\sigma_{\rm combined} = 1.42$ km~s$^{-1}$~Mpc$^{-1}$. Tension:
+\textbf{Stage 3: Parallax correction (scenario-dependent).} Because SH0ES solves for the parallax zero point internally, we present two scenarios: \textbf{Scenario A (Baseline):} Adopt SH0ES internally-fitted ZP with no additional bias correction; H$_0$ remains 73.17 km~s$^{-1}$~Mpc$^{-1}$. \textbf{Scenario B (Sensitivity):} Apply external Gaia ZP prior with $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ bias correction (based on independent analyses finding $\sim$0.017 mas offsets); H$_0$ shifts to 72.17 km~s$^{-1}$~Mpc$^{-1}$. For both scenarios, combined uncertainty is $\sigma_{\rm combined} = 1.42$ km~s$^{-1}$~Mpc$^{-1}$. Tension:
 \begin{equation}
-{\rm Tension} = \frac{|72.17 - 67.36|}{1.42} = 3.4\sigma
+{\rm Tension} = \begin{cases} 4.1\sigma & \text{(Scenario A)} \\ 3.4\sigma & \text{(Scenario B)} \end{cases}
 \end{equation}
 
-\textbf{Stage 4: Period distribution correction.} Applying an additional $-2.5$ km~s$^{-1}$~Mpc$^{-1}$ correction for period distribution mismatch (mid-range of explicit bracket $[-1.5, -3.5]$ km~s$^{-1}$~Mpc$^{-1}$ derived from period offset $\Delta\langle \log P \rangle = 0.30$ dex and slope difference $\Delta\beta = 0.3$--0.7 mag/dex with dilution), the Cepheid H$_0$ becomes 69.67 km~s$^{-1}$~Mpc$^{-1}$. Combined uncertainty increases to $\sigma_{\rm combined} = 1.74$ km~s$^{-1}$~Mpc$^{-1}$ (includes period correction uncertainty $\pm 1.0$ km~s$^{-1}$~Mpc$^{-1}$ added in quadrature). Tension:
+\textbf{Stage 4: Period distribution correction.} Applying an additional $-2.5$ km~s$^{-1}$~Mpc$^{-1}$ correction for period distribution mismatch (mid-range of explicit bracket $[-1.5, -3.5]$ km~s$^{-1}$~Mpc$^{-1}$ derived from period offset $\Delta\langle \log P \rangle = 0.30$ dex and slope difference $\Delta\beta = 0.3$--0.7 mag/dex with dilution), the Cepheid H$_0$ becomes 70.67 km~s$^{-1}$~Mpc$^{-1}$ (Scenario A) or 69.67 km~s$^{-1}$~Mpc$^{-1}$ (Scenario B). Combined uncertainty increases to $\sigma_{\rm combined} = 1.74$ km~s$^{-1}$~Mpc$^{-1}$ (includes period correction uncertainty $\pm 1.0$ km~s$^{-1}$~Mpc$^{-1}$ added in quadrature). Tension:
 \begin{equation}
-{\rm Tension} = \frac{|69.67 - 67.36|}{1.74} = 1.3\sigma
+{\rm Tension} = \begin{cases} 1.9\sigma & \text{(Scenario A)} \\ 1.3\sigma & \text{(Scenario B)} \end{cases}
 \end{equation}
 
 \textbf{Stage 5: Metallicity correction + realistic correlated systematics.} Applying a final $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for metallicity effects (adopting mid-range $\gamma \approx -0.35$ mag/dex rather than SH0ES $\gamma = -0.2$) and replacing SH0ES systematics with our realistic correlated assessment ($\sigma_{\rm sys} = 3.14$ km~s$^{-1}$~Mpc$^{-1}$), we obtain:
 \begin{equation}
-H_{0,\rm Cepheid}^{\rm corrected} = 68.67 \pm 3.24~{\rm km~s^{-1}~Mpc^{-1}}
+H_{0,\rm Cepheid}^{\rm corrected} = \begin{cases} 69.67 \pm 3.24~{\rm km~s^{-1}~Mpc^{-1}} & \text{(Scenario A, baseline)} \\ 68.67 \pm 3.24~{\rm km~s^{-1}~Mpc^{-1}} & \text{(Scenario B, sensitivity)} \end{cases}
 \end{equation}
-where $\sigma_{\rm total} = \sqrt{0.80^2 + 3.14^2} = 3.24$ km~s$^{-1}$~Mpc$^{-1}$. The tension with Planck reduces to \textbf{0.86$\sigma$}---well within normal statistical fluctuations and \textit{not} evidence for new physics by conventional standards ($<$3$\sigma$). For comparison, using uncorrelated systematics ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$) yields 1.07$\sigma$ tension; correlations reduce tension by an additional 0.21$\sigma$.
+where $\sigma_{\rm total} = \sqrt{0.80^2 + 3.14^2} = 3.24$ km~s$^{-1}$~Mpc$^{-1}$. The tension with Planck reduces to \textbf{0.7$\sigma$} (Scenario A) or \textbf{0.4$\sigma$} (Scenario B)---well within normal statistical fluctuations and \textit{not} evidence for new physics by conventional standards ($<$3$\sigma$). For comparison, using uncorrelated systematics ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$) yields 0.9$\sigma$ (A) or 0.5$\sigma$ (B) tension; correlations increase tension slightly but both scenarios remain consistent with Planck.
 
-This dramatic reduction---from 6.0$\sigma$ to 0.86$\sigma$, a factor of 7.0$\times$---demonstrates that realistic accounting of correlated systematic uncertainties and identified biases resolves the bulk of the reported tension. The 0.86$\sigma$ residual could plausibly arise from additional unidentified systematics (e.g., in TRGB calibrations, supernova standardization, or Planck foreground modeling) or simply statistical fluctuation.
+This dramatic reduction---from 6.0$\sigma$ to 0.4--0.7$\sigma$, a factor of 8.6--15$\times$---demonstrates that realistic accounting of correlated systematic uncertainties and identified biases resolves the bulk of the reported tension. The residual could plausibly arise from additional unidentified systematics (e.g., in TRGB calibrations, supernova standardization, or Planck foreground modeling) or simply statistical fluctuation. We adopt \textbf{Scenario A (baseline)} for our main results, as it appropriately accounts for SH0ES's internal ZP optimization, while presenting Scenario B to test sensitivity to ZP assumptions.
 
-\textbf{Comparison with other distance indicators.} The corrected Cepheid H$_0 = 70.17 \pm 3.24$ km~s$^{-1}$~Mpc$^{-1}$ shows excellent agreement with the distance ladder gradient observed in Figure~\ref{fig:h0_compilation}:
+\textbf{Comparison with other distance indicators.} The corrected Cepheid H$_0 = 69.67 \pm 3.24$ km~s$^{-1}$~Mpc$^{-1}$ (Scenario A, baseline) shows excellent agreement with the distance ladder gradient observed in Figure~\ref{fig:h0_compilation}:
 \begin{itemize}
-\item \textbf{TRGB:} H$_0 = 69.85 \pm 2.33$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Freedman2024}. Difference: 0.32 km~s$^{-1}$~Mpc$^{-1}$ (0.08$\sigma$).
-\item \textbf{JAGB:} H$_0 = 67.96 \pm 2.65$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Freedman2024}. Difference: 2.21 km~s$^{-1}$~Mpc$^{-1}$ (0.53$\sigma$).
-\item \textbf{Cosmic chronometers:} H$_0 = 68.33 \pm 1.57$ km~s$^{-1}$~Mpc$^{-1}$ (this work, \S\ref{sec:results_convergence}). Difference: 1.84 km~s$^{-1}$~Mpc$^{-1}$ (0.51$\sigma$).
-\item \textbf{Planck:} H$_0 = 67.36 \pm 0.54$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Planck2018}. Difference: 2.81 km~s$^{-1}$~Mpc$^{-1}$ (0.86$\sigma$).
+\item \textbf{TRGB:} H$_0 = 69.85 \pm 2.33$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Freedman2024}. Difference: 0.18 km~s$^{-1}$~Mpc$^{-1}$ (0.05$\sigma$).
+\item \textbf{JAGB:} H$_0 = 67.96 \pm 2.65$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Freedman2024}. Difference: 1.71 km~s$^{-1}$~Mpc$^{-1}$ (0.41$\sigma$).
+\item \textbf{Cosmic chronometers:} H$_0 = 68.33 \pm 1.57$ km~s$^{-1}$~Mpc$^{-1}$ (this work, \S\ref{sec:results_convergence}). Difference: 1.34 km~s$^{-1}$~Mpc$^{-1}$ (0.37$\sigma$).
+\item \textbf{Planck:} H$_0 = 67.36 \pm 0.54$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Planck2018}. Difference: 2.31 km~s$^{-1}$~Mpc$^{-1}$ (0.71$\sigma$).
 \end{itemize}
 
 All differences are $\leq$0.9$\sigma$, demonstrating consistency across five independent methods once realistic correlated Cepheid systematics are applied. The H$_0$ gradient that motivated our investigation (\S\ref{sec:intro}, Figure~\ref{fig:h0_compilation}) is explained by progressive underestimation of Cepheid systematics rather than fundamental physics.
