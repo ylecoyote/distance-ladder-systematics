@@ -1,0 +1,8 @@
+Period Distribution Correction Summary
+======================================================================
+
+Conservative: -1.51 km/s/Mpc
+Mid-range:    -3.53 km/s/Mpc
+Aggressive:   -7.06 km/s/Mpc
+
+Recommended bracket: [-1.5, -3.5] km/s/Mpc
