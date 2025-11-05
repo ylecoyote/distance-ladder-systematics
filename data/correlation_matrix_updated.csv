@@ -1,0 +1,10 @@
+,Parallax Zero Point,Period Distribution,Metallicity Correction,Crowding Direct,Photometric Calibration,Extinction Reddening,LMC Distance,NGC4258 Distance,SNe Ia Standardization
+Parallax Zero Point,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Period Distribution,0.0,1.0,0.3,0.0,0.0,0.0,0.0,0.0,0.0
+Metallicity Correction,0.0,0.3,1.0,0.2,0.0,0.3,0.0,0.0,0.2
+Crowding Direct,0.0,0.0,0.2,1.0,0.0,0.3,0.0,0.0,0.0
+Photometric Calibration,0.0,0.0,0.0,0.0,1.0,0.2,0.0,0.0,0.0
+Extinction Reddening,0.0,0.0,0.3,0.3,0.2,1.0,0.0,0.0,0.15
+LMC Distance,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+NGC4258 Distance,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+SNe Ia Standardization,0.0,0.0,0.2,0.0,0.0,0.15,0.0,0.0,1.0
