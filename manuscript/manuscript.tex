@@ -263,22 +263,20 @@ where $\sigma$ includes both statistical and systematic uncertainties in quadrat
 Our analysis proceeds through five stages:
 
 \begin{enumerate}
-\item \textbf{Baseline:} SH0ES H$_0 = 73.17 \pm 0.80$ km~s$^{-1}$~Mpc$^{-1}$ (statistical only) vs Planck H$_0 = 67.36 \pm 0.54$ km~s$^{-1}$~Mpc$^{-1}$.
+\item \textbf{Stage 1 - Baseline:} SH0ES H$_0 = 73.17 \pm 0.80$ km~s$^{-1}$~Mpc$^{-1}$ (statistical only) vs Planck H$_0 = 67.36 \pm 0.54$ km~s$^{-1}$~Mpc$^{-1}$.
 
-\item \textbf{+ SH0ES systematics:} Add SH0ES claimed $\sigma_{\rm sys} = 1.04$ km~s$^{-1}$~Mpc$^{-1}$ to Cepheid uncertainty.
+\item \textbf{Stage 2 - SH0ES total uncertainty:} Add SH0ES claimed $\sigma_{\rm sys} = 1.04$ km~s$^{-1}$~Mpc$^{-1}$ to statistical uncertainty, yielding $\sigma_{\rm total} = 1.31$ km~s$^{-1}$~Mpc$^{-1}$.
 
-\item \textbf{+ Realistic systematics:} Replace SH0ES systematics with our assessed $\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$.
+\item \textbf{Stage 3 - Scenario A parallax:} Adopt SH0ES internally-fitted parallax ZP with no additional bias correction; H$_0$ remains 73.17 km~s$^{-1}$~Mpc$^{-1}$ (baseline approach).
 
-\item \textbf{+ Parallax correction:} Apply $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for parallax zero point bias.
+\item \textbf{Stage 4 - Period distribution correction:} Apply $-2.5$ km~s$^{-1}$~Mpc$^{-1}$ correction (mid-range of explicit bracket $[-1.5, -3.5]$) for period distribution mismatch between anchors and hosts.
 
-\item \textbf{+ Period correction:} Apply $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for period distribution mismatch.
-
-\item \textbf{+ Metallicity correction:} Apply $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ correction for metallicity effect using mid-range literature calibration.
+\item \textbf{Stage 5 - Metallicity + realistic systematics:} Apply metallicity correction (Prior 1: $-1.0$ km~s$^{-1}$~Mpc$^{-1}$ for $\gamma=-0.2\pm0.1$ per 2025 consensus) and replace SH0ES systematics with our correlated assessment $\sigma_{\rm sys,corr} = 1.71$ km~s$^{-1}$~Mpc$^{-1}$ (Scenario A + Prior 1 baseline), yielding corrected H$_0 = 69.67 \pm 1.89$ km~s$^{-1}$~Mpc$^{-1}$.
 \end{enumerate}
 
 At each stage, we recalculate the tension and compare the corrected Cepheid H$_0$ against not only Planck but also TRGB, JAGB, and cosmic chronometer values. This provides a comprehensive view of how systematic uncertainties affect the landscape of H$_0$ measurements.
 
-The corrections applied in stages 4--6 are informed by our systematic error budget reconstruction and the literature consensus on these effects. We emphasize that these are not arbitrary adjustments but rather reflect the best available estimates of systematic biases identified through independent analyses.
+The corrections applied in stages 4--5 are informed by our systematic error budget reconstruction and the literature consensus on these effects. We emphasize that these are not arbitrary adjustments but rather reflect the best available estimates of systematic biases identified through independent analyses.
 
 % ========================================================================
 % RESULTS
@@ -478,7 +476,7 @@ with RMS scatter 0.108 mag. The negative offset indicates Cepheid distances are 
 
 \textbf{Statistical significance of scatter excess.} To quantify whether the 2.3$\times$ scatter difference is statistically significant beyond measurement noise, we perform an F-test (ratio of variances). Under the null hypothesis that both methods have equal intrinsic scatter, the variance ratio follows an F-distribution: $F = \sigma^2_{\rm Cepheid}/\sigma^2_{\rm JAGB} = (0.108)^2/(0.048)^2 = 5.06$ with $(N_{\rm Cepheid}-1, N_{\rm JAGB}-1) = (14, 6)$ degrees of freedom. This yields $p = 0.032$, rejecting the null hypothesis at 95\% confidence (2$\sigma$ significance). The enhanced Cepheid scatter is not a statistical fluctuation---it reflects genuine method-dependent systematics exceeding JAGB/TRGB uncertainties.
 
-This enhanced Cepheid scatter provides direct observational evidence for larger systematic uncertainties in Cepheid measurements compared to JAGB/TRGB. The scatter cannot be explained by distance uncertainties alone (which should affect all methods equally for the same galaxies), suggesting method-specific systematics dominate the Cepheid error budget. This empirical finding validates our systematic error budget assessment in \S\ref{sec:results_systematics}, where we found Cepheid $\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$ vs JAGB/TRGB $\sigma_{\rm sys} \sim 1.5$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Freedman2024}.
+This enhanced Cepheid scatter provides direct observational evidence for larger systematic uncertainties in Cepheid measurements compared to JAGB/TRGB. The scatter cannot be explained by distance uncertainties alone (which should affect all methods equally for the same galaxies), suggesting method-specific systematics dominate the Cepheid error budget. This empirical finding validates our systematic error budget assessment in \S\ref{sec:results_systematics}, where we found Cepheid $\sigma_{\rm sys,corr} = 1.71$ km~s$^{-1}$~Mpc$^{-1}$ (correlated, Scenario A + Prior 1 baseline; 1.45 km~s$^{-1}$~Mpc$^{-1}$ uncorrelated) vs JAGB/TRGB $\sigma_{\rm sys} \sim 1.5$ km~s$^{-1}$~Mpc$^{-1}$ \citep{Freedman2024}.
 
 \textbf{Implications for distance ladder systematics.} The CCHP cross-validation demonstrates that real observational data reveal Cepheid systematics exceeding SH0ES claims. The factor 2.3$\times$ excess scatter in Cepheid vs JAGB comparisons provides empirical confirmation of enhanced Cepheid systematic uncertainties, broadly consistent with our factor 1.4$\times$ systematic underestimate (uncorrelated baseline after peer review revisions; \S\ref{sec:results_systematics}). Moreover, the systematic offset ($-0.024$ mag, though marginally significant) points in the direction expected from our corrections: Cepheids yield higher H$_0$ than alternative methods, and realistic corrections reduce this offset.
 
@@ -494,7 +492,7 @@ These results underscore the value of multi-method observations in the same fiel
 
 \subsection{Implications for the Hubble Tension}
 
-Our findings demonstrate that the reported 5-6$\sigma$ Hubble tension is likely a measurement artifact arising from underestimated Cepheid systematic uncertainties rather than evidence for physics beyond the standard $\Lambda$CDM cosmological model. With realistic systematic error assessment ($\sigma_{\rm sys} = 2.45$ km~s$^{-1}$~Mpc$^{-1}$) and evidence-based corrections, the tension reduces to 1.1$\sigma$---well within the range of normal statistical fluctuations. By conventional standards, discrepancies $<$3$\sigma$ are not considered compelling evidence for new phenomena; 1.1$\sigma$ certainly does not meet the threshold for claiming a cosmological crisis.
+Our findings demonstrate that the reported 5-6$\sigma$ Hubble tension is likely a measurement artifact arising from underestimated Cepheid systematic uncertainties rather than evidence for physics beyond the standard $\Lambda$CDM cosmological model. With realistic systematic error assessment ($\sigma_{\rm sys,corr} = 1.71$ km~s$^{-1}$~Mpc$^{-1}$, Scenario A + Prior 1 baseline after removing unsupported covariant crowding standalone term and adopting 2025 metallicity consensus $\gamma=-0.2\pm0.1$) and evidence-based corrections, the tension reduces to 1.2$\sigma$ (baseline; range 0.2$\sigma$ to 1.7$\sigma$ across six scenario combinations)---well within the range of normal statistical fluctuations. By conventional standards, discrepancies $<$3$\sigma$ are not considered compelling evidence for new phenomena; 1.2$\sigma$ certainly does not meet the threshold for claiming a cosmological crisis.
 
 This conclusion is reinforced by the multi-method convergence at H$_0 = 67.48 \pm 0.50$ km~s$^{-1}$~Mpc$^{-1}$ (\S\ref{sec:results_convergence}). Three independent approaches---JAGB stellar distances, cosmic chronometer H(z) measurements, and Planck CMB observations---agree within 1 km~s$^{-1}$~Mpc$^{-1}$ despite sharing no systematic uncertainties. This remarkable consistency, quantified by $\chi^2_{\rm red} = 0.19$, provides strong evidence that H$_0 \approx 67-68$ km~s$^{-1}$~Mpc$^{-1}$ likely represents the local expansion rate. The Planck value of 67.36 km~s$^{-1}$~Mpc$^{-1}$ sits within 0.2$\sigma$ of this convergence, suggesting standard $\Lambda$CDM successfully describes the universe's expansion history from recombination (z $\sim$ 1100) to the present day.
 
