@@ -1,7 +1,8 @@
 Method,H0_km_s_Mpc,Sigma_km_s_Mpc,Category,Shares_Systematics_With_Cepheid
-Cosmic Chronometers (H(z)),68.33304818689737,1.565189398251633,Model-Independent,False
-JAGB,67.96,2.65,Distance Ladder,False
 Planck CMB,67.36,0.54,Early Universe,False
 Weighted Mean,67.4812658240218,0.5012579612451308,Convergence,False
+JAGB,67.96,2.65,Distance Ladder,False
+Cosmic Chronometers (H(z)),68.33304818689737,1.565189398251633,Model-Independent,False
+Corrected Cepheid (Scenario A + Prior 1),69.67,1.89,Distance Ladder,True
 TRGB,69.85,2.33,Distance Ladder,False
 SH0ES Cepheid,73.17,1.31,Distance Ladder,True
