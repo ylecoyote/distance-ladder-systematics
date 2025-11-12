@@ -390,6 +390,84 @@ If Planck's H₀ shifts by 1 km/s/Mpc → tension changes by ~0.5σ
 
 ---
 
+## Implementation Status (v8.5A - November 2025)
+
+**All recommended revisions have been implemented** through systematic manuscript enhancements (AWI-171 through AWI-178):
+
+### ✅ Recommendation 1: Planck Dependence Caveat (AWI-173)
+**Status:** IMPLEMENTED in manuscript.tex lines 554-555
+
+**Implementation:**
+Added explicit quantification of Planck dependence to Limitations section:
+- Documents that Planck's H₀ = 67.36 is ΛCDM-derived (not direct measurement)
+- Quantifies systematic uncertainty sources (foreground modeling, beam calibration, likelihood approximations)
+- Clarifies impact on tension calculations
+
+**Validation:** Manuscript now explicitly addresses model dependence concerns.
+
+### ✅ Recommendation 2: Late-Universe Convergence Emphasis (AWI-171, AWI-177, AWI-178)
+**Status:** IMPLEMENTED across multiple sections
+
+**Implementation (AWI-171):**
+- Abstract (lines 42-43): Added Planck-independent convergence headline
+- Conclusions (lines 568-577): Emphasized late-universe convergence
+
+**Implementation (AWI-177):**
+- Introduction (line 83): Added gradient pattern without Planck
+- Demonstrates Cepheid → TRGB → JAGB/H(z) progression independent of CMB
+
+**Implementation (AWI-178):**
+- Figure 4 caption (line 647): Updated to show Planck-independent tension (0.6σ)
+- Visual demonstration of late-universe convergence robustness
+
+**Validation:** Manuscript now prominently features JAGB + cosmic chronometer convergence (H₀ = 68.22 ± 1.36 km/s/Mpc, χ²_red ≈ 0.04) as model-independent evidence.
+
+### ✅ Recommendation 3: ΛCDM Validation Claim Softened (AWI-172)
+**Status:** IMPLEMENTED in manuscript.tex after line 441
+
+**Implementation:**
+Added explicit "consistency check" paragraph clarifying:
+- Planck agreement is consistency check, not proof of ΛCDM
+- Cannot rule out small-amplitude (~3%) late-time new physics
+- Distinguishes between consistency and validation
+
+**Validation:** Manuscript no longer claims to "validate ΛCDM" but rather shows "consistency with standard cosmology."
+
+### Additional Robustness Enhancements (Beyond Original Recommendations)
+
+**AWI-174: JWST Robustness Validation**
+- Jackknife resampling (leave-one-out cross-validation)
+- Robust scatter estimators (MAD, Tukey biweight)
+- Confirms 2.3× excess Cepheid scatter is not driven by outliers
+- **Impact:** Strengthens Planck-independent systematic validation
+
+**AWI-175: Extended Correlation Sensitivity**
+- Tests ρ ∈ [0.0, 0.8] across 9 correlation coefficient variations
+- Tension remains <2σ across full plausible range
+- **Impact:** Validates robustness to correlation matrix assumptions
+
+**AWI-176: Random-Effects H(z) Fit**
+- Addresses low χ²_red = 0.48 via error scaling to χ²_red ≈ 1.0
+- H₀ central value unchanged (demonstrates robustness)
+- **Impact:** Validates cosmic chronometer constraint regardless of error model
+
+### Summary: v8.5A Enhancement Impact
+
+**Planck dependence mitigation:**
+- ✅ All three recommended manuscript revisions implemented
+- ✅ Additional robustness checks strengthen Planck-independent findings
+- ✅ Dual tension metrics now reported: 1.2σ (Planck-relative), 0.6σ (Planck-free)
+
+**Key result:**
+The manuscript now clearly demonstrates that the "Hubble tension resolved" conclusion is **robust to Planck assumptions**:
+- Core Cepheid systematic finding (1.6× factor): Planck-independent (JWST validates)
+- Late-universe convergence (H₀ ≈ 68): Planck-independent (JAGB + H(z) alone)
+- Tension reduction: 6.0σ → 0.6σ achievable without Planck reference
+
+**Implementation complete:** 2025-11-12 (8 Linear issues closed, 3 new analysis scripts, 5 new data files)
+
+---
+
 ## Bottom Line
 
 ### How Planck Affects Our Findings: Summary Table

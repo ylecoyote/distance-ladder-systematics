@@ -185,12 +185,134 @@ Simple new physics models would affect **all** late-time measurements equally - 
 
 ---
 
+## Parallel Development: v8.5A Planck-Independence Enhancement (November 2025)
+
+**Context:** While preparing the M1 peer review response, a parallel work stream strengthened the manuscript's independence from Planck CMB measurements.
+
+### Motivation
+
+The M1 peer review response work revealed an opportunity to strengthen a potential reviewer concern:
+
+**Question:** "How dependent are your findings on Planck being correct?"
+
+**Answer (pre-v8.5A):** Moderately dependent - tension calculation uses Planck as reference, three-method convergence weighted 86% by Planck's small uncertainty.
+
+**Solution (v8.5A):** Demonstrate robustness via Planck-independent analyses and dual tension metrics.
+
+### Implementation (8 Linear Issues: AWI-171 through AWI-178)
+
+#### Phase 1: Manuscript Text Enhancements
+
+**AWI-171: Add Late-Universe Convergence to Abstract & Conclusions**
+- Added JAGB + cosmic chronometer convergence (H₀ = 68.22 ± 1.36 km/s/Mpc)
+- Emphasized χ²_red ≈ 0.04 excellent agreement
+- No CMB physics assumptions required
+
+**AWI-172: Add Consistency Check Paragraph**
+- Clarified Planck agreement is consistency check, not proof
+- Explicitly noted cannot rule out ~3% late-time new physics
+- Distinguished between validation and consistency
+
+**AWI-173: Quantify Planck Dependence in Limitations**
+- Documented Planck's H₀ is ΛCDM-derived (not direct measurement)
+- Quantified systematic uncertainty sources
+- Clarified impact on tension calculations
+
+**AWI-177: Add Gradient Pattern Without Planck**
+- Demonstrated Cepheid → TRGB → JAGB/H(z) progression
+- Shows gradient explanation doesn't require Planck at low end
+
+**AWI-178: Update Figure 4 Caption with Planck-Free Result**
+- Added Planck-independent tension (0.6σ) to multi-method comparison
+- Visual demonstration of late-universe convergence robustness
+
+#### Phase 2: Robustness Validation Analyses
+
+**AWI-174: JWST Cross-Validation Robustness Checks**
+- **Jackknife resampling:** Leave-one-out validation of 2.3× scatter ratio
+- **Robust scatter estimators:** MAD (Median Absolute Deviation), Tukey biweight
+- **Result:** 2.3× excess Cepheid scatter confirmed, not driven by outliers
+
+**AWI-175: Extended Correlation Sensitivity Analysis**
+- **Sweep range:** ρ ∈ [0.0, 0.8] across 9 correlation coefficient variations
+- **Result:** Tension remains <2σ across full plausible correlation range
+- **Validation:** Systematic budget robust to correlation assumptions
+
+**AWI-176: Random-Effects Cosmic Chronometer Fit**
+- **Addresses:** Low χ²_red = 0.48 (conservative quoted uncertainties)
+- **Method:** Error scaling to achieve χ²_red ≈ 1.0
+- **Result:** H₀ central value unchanged (robustness confirmed)
+
+#### Phase 3: Analysis Scripts & Data Files
+
+**New analysis scripts:**
+1. `jwst_crossval_robustness.py` - Jackknife + robust estimators
+2. `extended_correlation_sensitivity.py` - Extended ρ-sweep
+3. `cosmic_chronometer_fit_random_effects.py` - Random-effects H(z) fit
+
+**New data files:**
+1. `jwst_robustness_results.csv` - Jackknife validation
+2. `jwst_scatter_ratio_robustness.csv` - Robust scatter estimators
+3. `extended_correlation_sensitivity_results.csv` - Correlation sweep
+4. `cosmic_chronometer_random_effects_results.csv` - H(z) fit comparison
+5. `correlation_matrix_literature_justification.csv` - Literature citations
+
+**New figure:**
+- `extended_correlation_sensitivity.png` - Visual demonstration of robustness
+
+### Impact on Manuscript (v8.5A vs v8.6 Integration)
+
+**Dual tension metrics now reported:**
+- **Planck-relative:** 6.0σ → 1.2σ (5.0× reduction, original headline)
+- **Planck-independent:** 6.0σ → 0.6σ (10× reduction, using JAGB + chronometers only)
+
+**Robustness demonstration:**
+- Tension <2σ across all tested correlation scenarios (ρ ∈ [0.0, 0.8])
+- JWST scatter ratio validated via jackknife (not outlier-driven)
+- H(z) constraint robust to error model (random-effects vs standard fit)
+
+**Planck dependence mitigation:**
+- Core Cepheid systematic finding (1.6× factor): Planck-independent (JWST validates)
+- Late-universe convergence (H₀ ≈ 68): Planck-independent (JAGB + H(z) alone)
+- ΛCDM validation claim softened to "consistency check"
+
+### Timeline & Branch Integration
+
+**v8.5A work:** November 10-12, 2025 (parallel to M1 response finalization)
+**Branch:** `revision-v8-5a-planck-independence` (8 commits)
+**M1 branch:** `revision-m1-peer-review` (completed separately)
+
+**Merge strategy:** Combine both branches for comprehensive v8.6A manuscript:
+- M1 peer review response (conservative approach, 1.6× systematic factor)
+- v8.5A Planck-independence (robustness validation, dual tension metrics)
+- **Result:** Manuscript addresses reviewer concerns AND demonstrates model-independent robustness
+
+### Key Insight: Complementary Strengthening
+
+**M1 response:** Made systematic analysis more conservative and defensible
+- Removed unsupported covariant crowding term
+- Adopted 2025 consensus metallicity coefficient
+- Explicit physics-based period distribution derivation
+- **Trade-off:** Slightly higher tension (0.9σ → 1.2σ), but methodology more rigorous
+
+**v8.5A enhancement:** Demonstrated that even 1.2σ tension doesn't require Planck
+- Late-universe convergence provides independent H₀ ≈ 68 reference
+- Planck-free tension only 0.6σ (even better than 1.2σ)
+- **Benefit:** Robustness to Planck systematics or ΛCDM assumptions
+
+**Combined impact:** Manuscript now presents a conservative, defensible systematic analysis that yields Planck-relative 1.2σ tension AND demonstrates the conclusion is robust to Planck assumptions via Planck-independent 0.6σ tension. Best of both worlds.
+
+---
+
 ## Current Status & Next Steps
 
 ### Manuscript Status
-- **Version:** 8.6 (revised from 8.5 peer review)
+- **Version:** 8.6A (M1 peer review response + v8.5A Planck-independence enhancements)
 - **Status:** ✅ **Ready for resubmission** to The Astrophysical Journal
-- **Git branch:** `revision-m1-peer-review` (11 commits, clean)
+- **Git branches:**
+  - `revision-m1-peer-review` (M1 response, 11 commits, clean)
+  - `revision-v8-5a-planck-independence` (Planck-independence, 8 commits, clean)
+  - To be merged for comprehensive v8.6A submission
 - **Documentation:**
   - Comprehensive response letter (295 lines)
   - Final review checklist (423 lines)
@@ -285,6 +407,6 @@ This is **not a failure** - it's the scientific method working as designed. The 
 
 ---
 
-**Document Status:** Current as of November 2025
-**Last Updated:** Phase 5.2 completion (Final review before resubmission)
-**Next Milestone:** ApJ resubmission with comprehensive peer review response
+**Document Status:** Current as of November 12, 2025
+**Last Updated:** v8.6A integration (M1 peer review response + v8.5A Planck-independence)
+**Next Milestone:** Branch merge and ApJ resubmission

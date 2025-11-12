@@ -1,27 +1,73 @@
 # Repository Cleanup Plan
 
-**Date**: November 4, 2025
+**Date**: November 12, 2025 (Updated)
+**Original**: November 4, 2025
 **Purpose**: Clean GitHub repository for final manuscript submission
 
 ---
 
-## Current Status
+## Current Status (Updated November 12, 2025)
 
-**Repository size**: ~20 MB (excluding .gitignored files)
-**Total files tracked**: ~150
-**Issues to address**: Redundant documentation, generated files, empty directories
+**Current branch**: `revision-v8-5a-planck-independence`
+**Repository size**: ~15 MB (.git directory)
+**Total files tracked**: 86 files
+**Status**: Partial cleanup completed; additional files added for v8.5A peer review
+
+### Recent Activity (Nov 10-12, 2025)
+- ✅ Implemented all 8 Linear issues from v8.5A peer review feedback (AWI-171 through AWI-178)
+- ✅ Added 3 new analysis scripts (robustness checks, correlation sensitivity, random-effects)
+- ✅ Added 5 new data files (CSV results from robustness analyses)
+- ✅ Added 1 new figure (extended_correlation_sensitivity.png)
+- ✅ Updated manuscript.tex throughout (Planck-independence framing)
+
+### Outstanding Issues
+- ⚠️ Root directory still has 8 markdown files (should consolidate to 2-3)
+- ⚠️ Some redundant documentation files remain
 
 ---
 
 ## Files to Archive/Delete
 
-### 1. Redundant Status Documentation (Root Directory)
+### 1. Root Directory Documentation Status (Updated Nov 12, 2025)
 
-**Issue**: Multiple overlapping status/fix documentation files created during submission prep
+**Current root markdown files** (8 total):
 
-**Action**: CONSOLIDATE into single comprehensive document
+```
+✅ README.md                           # Repository documentation - KEEP
+✅ FINAL_SUBMISSION_STATUS.md          # v8.0 submission status - KEEP
+⚠️  EXECUTIVE_SUMMARY.md               # Nov 10 project summary - DECIDE: Keep or archive?
+⚠️  FINAL_REVIEW_CHECKLIST.md          # Nov 5 pre-submission checklist - ARCHIVE
+⚠️  PEER_REVIEW_M1_RESPONSE_LETTER.md  # Nov 5 M1 response letter - KEEP (important)
+⚠️  PEER_REVIEW_M1_SYNTHESIS.md        # Nov 5 M1 synthesis - ARCHIVE (covered in response letter)
+⚠️  PLANCK_DEPENDENCE_ANALYSIS.md      # Nov 12 v8.5A analysis - KEEP (recent work)
+⚠️  REPO_CLEANUP_PLAN.md               # This file - KEEP (planning doc)
+```
 
-**Files to archive** (move to `_tmp/ARCHIVE/submission_prep_logs/`):
+**Recommendation**:
+
+**KEEP (Essential documentation)**:
+```
+✅ README.md                           # Project overview
+✅ FINAL_SUBMISSION_STATUS.md          # v8.0 status
+✅ PEER_REVIEW_M1_RESPONSE_LETTER.md   # Referee correspondence
+✅ PLANCK_DEPENDENCE_ANALYSIS.md       # v8.5A implementation tracking
+✅ REPO_CLEANUP_PLAN.md                # Repository maintenance plan
+```
+
+**ARCHIVE to `_tmp/ARCHIVE/review_process/`**:
+```
+⚠️  FINAL_REVIEW_CHECKLIST.md          # Pre-submission checklist (completed)
+⚠️  PEER_REVIEW_M1_SYNTHESIS.md        # Covered in response letter
+⚠️  EXECUTIVE_SUMMARY.md               # Project summary (optional)
+```
+
+**Result**: 5 essential files in root (still reasonable for active development project)
+
+---
+
+### 1b. Previously Cleaned Files (DONE)
+
+**Files already archived** (move to `_tmp/ARCHIVE/submission_prep_logs/`):
 
 ```
 ✅ CRITICAL_FIX_MISSING_FIGURES.md     # Covered in FINAL_SUBMISSION_STATUS.md
@@ -31,18 +77,8 @@
 ✅ PREPRINT_STYLE_CHANGE.md            # Covered in FINAL_SUBMISSION_STATUS.md
 ✅ PRE_SUBMISSION_FIXES_COMPLETE.md    # Obsolete, replaced by FINAL_SUBMISSION_STATUS.md
 ✅ APPENDIX_FIGURES_FIX.md             # Covered in FINAL_SUBMISSION_STATUS.md
-```
-
-**Keep**:
-```
-✅ FINAL_SUBMISSION_STATUS.md          # Comprehensive, up-to-date status
-✅ README.md                           # Repository documentation
-```
-
-**Already tracked but obsolete**:
-```
-⚠️  CLEANUP_REPORT.md                 # Old cleanup report, superseded
-⚠️  V8_0_RELEASE_SUMMARY.md           # Pre-submission summary, superseded
+✅ CLEANUP_REPORT.md                   # Old cleanup report, superseded
+✅ V8_0_RELEASE_SUMMARY.md             # Pre-submission summary, superseded
 ```
 
 ### 2. Generated Package Files
@@ -82,37 +118,57 @@
 ⚠️  docs/HIERARCHICAL_COMPONENTS.md   # Development doc, no longer relevant
 ```
 
-### 5. Figures Directory Cleanup
+### 5. Figures Directory Status (Updated Nov 12, 2025)
 
-**Currently tracked** (8 files, ~2.5 MB):
+**Currently tracked** (13 PNG files):
 ```
-✅ figure1_tension_evolution.png (217 KB)           # KEEP - Main text
-✅ figure2_error_budget.png (303 KB)                # KEEP - Main text
-✅ figure2_error_budget_comparison.png (303 KB)     # KEEP - Alternative version
-✅ figure2_error_budget_stacked.png (130 KB)        # KEEP - Alternative version
-✅ figure3_cchp_crossval_real.png (305 KB)          # KEEP - Main text
-✅ figure4_h0_compilation.png (204 KB)              # KEEP - Main text
-✅ figure5_h6_fit.png (354 KB)                      # KEEP - Main text
-✅ figure2_error_budget_comparison.pdf (56 KB)      # DELETE - Vector source (PNG sufficient)
-```
-
-**Newly recovered** (4 files, ~2.4 MB) - should ADD to tracking:
-```
-➕ sensitivity_correlation.png (313 KB)             # ADD - Figure 6
-➕ figure_2d_correlation_sensitivity.png (427 KB)   # ADD - Figure 7
-➕ posterior_joint_delta_H0.png (221 KB)            # ADD - Figure 8
-➕ corner_joint_bias_fit.png (1.5 MB)               # ADD - Figure 9
+✅ figure1_tension_evolution.png                    # Main text Figure 1
+✅ figure2_error_budget.png                         # Main text Figure 2
+✅ figure2_error_budget_comparison.png              # Alternative version
+✅ figure2_error_budget_stacked.png                 # Alternative version
+✅ figure3_cchp_crossval_real.png                   # Main text Figure 3
+✅ figure4_h0_compilation.png                       # Main text Figure 4
+✅ figure5_h6_fit.png                               # Main text Figure 5
+✅ sensitivity_correlation.png                      # Appendix Figure 6
+✅ figure_2d_correlation_sensitivity.png            # Appendix Figure 7
+✅ posterior_joint_delta_H0.png                     # Appendix Figure 8
+✅ corner_joint_bias_fit.png                        # Appendix Figure 9
+✅ period_distribution_sensitivity.png              # Supplementary analysis
+✅ extended_correlation_sensitivity.png             # NEW - v8.5A robustness (AWI-175)
 ```
 
-### 6. Data Files
+**Status**: All manuscript figures now tracked ✅
 
-**Newly recovered** (2 files) - should ADD to tracking:
+### 6. Data Files Status (Updated Nov 12, 2025)
+
+**v8.5A Peer Review Implementation Added** (Nov 10-12, 2025):
 ```
-➕ data/sensitivity_correlation.csv                 # ADD - Analysis data
-➕ data/2d_correlation_sensitivity_grid.npz         # Consider: Large binary, maybe gitignore
+✅ correlation_matrix_literature_justification.csv  # AWI-175: Literature citations for ρ values
+✅ cosmic_chronometer_random_effects_results.csv    # AWI-176: Random-effects H(z) fit results
+✅ extended_correlation_sensitivity_results.csv     # AWI-175: ρ ∈ [0.0, 0.8] sweep
+✅ jwst_robustness_results.csv                      # AWI-174: Jackknife + robust estimators
+✅ jwst_scatter_ratio_robustness.csv                # AWI-174: Scatter ratio analysis
 ```
 
-**Recommendation for .npz file**: Add `*.npz` to .gitignore (binary data files), provide script to regenerate
+**Previously tracked**:
+```
+✅ sensitivity_correlation.csv                      # Original correlation sensitivity
+✅ correlation_matrix.csv                           # Baseline correlation matrix
+✅ correlation_matrix_updated.csv                   # Updated correlations (post-covariant removal)
+```
+
+**Binary files** (.npz): Should remain gitignored, regenerated by scripts
+
+### 7. Analysis Scripts Status (Updated Nov 12, 2025)
+
+**v8.5A Implementation Scripts** (NEW):
+```
+✅ analysis/jwst_crossval_robustness.py             # AWI-174: Jackknife + MAD + Tukey biweight
+✅ analysis/extended_correlation_sensitivity.py     # AWI-175: Extended ρ-sweep to 0.8
+✅ analysis/cosmic_chronometer_fit_random_effects.py # AWI-176: Random-effects error scaling
+```
+
+**Existing analysis pipeline** (~13-15 Python scripts tracked)
 
 ---
 
@@ -280,19 +336,25 @@ distance-ladder-systematics/
 
 ## Size Impact
 
-### Before Cleanup
+### Before Cleanup (Nov 4, 2025)
 - **Tracked files**: ~150 files
 - **Repository size**: ~20 MB
 - **Root markdown files**: 11 files (many redundant)
 - **Figures**: 8 PNG + 1 PDF
 
-### After Cleanup
-- **Tracked files**: ~145 files (-5 redundant docs)
-- **Repository size**: ~23 MB (+3 MB for 4 new figures)
-- **Root markdown files**: 2 files (README + FINAL_SUBMISSION_STATUS)
-- **Figures**: 11 PNG (all manuscript figures)
+### Current Status (Nov 12, 2025)
+- **Tracked files**: 86 files ✅ (significantly reduced)
+- **Repository size**: ~15 MB ✅ (.git directory)
+- **Root markdown files**: 8 files ⚠️ (still needs consolidation)
+- **Figures**: 13 PNG ✅ (all manuscript + supplementary figures tracked)
 
-**Net result**: Cleaner structure, all essential files tracked, redundant documentation archived
+### Target After Final Cleanup
+- **Tracked files**: ~85 files (minimal change)
+- **Repository size**: ~15 MB (stable)
+- **Root markdown files**: 2-3 files (README + FINAL_SUBMISSION_STATUS + optional v8.5A tracking)
+- **Figures**: 13 PNG (no change, all needed)
+
+**Net result so far**: Substantial cleanup achieved (150 → 86 files), v8.5A updates integrated, but root directory documentation still needs final consolidation
 
 ---
 
@@ -419,6 +481,26 @@ du -sh .git/
 
 ---
 
-**Date**: November 4, 2025
-**Status**: Ready to execute
-**Estimated time**: 10-15 minutes
+## Update History
+
+### November 12, 2025
+- **Status**: Partially complete, v8.5A updates integrated
+- **Changes since Nov 4**:
+  - ✅ Reduced tracked files from 150 → 86
+  - ✅ Added v8.5A peer review implementation files (3 scripts, 5 data files, 1 figure)
+  - ✅ Updated manuscript.tex with Planck-independence framing (AWI-171 through AWI-178)
+  - ⚠️ Root markdown files: 8 remain (target: 5 essential)
+  - ⚠️ Still need to archive: FINAL_REVIEW_CHECKLIST.md, PEER_REVIEW_M1_SYNTHESIS.md, EXECUTIVE_SUMMARY.md
+- **Next steps**:
+  - Optional: Archive 3 remaining non-essential markdown files
+  - Merge `revision-v8-5a-planck-independence` → `revision-m1-peer-review`
+  - Prepare for v8.6A submission
+
+### November 4, 2025
+- **Status**: Initial planning, ready to execute
+- **Estimated time**: 10-15 minutes for core cleanup
+
+---
+
+**Last updated**: November 12, 2025
+**Current status**: Substantial progress achieved, repository in good shape for active development
