@@ -136,15 +136,15 @@ ax.legend(handles=legend_elements, title='Error Category',
 
 plt.tight_layout()
 
-# Save figure
+# Save figure (manuscript uses figure2_error_budget.png)
 output_dir = Path(__file__).parent.parent / "figures"
 output_dir.mkdir(exist_ok=True)
-output_file = output_dir / "figure2_error_budget_comparison.png"
+output_file = output_dir / "figure2_error_budget.png"
 plt.savefig(output_file, dpi=300, bbox_inches='tight')
 print(f"Figure saved to: {output_file}")
 
 # Also save as PDF for publication
-output_file_pdf = output_dir / "figure2_error_budget_comparison.pdf"
+output_file_pdf = output_dir / "figure2_error_budget.pdf"
 plt.savefig(output_file_pdf, bbox_inches='tight')
 print(f"PDF saved to: {output_file_pdf}")
 

@@ -1,0 +1,6 @@
+Quantity,Value_km_s_Mpc,Notes
+σ_sys (uncorrelated),1.449137674618944,Quadrature sum assuming independence
+σ_sys (correlated),1.7131841699011814,Correlated propagation: σᵀRσ
+Inflation factor,1.1822093924593255,Correlated / Uncorrelated
+σ_stat,0.8,Statistical uncertainty (fixed)
+σ_total,1.8907670401189038,Combined systematic + statistical
