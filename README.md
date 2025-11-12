@@ -2,60 +2,60 @@
 
 **Project**: Systematic Error Assessment in Cepheid Distance Ladder Measurements
 **Target Journal**: The Astrophysical Journal (ApJ)
-**Status**: ✅ Publication-Ready (V8.0)
-**Last Updated**: 2025-11-03
+**Status**: ✅ Manuscript v8.6A Ready for Resubmission
+**Current Version**: 8.6A (M1 peer review response + v8.5A Planck-independence enhancements)
+**Last Updated**: 2025-11-12
+**Branch**: revision-v8-5a-planck-independence (to be merged with revision-m1-peer-review)
 
 ---
 
 ## Overview
 
-This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from 6.0σ to 1.07σ, suggesting the tension is a measurement artifact rather than evidence for new physics.
+This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from 6.0σ to 1.2σ (Planck-relative) or 0.6σ (Planck-independent), suggesting the tension is a measurement artifact rather than evidence for new physics.
 
-### Key Results
+### Key Results (Updated v8.6A)
 
-- **Systematic error reassessment**: SH0ES underestimates Cepheid systematics by 2.4× (1.04 vs 2.45 km/s/Mpc)
-- **Three-method convergence**: JAGB, cosmic chronometers, and Planck agree at H₀ = 67.48 ± 0.50 km/s/Mpc (χ²_red = 0.19)
-- **Tension reduction**: From 6.0σ → 1.07σ with realistic systematic accounting
-- **JWST validation**: 15 galaxies show Cepheid-TRGB offset of -0.024 ± 0.020 mag
+- **Systematic error reassessment**: σ_sys = 1.71 km/s/Mpc (correlated), 1.6× underestimation factor
+- **Planck-independent convergence**: JAGB + cosmic chronometers → H₀ = 68.22 ± 1.36 km/s/Mpc (χ²_red ≈ 0.04)
+- **Tension reduction**: From 6.0σ → 1.2σ (Planck-relative), 0.6σ (Planck-free), 5.0× reduction
+- **Robustness validated**: Extended correlation sensitivity (ρ ∈ [0.0, 0.8]) confirms tension <2σ across full range
+- **JWST validation**: Factor 2.3× excess Cepheid scatter confirmed via jackknife + robust estimators
 
 ---
 
-## V8.0 Hierarchical Components Enhancement
+## V8.5A Planck-Independence Enhancement
 
-**Version 8.0** adds hierarchical Bayesian components that strengthen the forensic methodology while remaining compatible with published data constraints (see manuscript §A.5).
+**Version 8.5A** (November 2025) strengthens the manuscript's independence from Planck CMB measurements through comprehensive robustness analyses:
 
-### Four Hierarchical Components
+### Key Enhancements
 
-1. **Hierarchical Prior Construction** (§A.5.i)
-   - Meta-analysis of literature determinations for bias parameters
-   - Hyper-priors via DerSimonian-Laird random-effects estimator
-   - Parameters: Δϖ (parallax), γ (metallicity), β (period-slope)
+1. **Late-Universe Convergence** (AWI-171, AWI-177)
+   - JAGB + cosmic chronometers converge at H₀ = 68.22 ± 1.36 km/s/Mpc
+   - Completely independent of Planck (no CMB physics assumptions)
+   - Excellent consistency: χ²_red ≈ 0.04, gradient pattern validated
 
-2. **JWST Random-Effects Cross-Validation** (§A.5.ii)
-   - Formalizes "2.3× excess scatter" claim with hierarchical model
-   - Per-galaxy TRGB-Cepheid and TRGB-JAGB comparisons
-   - Disentangles measurement errors from intrinsic scatter
+2. **JWST Robustness Validation** (AWI-174)
+   - Jackknife resampling (leave-one-out cross-validation)
+   - Robust scatter estimators (MAD, Tukey biweight)
+   - Confirms 2.3× excess Cepheid scatter across all methods
 
-3. **Hierarchical H(z) Fit** (§A.5.iii)
-   - Survey-level intrinsic scatter for cosmic chronometers
-   - Addresses low χ²_red with principled hierarchical approach
-   - Preserves H₀ estimates while improving model fit
+3. **Extended Correlation Sensitivity** (AWI-175)
+   - Tests ρ ∈ [0.0, 0.8] across 9 correlation coefficient variations
+   - Tension remains <2σ across full plausible range
+   - Validates robustness of systematic budget to correlation assumptions
 
-4. **Correlation Uncertainty Sensitivity** (§A.5.iv)
-   - Marginalizes over key correlation matrix elements
-   - Monte Carlo propagation with informative priors
-   - Confirms robustness of systematic budget (±3% variation)
+4. **Random-Effects H(z) Fit** (AWI-176)
+   - Addresses low χ²_red = 0.48 via error scaling to χ²_red ≈ 1.0
+   - H₀ central value unchanged (robustness confirmed)
+   - Validates use of conservative literature uncertainties
 
-### Validation Status
+### Impact on Tension Metrics
 
-All hierarchical components validated against V7.3 main results:
-- ✓ Hyper-priors within expected literature ranges
-- ✓ JWST scatter ratio demonstrates excess Cepheid scatter
-- ✓ H(z) hierarchical fit consistent (ΔH₀ = 0.0%)
-- ✓ Correlation uncertainty minor (±1.0% MC, ±2.9% sens)
-- ✓ Systematic ratio 2.36× preserved
+- **Planck-relative**: 6.0σ → 1.2σ (5.0× reduction)
+- **Planck-independent**: 6.0σ → 0.6σ (10× reduction using JAGB+chronometers only)
+- **Robustness**: Tension <2σ across all tested correlation scenarios
 
-**Result**: V8.0 enhances methodology without changing core findings. See [`docs/HIERARCHICAL_COMPONENTS.md`](docs/HIERARCHICAL_COMPONENTS.md) for full documentation.
+**Result**: V8.5A demonstrates that Hubble tension resolution is robust and independent of Planck measurements. See [PLANCK_DEPENDENCE_ANALYSIS.md](PLANCK_DEPENDENCE_ANALYSIS.md) for full analysis.
 
 ---
 
@@ -79,12 +79,13 @@ distance_ladder/
 │   ├── mcmc_chains_LCDM_2D.npy            # 128k MCMC samples
 │   └── tables/                            # LaTeX table files (6 tables)
 │
-├── figures/                       # Manuscript figures (5 total)
+├── figures/                       # Manuscript figures (6 total)
 │   ├── figure1_tension_evolution.png      # 5-stage tension reduction
 │   ├── figure2_error_budget.png           # Systematic error comparison
 │   ├── figure3_cchp_crossval_real.png     # JWST cross-validation
 │   ├── figure4_h0_compilation.png         # Multi-method H₀ comparison
-│   └── figure5_h6_fit.png                 # Cosmic chronometer fit
+│   ├── figure5_h6_fit.png                 # Cosmic chronometer fit
+│   └── extended_correlation_sensitivity.png  # V8.5A: Extended ρ-sweep analysis
 │
 ├── analysis/                      # Analysis scripts
 │   ├── calculate_error_budget.py          # Systematic error calculations
@@ -97,7 +98,11 @@ distance_ladder/
 │   ├── jwst_random_effects_crossval.py           # V8.0: JWST cross-validation
 │   ├── hierarchical_hz_fit.py                    # V8.0: H(z) hierarchical fit
 │   ├── correlation_uncertainty_sensitivity.py    # V8.0: Correlation uncertainty
-│   └── validate_hierarchical_consistency.py      # V8.0: Validation checks
+│   ├── validate_hierarchical_consistency.py      # V8.0: Validation checks
+│   │
+│   ├── jwst_crossval_robustness.py               # V8.5A: Jackknife + robust estimators
+│   ├── extended_correlation_sensitivity.py       # V8.5A: Extended ρ-sweep analysis
+│   └── cosmic_chronometer_fit_random_effects.py  # V8.5A: Random-effects H(z) fit
 │
 └── docs/                          # Documentation
     ├── MANUSCRIPT_STATUS.md               # Validation report
@@ -207,6 +212,13 @@ All data files are self-contained in `distance_ladder/data/`:
 - **correlation_uncertainty_mc.csv**: Monte Carlo correlation posterior
 - **hierarchical_validation_report.csv**: Validation check summary
 
+### V8.5A Planck-Independence Data
+- **jwst_robustness_results.csv**: Jackknife resampling cross-validation results
+- **jwst_scatter_ratio_robustness.csv**: Robust scatter estimators (MAD, Tukey biweight)
+- **extended_correlation_sensitivity_results.csv**: Extended ρ-sweep (9 variations)
+- **cosmic_chronometer_random_effects_results.csv**: Random-effects H(z) fit comparison
+- **correlation_matrix_literature_justification.csv**: Literature citations for correlations
+
 All data files include comments with source references and calculation methods.
 
 ---
@@ -271,9 +283,17 @@ python3 correlation_uncertainty_sensitivity.py    # → correlation_sensitivity.
 python3 validate_hierarchical_consistency.py      # → hierarchical_validation_report.csv
 ```
 
-Total runtime: <1 minute
+### 5. Run V8.5A Planck-Independence Analyses
 
-### 5. Regenerate Overleaf Package
+```bash
+python3 jwst_crossval_robustness.py               # → jwst_robustness_results.csv
+python3 extended_correlation_sensitivity.py       # → extended_correlation_sensitivity_results.csv
+python3 cosmic_chronometer_fit_random_effects.py  # → cosmic_chronometer_random_effects_results.csv
+```
+
+Total runtime: <2 minutes
+
+### 6. Regenerate Overleaf Package
 
 ```bash
 cd distance_ladder
@@ -286,30 +306,27 @@ cd distance_ladder
 
 All claims below verified against data (see [docs/MANUSCRIPT_STATUS.md](docs/MANUSCRIPT_STATUS.md)):
 
-1. **SH0ES underestimates systematics by 2.4×**
+1. **SH0ES underestimates systematics by 1.6×**
    - SH0ES: σ_sys = 1.04 km/s/Mpc
-   - Our assessment: σ_sys = 2.45 km/s/Mpc
-   - CCHP validation: σ_sys = 3.10 km/s/Mpc
+   - Our assessment: σ_sys = 1.71 km/s/Mpc (correlated)
+   - Underestimation factor: 1.6× when accounting for correlations
 
-2. **Three methods converge at H₀ ≈ 67-68 km/s/Mpc**
-   - JAGB: 67.96 ± 2.65 km/s/Mpc
-   - Cosmic chronometers: 68.33 ± 1.57 km/s/Mpc
-   - Planck: 67.36 ± 0.54 km/s/Mpc
-   - Weighted mean: 67.48 ± 0.50 km/s/Mpc
-   - χ²_red = 0.19 (excellent consistency)
+2. **Late-universe methods converge at H₀ ≈ 68 km/s/Mpc (Planck-independent)**
+   - JAGB + Cosmic chronometers: 68.22 ± 1.36 km/s/Mpc (χ²_red ≈ 0.04)
+   - Planck: 67.36 ± 0.54 km/s/Mpc (for comparison)
+   - Excellent late-universe convergence independent of CMB
 
-3. **Tension reduced from 6.0σ → 1.07σ**
-   - Stage 1 (statistical only): 6.0σ
-   - Stage 2 (SH0ES systematics): 4.1σ
-   - Stage 3 (parallax correction): 3.4σ
-   - Stage 4 (period distribution): 2.7σ
-   - Stage 5 (realistic systematics): 1.07σ
+3. **Tension reduced from 6.0σ → 1.2σ (Planck-relative) or 0.6σ (Planck-free)**
+   - Original SH0ES tension (vs Planck): 6.0σ
+   - After realistic systematics (vs Planck): 1.2σ (5.0× reduction)
+   - Planck-independent (vs JAGB+chronometers): 0.6σ (10× reduction)
+   - Robust across correlation scenarios: <2σ for all ρ ∈ [0.0, 0.8]
 
-4. **JWST validates our assessment**
-   - 15 galaxies with Cepheid + TRGB
-   - Offset: -0.024 ± 0.020 mag
-   - RMS scatter: 0.108 mag
-   - Supports systematic error underestimation
+4. **JWST validates systematic underestimation via robustness checks**
+   - 15 galaxies with Cepheid + TRGB + JAGB
+   - Cepheid vs JAGB scatter: 2.3× excess (jackknife validated)
+   - Robust estimators (MAD, Tukey biweight) confirm excess scatter
+   - Supports realistic Cepheid systematic error budget
 
 ---
 
@@ -372,5 +389,5 @@ Full acknowledgments in manuscript.
 
 ---
 
-*Last updated: 2025-10-25*  
-*Status: Publication-ready for ApJ submission*
+*Last updated: 2025-11-12*
+*Status: Manuscript v8.6A ready for resubmission (M1 peer review response + v8.5A Planck-independence)*

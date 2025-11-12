@@ -1,17 +1,92 @@
 # Final Submission Status - Distance Ladder Systematics
 
-**Date**: November 4, 2025
-**Status**: ✅ **SUBMISSION-READY FOR ApJ**
+**Date**: November 12, 2025
+**Status**: ✅ **MANUSCRIPT v8.6A READY FOR RESUBMISSION**
 
 ---
 
-## Executive Summary
+## Update: Post-November 4 Developments
+
+**Two major parallel work streams completed since last status update:**
+
+### 1. M1 Peer Review Response (November 5-9, 2025)
+
+**Branch**: `revision-m1-peer-review` (11 commits)
+
+**Critical revisions based on peer review feedback:**
+
+**Phase 1-2: Core Methodology Updates**
+- **Removed covariant crowding standalone term** (unsupported by JWST validation)
+- **Derived period distribution explicitly** (bracket [-1.5, -3.5] km/s/Mpc from broken P-L physics)
+- **Implemented two-scenario parallax framework** (Scenario A: internal fit; Scenario B: external prior)
+- **Three-prior metallicity analysis** (2025 consensus γ=-0.2 baseline + sensitivity tests)
+
+**Impact on Key Values (v8.5 → v8.6):**
+- **σ_sys (correlated)**: 3.14 km/s/Mpc → **1.71 km/s/Mpc** (-46%)
+- **σ_total**: 3.24 km/s/Mpc → **1.89 km/s/Mpc** (-42%)
+- **Underestimate factor**: 2.9× → **1.6×** (more conservative)
+- **Hubble tension**: 0.9σ → **1.2σ** (higher but methodology more defensible)
+
+**Outcome**: More conservative, transparent, and defensible systematic analysis. Core conclusion unchanged (tension <2σ, not crisis-level).
+
+### 2. v8.5A Planck-Independence Enhancement (November 10-12, 2025)
+
+**Branch**: `revision-v8-5a-planck-independence` (8 commits)
+
+**Motivation**: Address potential reviewer concern about Planck dependence
+
+**Implementation (8 Linear Issues: AWI-171 through AWI-178):**
+
+**Text enhancements:**
+- Added late-universe convergence to Abstract & Conclusions (AWI-171)
+- Added consistency check paragraph (AWI-172)
+- Quantified Planck dependence in Limitations (AWI-173)
+- Added gradient pattern without Planck (AWI-177)
+- Updated Figure 4 caption with Planck-free result (AWI-178)
+
+**Robustness analyses:**
+- JWST jackknife resampling + robust estimators (AWI-174)
+- Extended correlation sensitivity ρ ∈ [0.0, 0.8] (AWI-175)
+- Random-effects cosmic chronometer fit (AWI-176)
+
+**Key Results:**
+- **Late-universe convergence**: JAGB + cosmic chronometers → H₀ = 68.22 ± 1.36 km/s/Mpc (χ²_red ≈ 0.04)
+- **Dual tension metrics**: 1.2σ (Planck-relative), **0.6σ (Planck-independent)**
+- **Robustness validated**: Tension <2σ across all tested correlation scenarios
+
+**New deliverables:**
+- 3 analysis scripts (jwst_crossval_robustness.py, extended_correlation_sensitivity.py, cosmic_chronometer_fit_random_effects.py)
+- 5 data files (CSV results from robustness analyses)
+- 1 figure (extended_correlation_sensitivity.png)
+
+### Combined Impact: v8.6A
+
+**The manuscript now:**
+1. ✅ Addresses all M1 peer review concerns with conservative methodology
+2. ✅ Demonstrates Planck-independence via dual tension metrics (1.2σ / 0.6σ)
+3. ✅ Validates robustness through jackknife, correlation sensitivity, random-effects
+4. ✅ Documents late-universe convergence (JAGB + chronometers, no CMB)
+
+**Next steps:**
+- Merge branches for comprehensive v8.6A submission
+- Update response letter to include v8.5A enhancements
+- Resubmit to ApJ with both methodological rigor AND model-independent validation
+
+---
+
+## Historical Context: November 4, 2025 Status
+
+*The following sections document the state as of November 4, before M1 response and v8.5A work.*
+
+### Executive Summary (As of Nov 4)
 
 After comprehensive peer review, two critical issues were discovered and resolved:
 1. **SH0ES σ calculation error** (mathematical) - FIXED
 2. **Missing sensitivity analysis figures** (submission-blocking) - RECOVERED
 
 All 11 issues now resolved. Manuscript is scientifically sound, technically complete, and ready for journal submission.
+
+**Note**: Values and claims below reflect v8.5 state. See "Update" section above for current v8.6A values.
 
 ---
 
@@ -180,10 +255,14 @@ All 9 figure references resolve correctly:
 
 ---
 
-## Key Results Summary
+## Key Results Summary (Historical v8.5 - See Update for v8.6A)
 
-### Main Finding
+**⚠️ Note**: Values below are from v8.5 (November 4). For current v8.6A values, see "Update" section above.
+
+### Main Finding (v8.5)
 SH0ES underestimates Cepheid systematics by factor **2.9×** (1.04 → 3.14 km/s/Mpc with correlations), reducing Hubble tension from 6.0σ to 0.9σ.
+
+**v8.6A Update**: Factor now **1.6×** (1.04 → 1.71 km/s/Mpc), tension 1.2σ (Planck-relative) or 0.6σ (Planck-independent).
 
 ### Three Bias Corrections
 1. **Parallax zero point**: -1.0 km/s/Mpc
@@ -409,33 +488,52 @@ git commit -m "Final pre-submission fixes: SH0ES σ correction + sensitivity fig
 
 ---
 
-## Final Status
+## Final Status (Updated November 12, 2025)
 
-✅ **SUBMISSION-READY FOR ApJ**
+✅ **MANUSCRIPT v8.6A READY FOR RESUBMISSION**
 
-The manuscript is:
-1. ✅ Scientifically accurate (all claims verified)
-2. ✅ Mathematically correct (SH0ES σ fixed)
-3. ✅ Technically complete (all figures/tables present)
-4. ✅ Editorially polished (software citations, neutral tone)
-5. ✅ Mechanically sound (all references resolve)
-6. ✅ Reproducible (data files archived)
+**Status**: Two parallel work streams completed successfully:
 
-**Recommended Action**: Upload to Overleaf, verify compilation, and submit to ApJ.
+### M1 Peer Review Response (revision-m1-peer-review branch)
+1. ✅ All 6 peer review concerns addressed
+2. ✅ More conservative systematic methodology (1.6× factor vs 2.9×)
+3. ✅ Comprehensive response letter (295 lines)
+4. ✅ Final review checklist validated (423 lines)
 
-The discovery and resolution of multiple post-review issues (sensitivity figures, appendix figures, undefined citations, LaTeX formatting) demonstrates the value of thorough pre-submission checks. All 16 identified issues are now resolved.
+### v8.5A Planck-Independence (revision-v8-5a-planck-independence branch)
+1. ✅ 8 manuscript text enhancements (AWI-171 through AWI-178)
+2. ✅ 3 robustness analyses (jackknife, correlation sensitivity, random-effects)
+3. ✅ 3 analysis scripts + 5 data files + 1 figure
+4. ✅ Dual tension metrics validated (1.2σ Planck-relative, 0.6σ Planck-free)
+
+**The manuscript now:**
+- ✅ Scientifically rigorous (conservative methodology, defensible assumptions)
+- ✅ Model-independent (late-universe convergence without Planck)
+- ✅ Robustly validated (jackknife, sensitivity sweeps, random-effects)
+- ✅ Technically complete (all analyses reproducible)
+- ✅ Ready for comprehensive resubmission
+
+**Next Actions:**
+1. Merge both branches into unified v8.6A manuscript
+2. Update response letter to include v8.5A enhancements
+3. Prepare comprehensive resubmission package
+4. Upload to Overleaf and verify compilation
+5. Resubmit to ApJ
+
+**Documentation Status:**
+- ✅ README.md updated to v8.6A (November 12)
+- ✅ PLANCK_DEPENDENCE_ANALYSIS.md updated with implementation status
+- ✅ EXECUTIVE_SUMMARY.md updated with v8.5A parallel work stream
+- ✅ FINAL_SUBMISSION_STATUS.md updated with post-Nov 4 developments
 
 ---
 
-**Date**: November 4, 2025
-**Final Package**: manuscript_overleaf.zip (3.5 MB)
-**Status**: Ready for journal submission ✅
+**Date**: November 12, 2025 (Updated from November 4)
+**Branches**: `revision-m1-peer-review` + `revision-v8-5a-planck-independence`
+**Status**: Ready for branch merge and resubmission ✅
 
-**Total issues fixed**: 16
-- 10 from peer review
-- 6 discovered during packaging/PDF review:
-  - Missing sensitivity figures (2)
-  - Undefined citations (2)
-  - LaTeX formatting (2, eliminated with preprint style)
-  - Missing appendix figures (2)
-  - Document style change (preprint for submission)
+**Work completed since November 4:**
+- M1 peer review response: 6 issues resolved, methodology strengthened
+- v8.5A enhancements: 8 Linear issues, 3 robustness analyses, dual tension metrics
+- Documentation updates: All root markdown files synchronized to v8.6A state
+- Total: 19 commits across 2 branches, comprehensive validation complete
