@@ -95,10 +95,10 @@ def create_h0_compilation_figure():
     ax.set_xlim(65, 76)
     ax.grid(True, alpha=0.3, axis='x', linestyle='--')
 
-    # Add text annotations
-    ax.text(convergence_h0, len(plot_data) - 0.5,
+    # Add text annotation for weighted mean (bottom of plot to avoid legend overlap)
+    ax.text(convergence_h0, -0.8,
            f'Weighted mean:\n{convergence_h0:.2f} ± {convergence_sigma:.2f}',
-           ha='center', va='bottom', fontsize=9,
+           ha='center', va='top', fontsize=9,
            bbox=dict(boxstyle='round', facecolor='lightgray', alpha=0.7))
 
     # Add note about Cepheid
