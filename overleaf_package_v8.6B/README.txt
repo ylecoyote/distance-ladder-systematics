@@ -1,6 +1,6 @@
 ================================================================================
 Overleaf Package - Forensic Analysis of Distance Ladder Systematics
-Version 8.6G - Final Polish (Publication-Ready)
+Version 8.6H - Rotating Universe Citations Added
 ================================================================================
 
 PACKAGE CONTENTS
@@ -77,28 +77,36 @@ Multi-Method Convergence:
   Corrected Cepheid residual: ~0.6σ from late-universe mean
 
 ================================================================================
-RECENT CHANGES (v8.6G - Final Polish)
+RECENT CHANGES (v8.6H - Rotating Universe Citations)
 ================================================================================
 
-Version 8.6G represents the final copy-edited, publication-ready manuscript. All 18 review
-items complete plus final LaTeX/grammar polish. This version supersedes v8.6F (Item 17: PDF
-forensic fixes) with final copy-editing applied.
+Version 8.6H adds strategic citations to recent rotating universe/dipolar cosmology papers,
+strengthening literature coverage and reinforcing the "systematics over new physics" narrative.
+This version supersedes v8.6G (final polish) with minimal text additions.
 
-Final Copy-Edit Polish (v8.6G):
+Rotating Universe Citations Added (v8.6H):
+  - Added 3 BibTeX entries: Szigeti & Szapudi 2025 (MNRAS), Shamir 2024, Shamir 2025
+  - §1.2 Introduction (line 111): Added sentence citing rotating/dipolar cosmologies as recent alternative proposals
+  - §4.1 Discussion (line 541): Added sentence noting reduced tension "weakens motivation for exotic solutions"
+  - Strategic positioning: Shows comprehensive literature awareness while reinforcing main message
+  - Total additions: ~45 words, 3 BibTeX entries, zero structural changes
+
+Previous Changes - Final Copy-Edit Polish (v8.6G):
   - Fixed concatenated text in Conclusions bullet #2 (proper spacing and math mode)
   - Removed 5 instances of empty parentheses () throughout manuscript
   - Fixed grammar: "supernova systematic are" → "supernova systematics are"
   - Improved notation: ($\gg$100)M → ($\gtrsim$100)M for clarity
   - All LaTeX formatting now publication-quality with zero cosmetic issues
 
-All Eighteen Review Items Complete:
+All Review Items Complete (18 items + rotating universe citations):
   ✓ Items 1-15: Citation/value corrections, framing, terminology, editorial fixes
   ✓ Item 16: Undefined citation cleanup
   ✓ Item 17: PDF forensic analysis remediation
   ✓ Item 18: Internal version reference removal
-  ✓ Final polish: Copy-editing and LaTeX formatting (this version)
+  ✓ Final polish: Copy-editing and LaTeX formatting (v8.6G)
+  ✓ Literature enhancement: Rotating universe citations (v8.6H - current)
 
-Status: Manuscript is publication-ready for ApJ submission with no remaining issues.
+Status: Manuscript is publication-ready for ApJ submission with comprehensive literature coverage.
 
 1. Sensitivity Table Corrections (Lines 426-432)
    - Scenario A + Prior 3: 70.67 → 70.54 km/s/Mpc
@@ -276,7 +284,15 @@ All Eighteen Resolved Issues:
 VERSION HISTORY
 ================================================================================
 
-v8.6G (Current) - November 14, 2025 - FINAL POLISH
+v8.6H (Current) - November 14, 2025 - ROTATING UNIVERSE CITATIONS
+  - Added citations to recent rotating universe/dipolar cosmology papers
+  - BibTeX entries: Szigeti2025, Shamir2024, Shamir2025 in "HUBBLE TENSION & NEW PHYSICS" section
+  - Text additions in §1.2 (Introduction, line 111) and §4.1 (Discussion, line 541)
+  - Strategic positioning strengthens narrative: shows literature awareness while reinforcing main message
+  - Total additions: ~45 words, 3 citations, zero structural changes
+  - Ready for ApJ submission with comprehensive literature coverage
+
+v8.6G - November 14, 2025 - FINAL POLISH
   - Final copy-editing polish applied (8 fixes):
     * Fixed concatenated text in Conclusions (line 614)
     * Removed 5 instances of empty parentheses (lines 84, 236, 258, 345, 590)
