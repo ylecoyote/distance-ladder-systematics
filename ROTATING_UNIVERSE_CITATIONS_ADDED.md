@@ -97,28 +97,41 @@ Added strategic citations to recent rotating universe/dipolar cosmology papers, 
 
 **Location:** After listing other new physics proposals (early dark energy, modified gravity, etc.)
 
-**Added text:**
+**Added text (refined for referee optics):**
 ```latex
 More recently, alternative cosmologies invoking small global rotation or dipolar
 structure have been proposed to reconcile local and CMB H$_0$ measurements
-\citep{Szigeti2025}, with supporting claims of large-scale spin asymmetries
-in galaxy populations \citep{Shamir2024, Shamir2025}.
+\citep{Szigeti2025}. In parallel, claims of large-scale spin asymmetries
+in galaxy populations \citep{Shamir2024, Shamir2025} have been interpreted
+as possible hints of a preferred axis, though these results remain debated.
 ```
 
-**Context:** Shows comprehensive literature awareness by acknowledging recent rotating universe proposals alongside earlier exotic physics models.
+**Context:** Shows comprehensive literature awareness while hedging spin asymmetry claims. Decouples rotation models from Shamir's observations and flags debate.
+
+**Refinement rationale:**
+- Changed "with supporting claims" → "In parallel, claims...have been interpreted as" (avoids implying Shamir provides evidence)
+- Added "though these results remain debated" (acknowledges controversy)
+- Decouples rotation theory from spin observations
 
 ### 3. LaTeX Text Addition 2: §4.1 Discussion ([manuscript.tex:541](manuscript/manuscript.tex#L541))
 
 **Location:** In "Implications for theoretical cosmology" paragraph, after stating exotic models "may be solving a problem that does not exist at the observational level."
 
-**Added text:**
+**Added text (refined for logical clarity):**
 ```latex
 Our finding that the tension reduces to $\lesssim 2\sigma$ under realistic
-systematic scenarios substantially weakens the motivation for exotic solutions
-such as rotating cosmologies \citep{Szigeti2025} or modifications to General Relativity.
+systematic scenarios substantially weakens the motivation for exotic solutions---
+such as slowly rotating cosmologies \citep{Szigeti2025}, which were constructed
+under the assumption of a genuine 5--6$\sigma$ discrepancy---or modifications
+to General Relativity.
 ```
 
-**Context:** Reinforces that our result reduces the necessity for exotic explanations, strengthening rather than weakening our main message.
+**Context:** Makes explicit that rotating cosmology models assumed a large tension, sharpening the logic that our reduced tension undermines their motivation.
+
+**Refinement rationale:**
+- Added "slowly rotating cosmologies" (more precise)
+- Explicitly states these models "were constructed under the assumption of a genuine 5-6σ discrepancy"
+- Makes causal chain crystal clear: big tension assumption → our result reduces tension → weakens motivation
 
 ---
 
