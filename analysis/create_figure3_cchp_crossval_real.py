@@ -3,7 +3,7 @@
 Figure 3: CCHP Cross-Validation - Real Data from Freedman et al. 2025
 
 Two-panel comparison:
-Panel A: TRGB vs JAGB (8 galaxies with JWST NIRCam data)
+Panel A: TRGB vs JAGB (7 galaxies with JWST NIRCam data)
 Panel B: TRGB vs Cepheid (15 common galaxies)
 
 Author: Distance Ladder Systematics Project
@@ -38,7 +38,7 @@ print()
 # Statistical Analysis
 # =============================================================================
 
-print("PANEL A: TRGB vs JAGB (8 galaxies, JWST NIRCam)")
+print("PANEL A: TRGB vs JAGB (7 galaxies, JWST NIRCam)")
 print("-" * 80)
 
 # Calculate weighted mean difference
@@ -86,7 +86,7 @@ ax1 = axes[0]
 ax1.errorbar(trgb_jagb['mu_TRGB'], trgb_jagb['mu_JAGB'],
              xerr=trgb_jagb['sigma_TRGB'], yerr=trgb_jagb['sigma_JAGB'],
              fmt='o', markersize=8, color='#3498DB', ecolor='#3498DB',
-             capsize=4, alpha=0.7, label='JWST NIRCam (8 galaxies)')
+             capsize=4, alpha=0.7, label='JWST NIRCam (7 galaxies)')
 
 # Plot 1:1 line
 mu_range = [29.0, 32.0]
@@ -102,7 +102,7 @@ ax1.fill_between(mu_range, [x + offset - weighted_std_jagb for x in mu_range],
 ax1.set_xlabel('μ (TRGB) [mag]', fontsize=12)
 ax1.set_ylabel('μ (JAGB) [mag]', fontsize=12)
 ax1.set_title('Panel A: TRGB vs JAGB\n(Freedman+ 2025, Table 2)', fontsize=13, fontweight='bold')
-ax1.legend(loc='upper left', fontsize=10)
+ax1.legend(loc='lower right', fontsize=10)
 ax1.grid(True, alpha=0.3)
 ax1.set_xlim(29.0, 32.0)
 ax1.set_ylim(29.0, 32.0)
@@ -137,7 +137,7 @@ ax2.fill_between(mu_range_ceph,
 ax2.set_xlabel('μ (TRGB, CCHP) [mag]', fontsize=12)
 ax2.set_ylabel('μ (Cepheid, R22) [mag]', fontsize=12)
 ax2.set_title('Panel B: TRGB vs Cepheid\n(Freedman+ 2025, Table 3)', fontsize=13, fontweight='bold')
-ax2.legend(loc='upper left', fontsize=10)
+ax2.legend(loc='lower right', fontsize=10)
 ax2.grid(True, alpha=0.3)
 ax2.set_xlim(29.0, 33.0)
 ax2.set_ylim(29.0, 33.0)

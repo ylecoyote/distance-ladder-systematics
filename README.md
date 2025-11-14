@@ -5,7 +5,7 @@
 **Status**: ✅ Manuscript v8.6A Ready for Resubmission
 **Current Version**: 8.6A (M1 peer review response + v8.5A Planck-independence enhancements)
 **Last Updated**: 2025-11-12
-**Branch**: revision-v8-5a-planck-independence (to be merged with revision-m1-peer-review)
+**Branch**: revision-m1-peer-review (v8.6A referee response complete)
 
 ---
 
@@ -73,7 +73,7 @@ distance_ladder/
 │   └── references.bib             # Bibliography (19 citations)
 │
 ├── data/                          # All data files
-│   ├── systematic_error_budget.csv        # 11 systematic error sources
+│   ├── systematic_error_budget.csv        # 9 systematic error sources
 │   ├── cosmic_chronometers_Hz.csv         # 32 H(z) measurements
 │   ├── cchp_trgb_cepheid_comparison.csv   # 15 JWST galaxies
 │   ├── mcmc_chains_LCDM_2D.npy            # 128k MCMC samples
@@ -188,7 +188,7 @@ See [docs/MANUSCRIPT_STATUS.md](docs/MANUSCRIPT_STATUS.md) for full validation r
 All data files are self-contained in `distance_ladder/data/`:
 
 ### Primary Data
-- **systematic_error_budget.csv**: 11 systematic error sources with SH0ES vs our assessments
+- **systematic_error_budget.csv**: 9 systematic error sources with SH0ES vs our assessments (after removing covariant crowding standalone term per peer review)
 - **cosmic_chronometers_Hz.csv**: 32 H(z) measurements (z = 0.07-1.965)
 - **cchp_trgb_cepheid_comparison.csv**: 15 JWST galaxies with Cepheid+TRGB measurements
 - **h0_measurements_compilation.csv**: Multi-method H₀ comparison

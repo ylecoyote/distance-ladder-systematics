@@ -21,11 +21,11 @@
 - **Implemented two-scenario parallax framework** (Scenario A: internal fit; Scenario B: external prior)
 - **Three-prior metallicity analysis** (2025 consensus γ=-0.2 baseline + sensitivity tests)
 
-**Impact on Key Values (v8.5 → v8.6):**
+**Impact on Key Values (v8.5 → v8.6A):**
 - **σ_sys (correlated)**: 3.14 km/s/Mpc → **1.71 km/s/Mpc** (-46%)
 - **σ_total**: 3.24 km/s/Mpc → **1.89 km/s/Mpc** (-42%)
 - **Underestimate factor**: 2.9× → **1.6×** (more conservative)
-- **Hubble tension**: 0.9σ → **1.2σ** (higher but methodology more defensible)
+- **Hubble tension**: 0.9σ → **1.2σ** (Planck-relative, higher but methodology more defensible)
 
 **Outcome**: More conservative, transparent, and defensible systematic analysis. Core conclusion unchanged (tension <2σ, not crisis-level).
 
@@ -193,13 +193,13 @@ All numerical claims in manuscript are **verified by archived data analysis**.
 9. **`corner_joint_bias_fit.png`** (1.5 MB) - **Corner plot independence** ⭐ NEW
 
 ### Tables (8 total, 16 KB)
-1. `table1_systematic_budget.tex` - 10 systematic error sources
+1. `table1_systematic_budget.tex` - 9 systematic error sources (after removing covariant crowding standalone term)
 2. `table2_tension_evolution.tex` - 5-stage tension reduction
 3. `table3_h0_compilation.tex` - Independent H₀ measurements
 4. `table4_cchp_crossval.tex` - CCHP validation results
 5. `table5_jwst_crossvalidation.tex` - JWST anchor validation
 6. `table6_cosmic_chronometers.tex` - H(z) data compilation
-7. `table_correlation_matrix.tex` - 10×10 systematic correlations
+7. `table_correlation_matrix.tex` - 9×9 systematic correlations
 8. `table_anchor_weights.tex` - Anchor contribution analysis
 
 **Total Package Size**: 3.5 MB
@@ -255,21 +255,18 @@ All 9 figure references resolve correctly:
 
 ---
 
-## Key Results Summary (Historical v8.5 - See Update for v8.6A)
+## Key Results Summary (Current v8.6A)
 
-**⚠️ Note**: Values below are from v8.5 (November 4). For current v8.6A values, see "Update" section above.
+### Main Finding (v8.6A)
+SH0ES underestimates Cepheid systematics by factor **1.6×** (1.04 → 1.71 km/s/Mpc with correlations), reducing Hubble tension from 6.0σ to 1.2σ (Planck-relative) or 0.6σ (Planck-independent).
 
-### Main Finding (v8.5)
-SH0ES underestimates Cepheid systematics by factor **2.9×** (1.04 → 3.14 km/s/Mpc with correlations), reducing Hubble tension from 6.0σ to 0.9σ.
+### Three Bias Corrections (Scenario A + Prior 1 Baseline)
+1. **Parallax zero point (Scenario A)**: 0 km/s/Mpc (adopt SH0ES internally-fitted ZP)
+2. **Period distribution**: -2.5 km/s/Mpc (mid-range of explicit bracket [-1.5, -3.5])
+3. **Metallicity (Prior 1)**: -1.0 km/s/Mpc (γ = -0.2 ± 0.1, 2025 consensus)
 
-**v8.6A Update**: Factor now **1.6×** (1.04 → 1.71 km/s/Mpc), tension 1.2σ (Planck-relative) or 0.6σ (Planck-independent).
-
-### Three Bias Corrections
-1. **Parallax zero point**: -1.0 km/s/Mpc
-2. **Period distribution**: -1.0 km/s/Mpc
-3. **Metallicity**: Part of systematic budget
-
-**Total correction**: -3.0 km/s/Mpc (73.17 → 70.17)
+**Total correction**: -3.5 km/s/Mpc (73.17 → 69.67)
+**MAP estimate**: -2.33 km/s/Mpc (consistent within 68% CI)
 
 ### Independent Convergence
 Three methods converge at H₀ = 67.48 ± 0.50 km/s/Mpc (< 0.1σ discrepancy):
@@ -277,10 +274,9 @@ Three methods converge at H₀ = 67.48 ± 0.50 km/s/Mpc (< 0.1σ discrepancy):
 - Cosmic chronometer H(z) extrapolation
 - Planck ΛCDM inference
 
-### Sensitivity Analysis (NEW - Validated)
-- Varying ρ ∈ [0.0, 0.7] yields ratio 2.34×-2.84× ✓
-- Plausible region (ρ ∈ [0.3, 0.6]) shows ratio 2.53×-2.66× ✓
-- Plateau coverage (≥2.6×): 45.4% of parameter space ✓
+### Sensitivity Analysis
+- Extended correlation sensitivity: ρ ∈ [0.0, 0.8] tested across 9 variations
+- Tension remains <2σ across full plausible range ✓
 - **Conclusion robust to correlation assumptions** ✓
 
 ---

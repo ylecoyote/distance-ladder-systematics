@@ -1,0 +1,45 @@
+% LaTeX table: 9×9 Correlation Matrix for Systematic Error Budget
+% Generated for Distance Ladder Systematics manuscript
+% Table 1b: Correlation matrix structure
+
+\begin{deluxetable*}{lccccccccc}
+\tablecaption{Correlation Matrix for Systematic Error Sources \label{tab:correlation_matrix}}
+\tablewidth{0pt}
+\tablehead{
+\colhead{Error Source} &
+\colhead{(1)} &
+\colhead{(2)} &
+\colhead{(3)} &
+\colhead{(4)} &
+\colhead{(5)} &
+\colhead{(6)} &
+\colhead{(7)} &
+\colhead{(8)} &
+\colhead{(9)}
+}
+\startdata
+(1) Parallax ZP           & 1.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\
+(2) Period Dist.          & 0.00 & 1.00 & 0.30 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\
+(3) Metallicity           & 0.00 & 0.30 & 1.00 & 0.00 & 0.40 & 0.00 & 0.20 & 0.00 & 0.00 \\
+(4) Crowding Direct       & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\
+(5) Extinction            & 0.00 & 0.00 & 0.40 & 0.00 & 1.00 & 0.00 & 0.20 & 0.00 & 0.00 \\
+(6) Photometry            & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 1.00 & 0.20 & 0.00 & 0.00 \\
+(7) LMC Distance          & 0.00 & 0.00 & 0.20 & 0.00 & 0.20 & 0.20 & 1.00 & 0.00 & 0.00 \\
+(8) NGC4258 Distance      & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 \\
+(9) SNe Ia Std.           & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 1.00 \\
+\enddata
+
+\tablecomments{
+Correlation matrix $\mathbf{R}$ (9$\times$9 after removing covariant crowding standalone term per peer review) used for covariance propagation in systematic error budget (\S\ref{sec:methods_correlations}).
+Diagonal elements are 1 by definition.
+Off-diagonal elements encode physical correlations:
+\textbf{(1) Metallicity-extinction} (3$\leftrightarrow$5): shared dust-chemistry physics ($\rho = 0.4$);
+\textbf{(2) Period-metallicity} (2$\leftrightarrow$3): stellar evolution dependence ($\rho = 0.3$);
+\textbf{(3) Minor correlations}: photometry-LMC-extinction chain (6$\leftrightarrow$7$\leftrightarrow$5, $\rho = 0.2$); metallicity-LMC (3$\leftrightarrow$7, $\rho = 0.2$).
+Crowding Direct (4) remains uncorrelated with other sources after removing covariant crowding term; potential crowding-color-extinction-metallicity couplings are implicitly absorbed into the color-dependent extinction and metallicity terms.
+The same correlation structure is applied to both SH0ES and our systematic budgets for fairness.
+Matrix is positive definite as verified by Cholesky decomposition.
+Machine-readable version: \texttt{data/correlation\_matrix\_updated.csv}
+}
+
+\end{deluxetable*}

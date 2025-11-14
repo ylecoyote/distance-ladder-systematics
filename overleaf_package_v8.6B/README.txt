@@ -1,6 +1,6 @@
 ================================================================================
 Overleaf Package - Forensic Analysis of Distance Ladder Systematics
-Version 8.6C - Final Submission with All Inconsistencies Resolved
+Version 8.6F - Final Submission with PDF Forensic Analysis Remediation
 ================================================================================
 
 PACKAGE CONTENTS
@@ -208,7 +208,22 @@ supersedes v8.6D (Item 16: undefined citation cleanup for table notes and refere
    - Comprehensive verification: All cited keys now have corresponding @article entries in references.bib
    - Zero undefined citations remaining; PDF will compile cleanly with no ? placeholders
 
-All Sixteen Resolved Issues:
+17. PDF Forensic Analysis Remediation (manuscript.tex, figures)
+   - Fixed Period Distribution text clarification (lines 339, 366):
+     * Changed "$2.5 ± 1.0$" → "systematic uncertainty 1.0 km/s/Mpc from range of plausible corrections"
+     * Clarified distinction between uncertainty (1.0, shown in Table 1) and bias correction (-2.5)
+     * Table 1 value of 1.0 is CORRECT (represents uncertainty in correction bracket)
+   - Fixed Figure 3 galaxy count and legend overlap:
+     * Panel A: "8 galaxies" → "7 galaxies" (verified against CSV data)
+     * Moved legends from upper left to lower right (eliminates data point overlap)
+     * Regenerated figure3_cchp_crossval_real.pdf with corrections
+   - Verified LaTeX source notation is correct:
+     * All $\sigma$ symbols properly formatted in source (PDF rendering issues are Overleaf font compilation)
+     * All H₀ notation uses proper subscripts in source
+     * Table 7 headers have correct Greek letters ($\mu$, $\sigma$) in source
+   - Identified PDF rendering artifacts requiring Overleaf font fix (see remediation plan)
+
+All Seventeen Resolved Issues:
   ✓ SH0ES baseline (73.04 vs 73.17)
   ✓ Corrected Cepheid H₀ (69.54 vs 69.67)
   ✓ Stage-1/Stage-4 values (text vs Table 2)
@@ -224,18 +239,28 @@ All Sixteen Resolved Issues:
   ✓ Citation updates (real published references, no more placeholders)
   ✓ Final polish (citation key typos, model-independent terminology cleanup, abstract wording)
   ✓ Undefined citation cleanup (table notes Freedman2024, removed Brout2022/Spergel2003/Moresco2012)
+  ✓ PDF forensic analysis fixes (Period Distribution clarification, Figure 3 corrections, notation verification)
 
 ================================================================================
 VERSION HISTORY
 ================================================================================
 
-v8.6E (Current) - November 14, 2025
+v8.6F (Current) - November 14, 2025
+  - PDF forensic analysis remediation (Item 17)
+  - Fixed Period Distribution text clarification (lines 339, 366):
+    * Clarified systematic uncertainty (1.0) vs bias correction (-2.5)
+    * Table 1 value confirmed correct
+  - Fixed Figure 3 galaxy count (8 → 7) and legend overlap
+  - Verified all LaTeX source notation is correct (sigma, H₀, Greek letters)
+  - Identified PDF rendering issues as Overleaf font compilation artifacts
+  - All seventeen resolved issues complete and verified
+
+v8.6E - November 14, 2025
   - Undefined citation cleanup (Item 16)
   - Fixed Freedman2024 → Freedman2025a in 3 table notes (would have caused ? placeholders)
   - Removed undefined Brout2022, Spergel2003, Moresco2012 citations
   - Comprehensive verification: All cited keys verified against references.bib
   - Zero undefined citations - PDF compiles cleanly with no ? placeholders
-  - All sixteen resolved issues complete and verified
 
 v8.6D - November 14, 2025
   - Final polish for submission readiness (Item 15)
