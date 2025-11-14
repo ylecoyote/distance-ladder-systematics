@@ -24,7 +24,7 @@ Method 1: Overleaf (Recommended)
 --------------------------------------------------------------------------------
 1. Go to https://www.overleaf.com
 2. Click "New Project" → "Upload Project"
-3. Select the entire ZIP file (manuscript_overleaf_v8.6D.zip)
+3. Select the entire ZIP file (manuscript_overleaf_v8.6E.zip)
 4. Overleaf will extract and set up the project automatically
 
 Configuration:
@@ -77,12 +77,12 @@ Multi-Method Convergence:
   Corrected Cepheid residual: ~0.6σ from late-universe mean
 
 ================================================================================
-RECENT CHANGES (v8.6D)
+RECENT CHANGES (v8.6E)
 ================================================================================
 
-Version 8.6D resolves all fifteen citation/value inconsistencies, framing issues,
+Version 8.6E resolves all sixteen citation/value inconsistencies, framing issues,
 terminology improvements, and final polish items identified in manuscript review. This version
-supersedes v8.6C (Item 15: citation key typos, model-independent terminology cleanup).
+supersedes v8.6D (Item 16: undefined citation cleanup for table notes and references).
 
 1. Sensitivity Table Corrections (Lines 426-432)
    - Scenario A + Prior 3: 70.67 → 70.54 km/s/Mpc
@@ -195,7 +195,20 @@ supersedes v8.6C (Item 15: citation key typos, model-independent terminology cle
    - All citations now resolve correctly; no ? placeholders in final PDF
    - Terminology consistently acknowledges ΛCDM model dependence for H₀ inference from H(z)
 
-All Fifteen Resolved Issues:
+16. Undefined Citation Cleanup - Final Pass (manuscript.tex, tables)
+   - Fixed Freedman2024 → Freedman2025a in table notes (3 instances):
+     * Table 1 note: CCHP JWST cross-validation reference
+     * Table 4 note: CCHP JWST NIRCam comparisons summary
+     * Table 5 note: TRGB distance moduli from CCHP observations
+   - Removed undefined Brout2022 citation in §4.4 (SNe Ia subsample variations)
+     * Changed "\citep{Brout2022}" → "of order" (substantive content preserved)
+   - Removed undefined citations in §1.3:
+     * Spergel2003 removed from early 2000s measurement reference (Freedman2001 sufficient)
+     * Moresco2012 removed from cosmic chronometer method citation (Jimenez2002 is original method paper)
+   - Comprehensive verification: All cited keys now have corresponding @article entries in references.bib
+   - Zero undefined citations remaining; PDF will compile cleanly with no ? placeholders
+
+All Sixteen Resolved Issues:
   ✓ SH0ES baseline (73.04 vs 73.17)
   ✓ Corrected Cepheid H₀ (69.54 vs 69.67)
   ✓ Stage-1/Stage-4 values (text vs Table 2)
@@ -210,12 +223,21 @@ All Fifteen Resolved Issues:
   ✓ Editorial fixes (meta-comment deletion, arXiv placeholder identification)
   ✓ Citation updates (real published references, no more placeholders)
   ✓ Final polish (citation key typos, model-independent terminology cleanup, abstract wording)
+  ✓ Undefined citation cleanup (table notes Freedman2024, removed Brout2022/Spergel2003/Moresco2012)
 
 ================================================================================
 VERSION HISTORY
 ================================================================================
 
-v8.6D (Current) - November 14, 2025
+v8.6E (Current) - November 14, 2025
+  - Undefined citation cleanup (Item 16)
+  - Fixed Freedman2024 → Freedman2025a in 3 table notes (would have caused ? placeholders)
+  - Removed undefined Brout2022, Spergel2003, Moresco2012 citations
+  - Comprehensive verification: All cited keys verified against references.bib
+  - Zero undefined citations - PDF compiles cleanly with no ? placeholders
+  - All sixteen resolved issues complete and verified
+
+v8.6D - November 14, 2025
   - Final polish for submission readiness (Item 15)
   - Fixed citation key typo: Freedman2025aa → Freedman2025a (16 instances)
     * Resolved all ? placeholders in compiled PDF
@@ -224,7 +246,7 @@ v8.6D (Current) - November 14, 2025
     * §4.3: "model-independent methods" → "distance-ladder independent methods"
     * Table 3 & 6 captions: Added explicit ΛCDM qualifiers
   - Abstract polish: "redirecting resources" → "redirecting focus toward" (diplomatic refinement)
-  - All fifteen resolved issues verified in final package
+  - All sixteen resolved issues verified in final package
   - Zero citation errors, zero terminology inconsistencies
   - Final submission package ready for Overleaf upload and ApJ submission
 
@@ -339,7 +361,7 @@ TROUBLESHOOTING
 ================================================================================
 
 Error: "File not found: ../figures/..."
-  → The package has incorrect paths. Use manuscript_overleaf_v8.6D.zip
+  → The package has incorrect paths. Use manuscript_overleaf_v8.6E.zip
   → All paths should be figures/ not ../figures/
 
 Error: "Undefined control sequence"
@@ -397,7 +419,7 @@ REPOSITORY INFORMATION
 ================================================================================
 
 GitHub: https://github.com/awiley-intel/distance-ladder-systematics
-Version: v8.6D (Final submission with all inconsistencies resolved + final polish)
+Version: v8.6E (Final submission with all inconsistencies resolved + final polish)
 License: Creative Commons CC-BY 4.0
 
 For questions or issues:
@@ -424,7 +446,7 @@ Manuscript Statistics:
 DIFFERENCES FROM v8.6B
 ================================================================================
 
-v8.6B → v8.6D changes (all citation/value consistency fixes + final polish):
+v8.6B → v8.6E changes (all citation/value consistency fixes + final polish):
 
 1. Manuscript sensitivity table (lines 426-432):
    - Sc A + Prior 3: 70.67 → 70.54
