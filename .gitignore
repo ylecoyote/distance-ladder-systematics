@@ -67,6 +67,8 @@ logs/
 manuscript_overleaf.zip
 manuscript_overleaf_v*.zip
 !manuscript_overleaf_v8.6H.zip
+overleaf_package_final/
+overleaf_package*/
 
 # Large binary data files
 *.npz
