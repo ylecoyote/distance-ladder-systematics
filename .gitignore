@@ -63,9 +63,10 @@ logs/
 # Claude AI assistant
 .claude/
 
-# Generated package files
+# Generated package files (keep only latest version in git)
 manuscript_overleaf.zip
-*_overleaf.zip
+manuscript_overleaf_v*.zip
+!manuscript_overleaf_v8.6H.zip
 
 # Large binary data files
 *.npz
