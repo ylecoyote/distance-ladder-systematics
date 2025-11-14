@@ -1,6 +1,6 @@
 ================================================================================
 Overleaf Package - Forensic Analysis of Distance Ladder Systematics
-Version 8.6F - Final Submission with PDF Forensic Analysis Remediation
+Version 8.6G - Submission-Ready (Internal Version References Removed)
 ================================================================================
 
 PACKAGE CONTENTS
@@ -223,7 +223,21 @@ supersedes v8.6D (Item 16: undefined citation cleanup for table notes and refere
      * Table 7 headers have correct Greek letters ($\mu$, $\sigma$) in source
    - Identified PDF rendering artifacts requiring Overleaf font fix (see remediation plan)
 
-All Seventeen Resolved Issues:
+18. Removed Internal Version References and Development Artifacts (manuscript.tex, tables)
+   - Removed all "peer review" language inappropriate for initial ApJ submission
+   - Removed "v8.5 pre-revision" and version comparison references
+   - Cleaned manuscript text (lines 260, 333, 433):
+     * Removed development history from sensitivity analysis notes
+     * Simplified text to focus on scientific content without version commentary
+   - Cleaned figure captions (Figures 6, 7):
+     * Removed "(an earlier analysis)" and version references
+     * Streamlined captions to describe methodology without development history
+   - Cleaned table captions (Table 1, Table 6):
+     * Removed "after peer review revisions" phrases
+     * Simplified baseline descriptions
+   - This is an initial submission - no revision history should be visible to reviewers
+
+All Eighteen Resolved Issues:
   ✓ SH0ES baseline (73.04 vs 73.17)
   ✓ Corrected Cepheid H₀ (69.54 vs 69.67)
   ✓ Stage-1/Stage-4 values (text vs Table 2)
@@ -240,12 +254,21 @@ All Seventeen Resolved Issues:
   ✓ Final polish (citation key typos, model-independent terminology cleanup, abstract wording)
   ✓ Undefined citation cleanup (table notes Freedman2024, removed Brout2022/Spergel2003/Moresco2012)
   ✓ PDF forensic analysis fixes (Period Distribution clarification, Figure 3 corrections, notation verification)
+  ✓ Internal version reference removal (clean submission without development artifacts)
 
 ================================================================================
 VERSION HISTORY
 ================================================================================
 
-v8.6F (Current) - November 14, 2025
+v8.6G (Current) - November 14, 2025
+  - Removed internal version references and development artifacts (Item 18)
+  - Cleaned all "peer review" language inappropriate for initial submission
+  - Removed "v8.5 pre-revision" and version comparison references
+  - Streamlined manuscript text, figure captions, and table captions
+  - Package now submission-ready with no internal development history visible
+  - All eighteen resolved issues complete and verified
+
+v8.6F - November 14, 2025
   - PDF forensic analysis remediation (Item 17)
   - Fixed Period Distribution text clarification (lines 339, 366):
     * Clarified systematic uncertainty (1.0) vs bias correction (-2.5)
