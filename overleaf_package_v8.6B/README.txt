@@ -24,7 +24,7 @@ Method 1: Overleaf (Recommended)
 --------------------------------------------------------------------------------
 1. Go to https://www.overleaf.com
 2. Click "New Project" → "Upload Project"
-3. Select the entire ZIP file (manuscript_overleaf_v8.6C.zip)
+3. Select the entire ZIP file (manuscript_overleaf_v8.6D.zip)
 4. Overleaf will extract and set up the project automatically
 
 Configuration:
@@ -77,11 +77,12 @@ Multi-Method Convergence:
   Corrected Cepheid residual: ~0.6σ from late-universe mean
 
 ================================================================================
-RECENT CHANGES (v8.6C)
+RECENT CHANGES (v8.6D)
 ================================================================================
 
-Version 8.6C resolves all ten citation/value inconsistencies, framing issues, and
-terminology improvements identified in final manuscript review. This version supersedes v8.6B.
+Version 8.6D resolves all fifteen citation/value inconsistencies, framing issues,
+terminology improvements, and final polish items identified in manuscript review. This version
+supersedes v8.6C (Item 15: citation key typos, model-independent terminology cleanup).
 
 1. Sensitivity Table Corrections (Lines 426-432)
    - Scenario A + Prior 3: 70.67 → 70.54 km/s/Mpc
@@ -182,7 +183,19 @@ terminology improvements identified in final manuscript review. This version sup
    - No more placeholder arXiv IDs (2503.xxxxx) - all citations now point to real published papers
    - Ready for final compilation and submission
 
-All Fourteen Resolved Issues:
+15. Final Polish - Citation Keys and Terminology Cleanup (manuscript.tex, tables)
+   - Fixed citation key typo: Freedman2025aa → Freedman2025a (16 instances in manuscript.tex, 2 in table3)
+     * This was causing ? placeholders in compiled PDF for all Freedman2025 references
+   - Cleaned up remaining "model-independent" terminology for cosmic chronometers:
+     * §2.3 (line 289): "without assumptions about cosmological model" → "directly from differential ages without distance ladder; fit to flat ΛCDM"
+     * §4.3 (line 576): "model-independent methods" → "distance-ladder independent methods"
+     * Table 3 caption: "Model-independent H(z)" → "Distance-ladder independent H(z) (in flat ΛCDM)"
+     * Table 6 caption: "model-independent constraints" → "distance-ladder independent constraints; fitted to flat ΛCDM"
+   - Abstract polish: "redirecting resources" → "redirecting focus toward" (even more diplomatic)
+   - All citations now resolve correctly; no ? placeholders in final PDF
+   - Terminology consistently acknowledges ΛCDM model dependence for H₀ inference from H(z)
+
+All Fifteen Resolved Issues:
   ✓ SH0ES baseline (73.04 vs 73.17)
   ✓ Corrected Cepheid H₀ (69.54 vs 69.67)
   ✓ Stage-1/Stage-4 values (text vs Table 2)
@@ -196,12 +209,26 @@ All Fourteen Resolved Issues:
   ✓ JWST attribution clarification (CCHP data reinterpretation context)
   ✓ Editorial fixes (meta-comment deletion, arXiv placeholder identification)
   ✓ Citation updates (real published references, no more placeholders)
+  ✓ Final polish (citation key typos, model-independent terminology cleanup, abstract wording)
 
 ================================================================================
 VERSION HISTORY
 ================================================================================
 
-v8.6C (Current) - November 14, 2025
+v8.6D (Current) - November 14, 2025
+  - Final polish for submission readiness (Item 15)
+  - Fixed citation key typo: Freedman2025aa → Freedman2025a (16 instances)
+    * Resolved all ? placeholders in compiled PDF
+  - Cleaned up remaining "model-independent" terminology for cosmic chronometers:
+    * §2.3: Now explicitly states "fit to flat ΛCDM" for H₀ inference from H(z)
+    * §4.3: "model-independent methods" → "distance-ladder independent methods"
+    * Table 3 & 6 captions: Added explicit ΛCDM qualifiers
+  - Abstract polish: "redirecting resources" → "redirecting focus toward" (diplomatic refinement)
+  - All fifteen resolved issues verified in final package
+  - Zero citation errors, zero terminology inconsistencies
+  - Final submission package ready for Overleaf upload and ApJ submission
+
+v8.6C - November 14, 2025
   - All fourteen citation/value inconsistencies, framing issues, terminology improvements, editorial fixes, and citation updates resolved
   - Sensitivity table: corrected H₀ values for all 6 scenarios
   - Title/abstract precision: Added ~σ approximation symbols and full sensitivity range
@@ -216,7 +243,6 @@ v8.6C (Current) - November 14, 2025
   - Figure 4 caption: SH0ES uncertainty 1.31 → 1.04
   - Tables 2, 3, 4: Updated to R22 baseline and post-revision factors
   - Complete mathematical consistency verification
-  - Final submission package ready for Overleaf upload and ApJ submission
 
 v8.6B - November 13, 2025
   - R22 baseline (73.04 ± 1.04) applied consistently
@@ -313,7 +339,7 @@ TROUBLESHOOTING
 ================================================================================
 
 Error: "File not found: ../figures/..."
-  → The package has incorrect paths. Use manuscript_overleaf_v8.6C.zip
+  → The package has incorrect paths. Use manuscript_overleaf_v8.6D.zip
   → All paths should be figures/ not ../figures/
 
 Error: "Undefined control sequence"
@@ -371,7 +397,7 @@ REPOSITORY INFORMATION
 ================================================================================
 
 GitHub: https://github.com/awiley-intel/distance-ladder-systematics
-Version: v8.6C (Final submission with all inconsistencies resolved)
+Version: v8.6D (Final submission with all inconsistencies resolved + final polish)
 License: Creative Commons CC-BY 4.0
 
 For questions or issues:
@@ -398,7 +424,7 @@ Manuscript Statistics:
 DIFFERENCES FROM v8.6B
 ================================================================================
 
-v8.6B → v8.6C changes (all citation/value consistency fixes):
+v8.6B → v8.6D changes (all citation/value consistency fixes + final polish):
 
 1. Manuscript sensitivity table (lines 426-432):
    - Sc A + Prior 3: 70.67 → 70.54
