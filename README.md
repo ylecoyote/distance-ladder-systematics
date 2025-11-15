@@ -138,7 +138,7 @@ python3 create_manuscript_tables.py            # → data/tables/*.tex
 - Our assessment: σ_sys = 1.71 km/s/Mpc (with realistic correlations)
 - Underestimation factor: 1.6× when accounting for correlated error sources
 
-**Data:** [`data/systematic_error_budget.csv`](data/systematic_error_budget.csv)
+**Data:** [`data/systematic_error_budget.csv`](data/systematic_error_budget.csv), [`table1_systematic_budget.tex`](data/tables/table1_systematic_budget.tex)
 
 ### 2. Multi-Method Convergence
 
@@ -148,7 +148,7 @@ python3 create_manuscript_tables.py            # → data/tables/*.tex
 - Three-method mean (JAGB + H(z) + Planck): 67.48 ± 0.50 km/s/Mpc
 - Excellent consistency: χ²_red ≈ 0.04
 
-**Data:** [`data/h0_measurements_compilation.csv`](data/h0_measurements_compilation.csv)
+**Data:** [`data/h0_measurements_compilation.csv`](data/h0_measurements_compilation.csv), [`table3_h0_compilation.tex`](data/tables/table3_h0_compilation.tex)
 
 ### 3. Tension Reduction
 
@@ -164,7 +164,8 @@ python3 create_manuscript_tables.py            # → data/tables/*.tex
 
 **Planck-independent:** 0.6σ (vs JAGB+chronometers convergence)
 
-**Data:** [`data/tension_evolution.csv`](data/tables/table2_tension_evolution.tex)
+**Data:** [`data/tension_evolution.csv`](data/tension_evolution.csv), [`table2_tension_evolution.tex`](data/tables/table2_tension_evolution.tex)
+
 
 ### 4. JWST Cross-Validation
 
@@ -175,7 +176,7 @@ python3 create_manuscript_tables.py            # → data/tables/*.tex
 - Jackknife validation and robust estimators confirm excess
 - Supports realistic Cepheid systematic error budget
 
-**Data:** [`data/cchp_trgb_cepheid_comparison.csv`](data/cchp_trgb_cepheid_comparison.csv)
+**Data:** [`data/cchp_trgb_cepheid_comparison.csv`](data/cchp_trgb_cepheid_comparison.csv), [`table5_jwst_crossvalidation.tex`](data/tables/table5_jwst_crossvalidation.tex)
 
 ---
 
