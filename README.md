@@ -124,7 +124,7 @@ python3 create_figure5_h6_fit.py               # → figure5_h6_fit.png
 python3 create_manuscript_tables.py            # → data/tables/*.tex
 ```
 
-**Total runtime**: <2 minutes
+**Total runtime**: ~1-2 minutes on a modern laptop (no GPU required)
 
 ---
 
@@ -227,6 +227,8 @@ All data files are CSV format with header comments documenting sources and metho
 ## Requirements
 
 ### Python Environment
+
+**Tested with:** Python 3.11+ and Python 3.12
 
 ```bash
 # Create conda environment
