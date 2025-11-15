@@ -22,7 +22,7 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 - **Multi-method convergence**: JAGB + cosmic chronometers → H₀ = 68.22 ± 1.36 km/s/Mpc (Planck-independent)
 - **Tension reduction**: From 6.0σ → 1.2σ (Planck-relative) or 0.6σ (Planck-independent)
 - **Robustness validated**: Tension remains <2σ across all tested systematic scenarios
-- **JWST cross-validation**: 2.3× excess Cepheid scatter confirms systematic budget assessment
+- **JWST cross-validation**: TRGB–JAGB RMS ≈ 0.048 mag vs. Cepheid–TRGB RMS ≈ 0.108 mag (~2.3× larger), confirming the enlarged Cepheid systematic budget
 
 ---
 
@@ -62,71 +62,54 @@ pdflatex manuscript.tex
 
 ---
 
-## Project Structure
+## Project structure
 
-```
-distance-ladder-systematics/
-├── README.md                            # This file
-├── manuscript_overleaf_v8.6H.zip        # Final submission package (4.5 MB)
-│
-├── manuscript/                          # LaTeX source
-│   ├── manuscript.tex                   # Main manuscript (AASTeX 7.01)
-│   └── references.bib                   # Complete bibliography
-│
-├── data/                                # All data files
-│   ├── systematic_error_budget.csv      # 9 systematic sources
-│   ├── cosmic_chronometers_Hz.csv       # 32 H(z) measurements
-│   ├── cchp_trgb_cepheid_comparison.csv # JWST cross-validation data
-│   ├── h0_measurements_compilation.csv  # Multi-method H₀ comparison
-│   └── tables/                          # LaTeX tables (8 files)
-│
-├── figures/                             # Manuscript figures
-│   ├── figure1_tension_evolution.*      # 5-stage tension reduction
-│   ├── figure2_error_budget_stacked.*   # Systematic error breakdown
-│   ├── figure3_cchp_crossval_real.png   # JWST cross-validation
-│   ├── figure4_h0_compilation.*         # Multi-method convergence
-│   └── figure5_h6_fit.png               # Cosmic chronometer fit
-│
-├── analysis/                            # Python analysis scripts
-│   ├── calculate_error_budget.py        # Systematic error calculations
-│   ├── calculate_tension_evolution.py   # Tension staging analysis
-│   ├── create_figure*.py                # Figure generation
-│   └── h6_h0_estimate.py                # Cosmic chronometer MCMC
-│
-└── docs/                                # Documentation
-    └── development/                     # Development history archive
-```
+- `analysis/` – Python scripts for error budgets, tension evolution, MCMC fits, robustness tests, and figure/table generation
+- `data/` – Input and generated data products:
+  - `systematic_error_budget.csv`, `tension_evolution.csv`, `h0_measurements_compilation.csv`, etc.
+  - `cchp_trgb_cepheid_comparison.csv`, `cchp_trgb_jagb_comparison.csv`, and JWST robustness results
+  - `tables/` – LaTeX table fragments written by `analysis/create_manuscript_tables.py`
+- `figures/` – Output figures for the manuscript (PDF + PNG for Figs. 1–5 and auxiliary plots)
+- `manuscript/` – LaTeX source (`manuscript.tex`), class file, BibTeX, and LaTeX logs
+- `overleaf_package_final/` – Final Overleaf-ready package for v8.6H (mirrors `manuscript/` + `figures/` + `tables/`)
+- `logs/` – JSON and run logs from analysis/validation sessions (not required to reproduce results)
+- `_tmp/` – Archived drafts, peer-review notes, AI review logs, and historical Overleaf packages (not needed for reproduction)
+- `docs/` – Development notes (internal); see `_tmp/` for historical validation and review documents
+- `environment.yml` – Reproducible Python environment specification
 
 ---
 
-## Reproducing Results
+## Reproducing results
 
-### 1. Generate Data Files
+All commands below assume you have created/activated the project environment (see `environment.yml`) and are running from the repository root.
 
-```bash
-cd analysis
-python3 calculate_error_budget.py              # → systematic_error_budget.csv
-python3 calculate_tension_evolution.py         # → tension_evolution.csv
-python3 h6_h0_estimate.py                      # → mcmc_chains_LCDM_2D.npy
-```
-
-### 2. Generate Figures
+### 1. Generate data files
 
 ```bash
-python3 create_figure1_tension_evolution.py    # → figure1_tension_evolution.*
-python3 create_figure2_error_budget.py         # → figure2_error_budget_stacked.*
-python3 create_figure3_cchp_crossval_real.py   # → figure3_cchp_crossval_real.png
-python3 create_figure4_h0_compilation.py       # → figure4_h0_compilation.*
-python3 create_figure5_h6_fit.py               # → figure5_h6_fit.png
+python3 analysis/calculate_error_budget.py              # → data/systematic_error_budget.csv, data/systematic_budget_recalculated.csv
+python3 analysis/calculate_tension_evolution.py         # → data/tension_evolution.csv
+python3 analysis/h6_h0_estimate.py                      # → data/mcmc_chains_LCDM_2D.npy
+python3 analysis/cosmic_chronometer_fit_random_effects.py  # → data/cosmic_chronometer_random_effects_results.csv
+
 ```
 
-### 3. Generate Tables
+### 2. Generate figures
 
 ```bash
-python3 create_manuscript_tables.py            # → data/tables/*.tex
+python3 analysis/create_figure1_tension_evolution.py    # → figures/figure1_tension_evolution.*
+python3 analysis/create_figure2_error_budget.py         # → figures/figure2_error_budget_stacked.png
+python3 analysis/create_figure3_cchp_crossval_real.py   # → figures/figure3_cchp_crossval_real.*
+python3 analysis/create_figure4_h0_compilation.py       # → figures/figure4_h0_compilation.*
+python3 analysis/create_figure5_hz_fit_intrinsic_scatter.py  # → figures/figure5_h6_fit.png
 ```
 
-**Total runtime**: ~1-2 minutes on a modern laptop (no GPU required)
+### 3. Generate tables
+
+```bash
+python3 analysis/create_manuscript_tables.py            # → data/tables/*.tex
+```
+
+**Total runtime:** ~1–2 minutes on a modern laptop (no GPU required).
 
 ---
 
@@ -166,50 +149,74 @@ python3 create_manuscript_tables.py            # → data/tables/*.tex
 
 **Planck-independent:** 0.6σ (vs JAGB+chronometers convergence)
 
-**Data:** [`data/tension_evolution.csv`](data/tension_evolution.csv), [`table2_tension_evolution.tex`](data/tables/table2_tension_evolution.tex)
+See Fig. 1 and Table 2 in the manuscript for the full staged tension-evolution visualization.
 
+**Data:** [`data/tension_evolution.csv`](data/tension_evolution.csv), [`table2_tension_evolution.tex`](data/tables/table2_tension_evolution.tex)
 
 ### 4. JWST Cross-Validation
 
 **Claim:** JWST data confirms systematic underestimation
 
 - 15 galaxies with Cepheid + TRGB + JAGB measurements
-- Cepheid vs JAGB scatter: 2.3× larger than JAGB vs TRGB
-- Jackknife validation and robust estimators confirm excess
-- Supports realistic Cepheid systematic error budget
+- TRGB–JAGB agreement: RMS ≈ 0.048 mag with ≈0 mean offset
+- Cepheid–TRGB scatter: RMS ≈ 0.108 mag (~2.3× larger than TRGB–JAGB)
+- Jackknife validation and robust estimators confirm this excess
+- Supports a larger Cepheid systematic error budget rather than JWST-limited photometry
+
+See Fig. 3 and Table 5 in the manuscript for the full cross-validation comparison.
 
 **Data:** [`data/cchp_trgb_cepheid_comparison.csv`](data/cchp_trgb_cepheid_comparison.csv), [`table5_jwst_crossvalidation.tex`](data/tables/table5_jwst_crossvalidation.tex)
 
 ---
 
-## Data Files
+## Data files
 
-All data files are CSV format with header comments documenting sources and methods.
+All data files are CSV (or NPZ/Numpy) format with header comments documenting sources and methods.
 
-### Primary Data
+### Primary data
 
-- **systematic_error_budget.csv**: 9 systematic error sources with literature assessments
-- **cosmic_chronometers_Hz.csv**: 32 H(z) differential age measurements
-- **cchp_trgb_cepheid_comparison.csv**: JWST cross-validation data (15 galaxies)
-- **h0_measurements_compilation.csv**: Multi-method H₀ comparison
+- [`data/systematic_error_budget.csv`](data/systematic_error_budget.csv): 9 Cepheid systematic error sources with quadrature totals  
+- [`data/hierarchical_hz_results.csv`](data/hierarchical_hz_results.csv): 32 H(z) differential age measurements and best-fit hierarchical CC model values  
+- [`data/cchp_trgb_cepheid_comparison.csv`](data/cchp_trgb_cepheid_comparison.csv): JWST CCHP Cepheid vs TRGB distances (per galaxy)  
+- [`data/cchp_trgb_jagb_comparison.csv`](data/cchp_trgb_jagb_comparison.csv): JWST CCHP JAGB vs TRGB distances (per galaxy)  
+- [`data/h0_measurements_compilation.csv`](data/h0_measurements_compilation.csv): Multi-method H₀ comparison (Cepheid, JAGB, CC, Planck, etc.)
 
-### Analysis Outputs
+### Analysis outputs
 
-- **tension_evolution.csv**: 5-stage tension reduction summary
-- **error_budget_summary.csv**: Quadrature error totals
-- **cchp_crossval_summary.csv**: JWST cross-validation statistics
+- [`data/tension_evolution.csv`](data/tension_evolution.csv): 5-stage H₀ tension reduction summary  
+- [`data/cchp_crossval_summary.csv`](data/cchp_crossval_summary.csv): JWST cross-validation statistics  
+- [`data/systematic_budget_recalculated.csv`](data/systematic_budget_recalculated.csv): Revised systematic budget under updated assumptions  
+- [`data/cosmic_chronometer_random_effects_results.csv`](data/cosmic_chronometer_random_effects_results.csv): Random-effects CC fit summary  
+- [`data/extended_correlation_sensitivity_results.csv`](data/extended_correlation_sensitivity_results.csv): Correlation-sensitivity sweep results  
 
-### MCMC Chains
+### MCMC chains
 
-- **mcmc_chains_LCDM_2D.npy**: 128,000 samples (H₀, Ω_m) for cosmic chronometer fit
-- Additional chains available for intrinsic scatter and wCDM models
+- `data/mcmc_chains_LCDM_2D.npy`: 128,000 (H₀, Ωₘ) samples for the baseline LCDM CC fit  
+  *(generated by `analysis/h6_h0_estimate.py`; see “Reproducing results” below)*  
+
+Additional hierarchical and intrinsic-scatter summaries:
+
+- [`data/hierarchical_hyperpriors.csv`](data/hierarchical_hyperpriors.csv)  
+- [`data/hierarchical_hz_results.csv`](data/hierarchical_hz_results.csv)
+
+### Manuscript tables (LaTeX)
+
+Generated by `analysis/create_manuscript_tables.py` and used directly in the manuscript:
+
+- `data/tables/table1_systematic_budget.tex`: Systematic error budget  
+- `data/tables/table2_tension_evolution.tex`: H₀ tension staging  
+- `data/tables/table3_h0_compilation.tex`: Multi-method H₀ compilation  
+- `data/tables/table4_cchp_crossval.tex`: JWST CCHP cross-validation summary  
+- `data/tables/table5_jwst_crossvalidation.tex`: JWST scatter statistics (TRGB/JAGB/Cepheid)  
+- `data/tables/table6_cosmic_chronometers.tex`: Cosmic chronometer H(z) summary and derived H₀ constraints  
+- `data/tables/table_anchor_weights.tex`: Anchor weighting scheme  
+- `data/tables/table_correlation_matrix.tex`: Systematic correlation matrix  
 
 ---
 
 ## Manuscript Status
 
-**Submission Ready**: ✅ All checks complete
-
+✅ Submission-ready for ApJ (version v8.6H):
 - ✅ All numerical claims verified against data files
 - ✅ All citations cross-checked in bibliography
 - ✅ Computational results fully reproducible
@@ -217,13 +224,12 @@ All data files are CSV format with header comments documenting sources and metho
 - ✅ All figures and tables render correctly
 - ✅ Author metadata complete (ORCID included)
 
+See [`docs/MANUSCRIPT_STATUS.md`](docs/MANUSCRIPT_STATUS.md) for validation details.
+
 **Package:** [`manuscript_overleaf_v8.6H.zip`](manuscript_overleaf_v8.6H.zip) (4.5 MB)
 
-**Next Steps:**
-1. Upload package to Overleaf
-2. Add `\usepackage{lmodern}` after line 12 (fixes σ rendering)
-3. Recompile and verify PDF
-4. Submit to ApJ
+**Submission:**  
+Package `manuscript_overleaf_v8.6H.zip` has been tested on Overleaf and is ready for ApJ submission.
 
 ---
 
