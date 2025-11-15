@@ -12,7 +12,7 @@
 
 ## Overview
 
-This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **6.0σ to ~1σ**, suggesting the tension is primarily a measurement artifact rather than evidence for new physics.
+This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **6.0σ to ~1σ**, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics.
 
 ### Key Results
 
@@ -65,7 +65,7 @@ pdflatex manuscript.tex
 ```
 distance-ladder-systematics/
 ├── README.md                            # This file
-├── manuscript_overleaf_v8.6H.zip        # Final submission package (9.1 MB)
+├── manuscript_overleaf_v8.6H.zip        # Final submission package (4.5 MB)
 │
 ├── manuscript/                          # LaTeX source
 │   ├── manuscript.tex                   # Main manuscript (AASTeX 7.01)
@@ -214,7 +214,7 @@ All data files are CSV format with header comments documenting sources and metho
 - ✅ All figures and tables render correctly
 - ✅ Author metadata complete (ORCID included)
 
-**Package:** [`manuscript_overleaf_v8.6H.zip`](manuscript_overleaf_v8.6H.zip) (9.1 MB)
+**Package:** [`manuscript_overleaf_v8.6H.zip`](manuscript_overleaf_v8.6H.zip) (4.5 MB)
 
 **Next Steps:**
 1. Upload package to Overleaf
