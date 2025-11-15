@@ -48,7 +48,7 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 
 **Requirements:**
 - LaTeX distribution (TeX Live, MiKTeX, or MacTeX)
-- AASTeX 7.01 (included in package)
+- AASTeX (class file and support files included in the package)
 - Standard packages: graphicx, amsmath, natbib
 
 **Compile:**
