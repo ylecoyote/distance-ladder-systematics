@@ -14,6 +14,8 @@
 
 This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **6.0σ to ~1σ**, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics.
 
+For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) and the data/figures listed below.
+
 ### Key Results
 
 - **Systematic error reassessment**: σ_sys = 1.71 km/s/Mpc (correlated), representing a 1.6× underestimation in published uncertainties
@@ -269,10 +271,11 @@ If you use this work, please cite:
 
 ## Contact
 
-**Author**: Aaron Wiley
-**ORCID**: [0009-0007-1612-9203](https://orcid.org/0009-0007-1612-9203)
-**Affiliation**: Independent Researcher
-**Email**: awiley@outlook.com
+**Author**: Aaron Wiley  
+**ORCID**: [0009-0007-1612-9203](https://orcid.org/0009-0007-1612-9203)  
+**Affiliation**: Independent Researcher  
+**Email**: awiley@outlook.com  
+
 
 For questions about the analysis, methodology, or data, please open an issue or contact the author.
 
