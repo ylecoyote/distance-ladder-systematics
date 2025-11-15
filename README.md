@@ -300,6 +300,8 @@ This work is prepared for submission to The Astrophysical Journal. All rights re
 
 Code and data are provided for reproducibility and peer review. Please contact the author regarding reuse.
 
+See LICENSE for full pre-publication terms.
+
 ---
 
 *Manuscript ready for ApJ submission • Publication-ready with comprehensive literature coverage*
