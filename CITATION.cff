@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+type: software
+title: "Distance Ladder Systematics & Hubble Tension Analysis"
+abstract: "Forensic analysis of systematic uncertainties in Cepheid-based distance ladder measurements. Demonstrates that realistic systematic error accounting reduces the Hubble tension from ~6σ to ~1σ, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics."
+authors:
+  - family-names: Wiley
+    given-names: Aaron
+    orcid: "https://orcid.org/0009-0007-1612-9203"
+    email: awiley@outlook.com
+    affiliation: Independent Researcher
+repository-code: "https://github.com/ylecoyote/distance-ladder-systematics"
+url: "https://github.com/ylecoyote/distance-ladder-systematics"
+license: "Pending publication - All rights reserved"
+version: "8.6H"
+date-released: "2025-11-14"
+keywords:
+  - cosmology
+  - Hubble constant
+  - Cepheid variables
+  - distance ladder
+  - systematic uncertainties
+  - Hubble tension
+  - JWST
+  - cosmic chronometers
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Wiley
+      given-names: Aaron
+      orcid: "https://orcid.org/0009-0007-1612-9203"
+  title: "Forensic Analysis of Distance Ladder Systematics: The Hubble Tension Reduced from ~6σ to ~1σ"
+  journal: "The Astrophysical Journal"
+  year: 2025
+  status: submitted

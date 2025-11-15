@@ -260,6 +260,8 @@ If you use this work, please cite:
 }
 ```
 
+**Repository citation:** See tag [`v8.6H`](https://github.com/ylecoyote/distance-ladder-systematics/releases/tag/v8.6H) for the exact version corresponding to the submitted manuscript. GitHub also provides a "Cite this repository" button based on [`CITATION.cff`](CITATION.cff).
+
 ---
 
 ## Contact
