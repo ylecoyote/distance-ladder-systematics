@@ -30,6 +30,8 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 
 ### Option 1: Upload to Overleaf (Recommended)
 
+The fastest way to view or edit the manuscript is to use the pre-built Overleaf package.
+
 1. Download the pre-built package: [`manuscript_overleaf_v8.6H.zip`](manuscript_overleaf_v8.6H.zip)
 
 2. Upload to [Overleaf](https://www.overleaf.com):
@@ -40,7 +42,7 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 
 3. Post-upload fix (for proper σ rendering):
    ```latex
-   % Add after line 12 in manuscript.tex:
+   % Add in the preamble of manuscript.tex (after the other \usepackage lines):
    \usepackage{lmodern}
    ```
 
@@ -137,7 +139,7 @@ python3 analysis/create_manuscript_tables.py            # → data/tables/*.tex
 
 ### 3. Tension Reduction
 
-**Claim:** Realistic systematics reduce tension from 6.0σ → ~1σ
+**Claim:** Realistic systematics reduce tension from ~6.0σ → ~1σ
 
 | Stage | Description | Tension vs Planck |
 |-------|-------------|-------------------|
