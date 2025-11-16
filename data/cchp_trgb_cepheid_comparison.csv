@@ -1,3 +1,8 @@
+# Per-Galaxy JWST NIRCam Cross-Validation: TRGB vs Cepheid Distance Moduli
+# Data sources: TRGB from CCHP (Freedman+ 2025a), Cepheid from SH0ES (Riess+ 2022)
+# Key result: 15 galaxies, weighted mean offset Δμ = -0.024 ± 0.020 mag, RMS scatter 0.108 mag (2.3× excess)
+# Columns: Galaxy, mu_TRGB_CCHP, sigma_TRGB, mu_Cepheid_R22, sigma_Cepheid, Delta_mu (Cep-TRGB), Delta_sigma
+# Last updated: 2025-11-14 (v8.6H)
 Galaxy,mu_TRGB_CCHP,sigma_TRGB,mu_Cepheid_R22,sigma_Cepheid,Delta_mu,Delta_sigma
 M101,29.113,0.029,29.194,0.039,0.081,0.048
 NGC1309,32.499,0.070,32.546,0.060,0.047,0.092

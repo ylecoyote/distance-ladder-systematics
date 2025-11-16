@@ -1,3 +1,8 @@
+# Per-Galaxy JWST NIRCam Cross-Validation: TRGB vs JAGB Distance Moduli
+# Data source: CCHP JWST NIRCam observations (Freedman+ 2025a)
+# Key result: 7 galaxies, weighted mean offset Δμ = +0.002 ± 0.028 mag, RMS scatter 0.048 mag (baseline precision)
+# Columns: Galaxy, mu_TRGB, sigma_TRGB, mu_JAGB, sigma_JAGB, Delta_mu (JAGB-TRGB), Delta_sigma
+# Last updated: 2025-11-14 (v8.6H)
 Galaxy,mu_TRGB,sigma_TRGB,mu_JAGB,sigma_JAGB,Delta_mu,Delta_sigma
 M101,29.151,0.042,29.208,0.045,0.057,0.062
 NGC1365,31.366,0.069,31.384,0.039,0.018,0.079

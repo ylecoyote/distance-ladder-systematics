@@ -24,10 +24,10 @@ output_dir = Path(__file__).parent.parent / "figures"
 output_dir.mkdir(exist_ok=True)
 
 # Table 2: JWST TRGB vs JAGB
-trgb_jagb = pd.read_csv(data_dir / "cchp_trgb_jagb_comparison.csv")
+trgb_jagb = pd.read_csv(data_dir / "cchp_trgb_jagb_comparison.csv", comment='#')
 
 # Table 3: TRGB vs Cepheid
-trgb_cepheid = pd.read_csv(data_dir / "cchp_trgb_cepheid_comparison.csv")
+trgb_cepheid = pd.read_csv(data_dir / "cchp_trgb_cepheid_comparison.csv", comment='#')
 
 print("=" * 80)
 print("CCHP CROSS-VALIDATION: REAL DATA")

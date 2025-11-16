@@ -104,8 +104,8 @@ def jackknife_scatter(data):
 data_dir = Path(__file__).parent.parent / "data"
 
 # Load comparison data
-trgb_jagb = pd.read_csv(data_dir / "cchp_trgb_jagb_comparison.csv")
-trgb_cepheid = pd.read_csv(data_dir / "cchp_trgb_cepheid_comparison.csv")
+trgb_jagb = pd.read_csv(data_dir / "cchp_trgb_jagb_comparison.csv", comment='#')
+trgb_cepheid = pd.read_csv(data_dir / "cchp_trgb_cepheid_comparison.csv", comment='#')
 
 print("=" * 80)
 print("JWST CROSS-VALIDATION ROBUSTNESS CHECKS (AWI-174)")

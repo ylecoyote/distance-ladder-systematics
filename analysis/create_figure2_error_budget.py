@@ -29,7 +29,7 @@ plt.rcParams['axes.linewidth'] = 1.2
 # =============================================================================
 
 data_dir = Path(__file__).parent.parent / "data"
-error_budget = pd.read_csv(data_dir / "systematic_error_budget.csv")
+error_budget = pd.read_csv(data_dir / "systematic_error_budget.csv", comment='#')
 
 # Exclude statistical uncertainty (separate category)
 systematic_only = error_budget[error_budget['Error_Source'] != 'Statistical_Uncertainty'].copy()

@@ -1,3 +1,8 @@
+# Correlation Matrix for Systematic Error Budget (9×9 Updated Version)
+# Used for: Covariance propagation in systematic uncertainty calculation
+# Key features: Metallicity-extinction (ρ=0.3), period-metallicity (ρ=0.3), minor cross-correlations
+# Note: After removing covariant crowding term; positive definite matrix verified by Cholesky decomposition
+# Last updated: 2025-11-14 (v8.6H)
 ,Parallax Zero Point,Period Distribution,Metallicity Correction,Crowding Direct,Photometric Calibration,Extinction Reddening,LMC Distance,NGC4258 Distance,SNe Ia Standardization
 Parallax Zero Point,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 Period Distribution,0.0,1.0,0.3,0.0,0.0,0.0,0.0,0.0,0.0

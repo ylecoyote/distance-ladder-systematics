@@ -62,7 +62,7 @@ STAT_UNC = 0.8  # km/s/Mpc
 
 def load_correlation_matrix():
     """Load updated 9×9 correlation matrix (crowding_covariant removed)."""
-    R = pd.read_csv(DATA_DIR / "correlation_matrix_updated.csv", index_col=0)
+    R = pd.read_csv(DATA_DIR / "correlation_matrix_updated.csv", index_col=0, comment='#')
     return R
 
 # =============================================================================

@@ -19,7 +19,7 @@ def create_tension_evolution_figure():
     """Create publication-quality tension evolution figure"""
 
     # Load data
-    data = pd.read_csv('data/tension_evolution.csv')
+    data = pd.read_csv('data/tension_evolution.csv', comment='#')
 
     # Prepare data for plotting (Scenario A + Prior 1 baseline)
     stages = ['1', '2', '3', '4', '5']

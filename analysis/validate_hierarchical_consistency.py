@@ -71,7 +71,7 @@ def check_hierarchical_hyperpriors():
 
     try:
         # Load hyperpriors
-        hyperpriors = pd.read_csv(DATA_DIR / 'hierarchical_hyperpriors.csv')
+        hyperpriors = pd.read_csv(DATA_DIR / 'hierarchical_hyperpriors.csv', comment='#')
 
         # Expected ranges (based on literature)
         expected_ranges = {
@@ -135,7 +135,7 @@ def check_jwst_scatter_ratio():
 
     try:
         # Load JWST random effects results
-        jwst_results = pd.read_csv(DATA_DIR / 'jwst_random_effects_results.csv')
+        jwst_results = pd.read_csv(DATA_DIR / 'jwst_random_effects_results.csv', comment='#')
 
         # Extract intrinsic scatter values
         jagb_row = jwst_results[jwst_results['comparison'] == 'JAGB_vs_TRGB'].iloc[0]
@@ -193,7 +193,7 @@ def check_hz_hierarchical_fit():
 
     try:
         # Load H(z) results
-        hz_results = pd.read_csv(DATA_DIR / 'hierarchical_hz_results.csv')
+        hz_results = pd.read_csv(DATA_DIR / 'hierarchical_hz_results.csv', comment='#')
 
         baseline = hz_results[hz_results['model'] == 'baseline_unscaled'].iloc[0]
         hierarchical = hz_results[hz_results['model'] == 'hierarchical'].iloc[0]
@@ -252,7 +252,7 @@ def check_correlation_sensitivity():
 
     try:
         # Load correlation MC results
-        mc_results = pd.read_csv(DATA_DIR / 'correlation_uncertainty_mc.csv')
+        mc_results = pd.read_csv(DATA_DIR / 'correlation_uncertainty_mc.csv', comment='#')
 
         mc_mean = mc_results['mean'].iloc[0]
         mc_std = mc_results['std'].iloc[0]
@@ -262,7 +262,7 @@ def check_correlation_sensitivity():
         rel_uncertainty = mc_std / mc_mean * 100
 
         # Load deterministic sensitivity
-        sens_results = pd.read_csv(DATA_DIR / 'correlation_sensitivity.csv')
+        sens_results = pd.read_csv(DATA_DIR / 'correlation_sensitivity.csv', comment='#')
         max_rel_change = sens_results['rel_change_pct'].abs().max()
 
         details = {
@@ -327,7 +327,7 @@ def check_systematic_ratio_preserved():
 
     # Load correlation MC to check impact on σ_sys,corr
     try:
-        mc_results = pd.read_csv(DATA_DIR / 'correlation_uncertainty_mc.csv')
+        mc_results = pd.read_csv(DATA_DIR / 'correlation_uncertainty_mc.csv', comment='#')
         mc_std = mc_results['std'].iloc[0]
         mc_mean = mc_results['mean'].iloc[0]
 

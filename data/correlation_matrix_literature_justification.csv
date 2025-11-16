@@ -1,3 +1,8 @@
+# Correlation Matrix Literature Justification and Physical Mechanisms
+# Documents: Physical basis and literature support for correlation matrix off-diagonal elements
+# Key correlations: Period-Metallicity (ρ=0.3), Metallicity-Extinction (ρ=0.3), Crowding-Extinction (ρ=0.3)
+# Columns: Correlation_Pair, Rho_Value, Justification, Literature_Support, Physical_Mechanism
+# Last updated: 2025-11-14 (v8.6H)
 Correlation_Pair,Rho_Value,Justification,Literature_Support,Physical_Mechanism
 Period_Distribution_Metallicity,0.3,"Both depend on stellar evolution physics; metal-rich stars have different P-L relations","Freedman & Madore (2011, 2020); Monson et al. (2012); Scowcroft et al. (2016)","Stellar evolution: metallicity affects envelope structure and pulsation properties; period distribution reflects population age and chemical enrichment"
 Metallicity_Crowding,0.2,"Crowding affects color measurements which propagate to metallicity estimates via extinction corrections","Anderson et al. (2016); Riess et al. (2016); Scolnic et al. (2015)","Observational: blended stars bias photometric colors → reddening inference → metallicity determination through dust-chemistry coupling"

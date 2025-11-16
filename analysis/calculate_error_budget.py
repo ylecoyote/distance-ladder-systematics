@@ -18,7 +18,7 @@ from pathlib import Path
 # =============================================================================
 
 data_dir = Path(__file__).parent.parent / "data"
-error_budget = pd.read_csv(data_dir / "systematic_error_budget.csv")
+error_budget = pd.read_csv(data_dir / "systematic_error_budget.csv", comment='#')
 
 print("=" * 80)
 print("SYSTEMATIC ERROR BUDGET ANALYSIS")

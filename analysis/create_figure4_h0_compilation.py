@@ -14,7 +14,7 @@ def create_h0_compilation_figure():
     """Create publication-quality H₀ compilation forest plot"""
 
     # Load data
-    data = pd.read_csv('data/h0_measurements_compilation.csv')
+    data = pd.read_csv('data/h0_measurements_compilation.csv', comment='#')
 
     # Sort by H₀ value (ascending)
     data = data.sort_values('H0_km_s_Mpc', ascending=True)
