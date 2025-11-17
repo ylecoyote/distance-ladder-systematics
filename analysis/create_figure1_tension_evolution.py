@@ -32,27 +32,27 @@ def create_tension_evolution_figure():
     ]
 
     h0_values = [
-        73.17,  # Stage 1: Statistical only
-        73.17,  # Stage 2: SH0ES total
-        73.17,  # Stage 3: Scenario A (no bias correction)
-        70.67,  # Stage 4: Period distribution -2.5 km/s/Mpc
-        69.67   # Stage 5: Metallicity + realistic σ (Scenario A + Prior 1)
+        73.04,  # Stage 1: Statistical only
+        73.04,  # Stage 2: SH0ES total
+        73.04,  # Stage 3: Scenario A (no bias correction)
+        70.54,  # Stage 4: Period distribution -2.5 km/s/Mpc
+        69.54   # Stage 5: Metallicity + realistic σ (Scenario A + Prior 1)
     ]
 
     sigma_values = [
         0.80,   # Stage 1: Statistical only
         1.31,   # Stage 2: SH0ES total (sqrt(0.8² + 1.04²))
         1.31,   # Stage 3: Same as Stage 2
-        1.31,   # Stage 4: Still using SH0ES total
+        1.65,   # Stage 4: sqrt(0.8² + 1.04² + 1.0²) with period uncertainty
         1.89    # Stage 5: σ_total = sqrt(0.8² + 1.71²)
     ]
 
     tension_values = [
-        6.0,    # Stage 1
-        4.1,    # Stage 2
-        4.1,    # Stage 3 (no bias correction in Scenario A)
-        2.3,    # Stage 4: (70.67 - 67.36) / sqrt(1.31² + 0.54²)
-        1.2     # Stage 5: (69.67 - 67.36) / sqrt(1.89² + 0.54²)
+        5.9,    # Stage 1
+        4.0,    # Stage 2
+        4.0,    # Stage 3 (no bias correction in Scenario A)
+        1.9,    # Stage 4: (70.54 - 67.36) / sqrt(1.65² + 0.54²)
+        1.1     # Stage 5: (69.54 - 67.36) / sqrt(1.89² + 0.54²)
     ]
 
     # Create figure
@@ -86,6 +86,34 @@ def create_tension_evolution_figure():
                ha='center', va='bottom', fontsize=10, fontweight='bold',
                color=colors[i])
 
+    # Add arrows with ΔH₀ and Δσ labels between stages
+    arrow_props = dict(arrowstyle='->', lw=1.5, alpha=0.6)
+
+    # Stage 1→2: σ increases (no H₀ change)
+    mid_x = (x_pos[0] + x_pos[1]) / 2
+    ax.annotate('', xy=(x_pos[1], 72.5), xytext=(x_pos[0], 72.5),
+                arrowprops=dict(arrowstyle='->', lw=1.2, alpha=0.5, color='gray'))
+    ax.text(mid_x, 72.8, 'σ: +0.51', ha='center', va='bottom',
+            fontsize=8, style='italic', color='darkgray')
+
+    # Stage 3→4: Period correction (ΔH₀ = -2.5)
+    mid_x = (x_pos[2] + x_pos[3]) / 2
+    ax.annotate('', xy=(x_pos[3], 71.8), xytext=(x_pos[2], 71.8),
+                arrowprops=dict(arrowstyle='->', lw=1.5, alpha=0.6, color='darkgreen'))
+    ax.text(mid_x, 72.1, 'ΔH₀: −2.5 (Period)', ha='center', va='bottom',
+            fontsize=8, fontweight='bold', color='darkgreen')
+    ax.text(mid_x, 71.5, 'σ: +0.34', ha='center', va='top',
+            fontsize=7, style='italic', color='darkgray')
+
+    # Stage 4→5: Metallicity + realistic σ (ΔH₀ = -1.0)
+    mid_x = (x_pos[3] + x_pos[4]) / 2
+    ax.annotate('', xy=(x_pos[4], 70.0), xytext=(x_pos[3], 70.0),
+                arrowprops=dict(arrowstyle='->', lw=1.5, alpha=0.6, color='darkblue'))
+    ax.text(mid_x, 70.3, 'ΔH₀: −1.0 (Metallicity)', ha='center', va='bottom',
+            fontsize=8, fontweight='bold', color='darkblue')
+    ax.text(mid_x, 69.7, 'σ: +0.24', ha='center', va='top',
+            fontsize=7, style='italic', color='darkgray')
+
     # Add 3σ threshold line
     threshold_h0 = PLANCK_H0 + 3 * np.sqrt(PLANCK_SIGMA**2 + 1.89**2)
     ax.axhline(threshold_h0, color='red', linestyle=':', linewidth=1.5,
@@ -112,7 +140,7 @@ def create_tension_evolution_figure():
            bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
 
     ax.text(0.98, 0.02,
-           f'Tension reduction: 6.0σ → 1.2σ (baseline)\nScenario range: 0.2σ to 1.7σ',
+           f'Tension reduction: 5.9σ → 1.1σ (baseline)\nScenario range: 0.2σ to 1.7σ\nFactor: 5.4× reduction',
            transform=ax.transAxes, fontsize=9, ha='right', va='bottom',
            bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
 
