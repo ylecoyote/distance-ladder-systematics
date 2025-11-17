@@ -43,9 +43,9 @@ Click one of the badges above to launch an interactive environment in your brows
 **Once launched:**
 
 1. **Start with the guided notebook (recommended):**
-   - Open `reproduce_key_results.ipynb` in the file browser
-   - Run all cells (Cell → Run All) to reproduce the four key results interactively
-   - **Runtime:** ~1-2 minutes
+   - **Colab:** Notebook opens automatically → Click "Runtime → Run all"
+   - **Binder:** Open `reproduce_key_results.ipynb` → Click "Run → Run All Cells"
+   - **Runtime:** ~1-2 minutes to reproduce all four key results
 
 2. **Or run analysis scripts directly:**
    ```bash
