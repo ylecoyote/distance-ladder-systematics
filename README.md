@@ -8,7 +8,7 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ylecoyote/distance-ladder-systematics/main)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ylecoyote/distance-ladder-systematics/blob/main/reproduce_key_results.ipynb)
 
-**Last Updated**: 2025-11-14
+**Last Updated**: 2025-11-17
 
 ---
 
