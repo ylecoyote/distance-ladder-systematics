@@ -54,6 +54,7 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+*.bak
 _tmp/
 
 # Log directories

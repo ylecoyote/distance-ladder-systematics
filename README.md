@@ -5,6 +5,8 @@
 [![Status](https://img.shields.io/badge/Status-Submission%20Ready-success)](manuscript_overleaf_v8.6H.zip)
 [![Journal](https://img.shields.io/badge/Target-ApJ-blue)](https://iopscience.iop.org/journal/0004-637X)
 [![License](https://img.shields.io/badge/License-Pending%20Publication-orange)](LICENSE)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ylecoyote/distance-ladder-systematics/main)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ylecoyote/distance-ladder-systematics/blob/main/reproduce_key_results.ipynb)
 
 **Last Updated**: 2025-11-14
 
@@ -28,7 +30,40 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 
 ## Quick Start
 
-### Option 1: Upload to Overleaf (Recommended)
+### Option 1: Interactive Cloud Environment (No Installation) ⭐ Recommended
+
+Click one of the badges above to launch an interactive environment in your browser:
+
+**[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ylecoyote/distance-ladder-systematics/main) Binder** - Fully reproducible environment with Jupyter notebooks
+
+**Or:**
+
+**[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ylecoyote/distance-ladder-systematics/blob/main/reproduce_key_results.ipynb) Google Colab** - Fast startup with Google infrastructure
+
+**Once launched:**
+
+1. **Start with the guided notebook (recommended):**
+   - Open `reproduce_key_results.ipynb` in the file browser
+   - Run all cells (Cell → Run All) to reproduce the four key results interactively
+   - **Runtime:** ~1-2 minutes
+
+2. **Or run analysis scripts directly:**
+   ```bash
+   # Generate all figures
+   python analysis/create_figure1_tension_evolution.py
+   python analysis/create_figure2_error_budget.py
+   python analysis/create_figure3_cchp_crossval_real.py
+   python analysis/create_figure4_h0_compilation.py
+
+   # Or run a complete reproduction
+   python analysis/calculate_error_budget.py
+   python analysis/calculate_tension_evolution.py
+   python analysis/create_manuscript_tables.py
+   ```
+
+---
+
+### Option 2: Upload to Overleaf (Recommended for Manuscript)
 
 The fastest way to view or edit the manuscript is to use the pre-built Overleaf package.
 
@@ -46,7 +81,7 @@ The fastest way to view or edit the manuscript is to use the pre-built Overleaf 
    \usepackage{lmodern}
    ```
 
-### Option 2: Local Compilation
+### Option 3: Local Compilation
 
 **Requirements:**
 - LaTeX distribution (TeX Live, MiKTeX, or MacTeX)
@@ -66,6 +101,8 @@ pdflatex manuscript.tex
 
 ## Project structure
 
+- `reproduce_key_results.ipynb` – Interactive Jupyter notebook showcasing the four key results (recommended starting point)
+- `requirements.txt` – Python dependencies for pip/Binder/Colab environments
 - `analysis/` – Python scripts for error budgets, tension evolution, MCMC fits, robustness tests, and figure/table generation
 - `data/` – Input and generated data products:
   - `systematic_error_budget.csv`, `tension_evolution.csv`, `h0_measurements_compilation.csv`, etc.

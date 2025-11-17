@@ -476,7 +476,7 @@ git commit -m "Final pre-submission fixes: SH0ES σ correction + sensitivity fig
 ## Contact & Support
 
 **Primary Contact**: Aaron Wiley (awiley@outlook.com)
-**Repository**: https://github.com/awiley-intel/distance-ladder-systematics
+**Repository**: https://github.com/ylecoyote/distance-ladder-systematics
 **Package**: manuscript_overleaf.zip (1.9 MB)
 
 **AASTeX Documentation**: https://journals.aas.org/aastex-package-for-manuscript-preparation/

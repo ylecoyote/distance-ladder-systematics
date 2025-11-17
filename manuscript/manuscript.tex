@@ -157,7 +157,7 @@ The structure of this paper is as follows. In \S\ref{sec:methods}, we describe o
 
 \section{Methodology} \label{sec:methods}
 
-Our analysis is designed to provide an independent assessment of systematic uncertainties in Cepheid-based H$_0$ measurements. A key methodological principle is independence: we do not rely on proprietary data or assumptions from either the SH0ES or CCHP teams. All calculations are reproducible from publicly available data and published results, including distance measurements from \citet{Riess2022}, \citet{Freedman2025a}, the \textit{Planck} Collaboration \citep{Planck2018}, and cosmic chronometer compilations \citep{Moresco2022}. Our code and data are publicly available at \url{https://github.com/awiley-intel/distance-ladder-systematics} (commit 85c56c3) to enable independent verification. The repository includes data provenance documentation, validation tests against published results, computational environment specifications (environment.yml), and step-by-step Jupyter notebooks that reproduce all figures and tables in this manuscript.
+Our analysis is designed to provide an independent assessment of systematic uncertainties in Cepheid-based H$_0$ measurements. A key methodological principle is independence: we do not rely on proprietary data or assumptions from either the SH0ES or CCHP teams. All calculations are reproducible from publicly available data and published results, including distance measurements from \citet{Riess2022}, \citet{Freedman2025a}, the \textit{Planck} Collaboration \citep{Planck2018}, and cosmic chronometer compilations \citep{Moresco2022}. Our code and data are publicly available at \url{https://github.com/ylecoyote/distance-ladder-systematics} (commit 85c56c3) to enable independent verification. The repository includes data provenance documentation, validation tests against published results, computational environment specifications (environment.yml), and step-by-step Jupyter notebooks that reproduce all figures and tables in this manuscript.
 
 We employ four complementary validation strategies, each providing an independent check on the Cepheid systematic uncertainty budget. These strategies are intentionally diverse in their approach---spanning error budget reconstruction, cross-validation with alternative distance indicators, distance-ladder independent H$_0$ constraints from cosmic chronometers, and tension evolution analysis---to ensure robustness against any single methodology's limitations. By requiring consistency across fundamentally different validation approaches, we minimize the risk of methodology-dependent biases affecting our conclusions. Each strategy addresses distinct potential weaknesses: error budget reconstruction tests claimed uncertainties, cross-validation reveals inter-method systematics, cosmic chronometers bypass the distance ladder entirely, and tension evolution quantifies the cumulative impact of realistic uncertainties.
 
@@ -649,7 +649,7 @@ and parallax measurements from \textit{Gaia} Data Release 3 \citep{Lindegren2021
   Astropy \citep{astropy2013,astropy2018,astropy2022}
 }
 
-All data, analysis code, and figures supporting this work are publicly available at \url{https://github.com/awiley-intel/distance-ladder-systematics} and will be archived on Zenodo upon publication with DOI assignment for long-term preservation and accessibility.
+All data, analysis code, and figures supporting this work are publicly available at \url{https://github.com/ylecoyote/distance-ladder-systematics} and will be archived on Zenodo upon publication with DOI assignment for long-term preservation and accessibility.
 \end{acknowledgments}
 
 % ========================================================================
@@ -658,7 +658,7 @@ All data, analysis code, and figures supporting this work are publicly available
 
 \section*{Data Availability}
 
-All analysis code, data, and figures are publicly available at \url{https://github.com/awiley-intel/distance-ladder-systematics}.
+All analysis code, data, and figures are publicly available at \url{https://github.com/ylecoyote/distance-ladder-systematics}.
 Data sources include published measurements from SH0ES \citep{Riess2022,Riess2024JWST},
 CCHP \citep{Freedman2025a} (data available at \url{https://iopscience.iop.org/article/10.3847/1538-4357/ad4b53}),
 Planck Collaboration \citep{Planck2018} (likelihoods available at \url{https://pla.esac.esa.int}),
