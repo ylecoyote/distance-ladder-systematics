@@ -69,16 +69,19 @@ def create_tension_evolution_figure():
 
     # Plot tension evolution
     colors = ['red', 'orange', 'gold', 'yellowgreen', 'green']
+    # Different marker shapes for grayscale compatibility
+    markers = ['o', 's', '^', 'D', 'v']  # circle, square, triangle-up, diamond, triangle-down
 
-    # Connect stages 1-5 with line
-    ax.plot(x_pos, h0_values, 'o-', color='darkred', linewidth=2,
-            markersize=8, zorder=3, label='Tension evolution (Scenario A + Prior 1 baseline)')
+    # Connect stages 1-5 with line (no markers on connecting line to avoid clutter)
+    ax.plot(x_pos, h0_values, '-', color='darkred', linewidth=2,
+            zorder=3, label='Tension evolution (Scenario A + Prior 1 baseline)')
 
-    # Error bars
+    # Error bars with distinct markers for grayscale compatibility
     for i in range(len(stages)):
         ax.errorbar(x_pos[i], h0_values[i], yerr=sigma_values[i],
-                   fmt='o', color=colors[i], markersize=8, capsize=5,
-                   capthick=2, linewidth=2, zorder=4)
+                   fmt=markers[i], color=colors[i], markersize=8, capsize=5,
+                   capthick=2, linewidth=2, zorder=4, markerfacecolor=colors[i],
+                   markeredgecolor='black', markeredgewidth=0.5)
 
         # Add tension value labels
         ax.text(x_pos[i], h0_values[i] + sigma_values[i] + 0.5,
