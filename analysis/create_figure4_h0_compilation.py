@@ -19,9 +19,11 @@ def create_h0_compilation_figure():
     # Sort by H₀ value (ascending)
     data = data.sort_values('H0_km_s_Mpc', ascending=True)
 
-    # Exclude weighted mean from main plot (will show as band)
+    # Exclude weighted mean and JAGB+CC from main plot (will show as bands)
     weighted_mean_data = data[data['Method'] == 'Weighted Mean'].iloc[0]
-    plot_data = data[data['Method'] != 'Weighted Mean'].copy()
+    jagb_cc_data = data[data['Method'] == 'JAGB + Cosmic Chron.'].iloc[0]
+    plot_data = data[(data['Method'] != 'Weighted Mean') &
+                     (data['Method'] != 'JAGB + Cosmic Chron.')].copy()
 
     # Create figure
     fig, ax = plt.subplots(figsize=(10, 7))
@@ -34,6 +36,7 @@ def create_h0_compilation_figure():
         'Early Universe': 'blue',
         'Distance Ladder': 'red',
         'Model-Independent': 'green',
+        'Planck-Independent': 'teal',
         'Convergence': 'purple'
     }
 
@@ -73,9 +76,20 @@ def create_h0_compilation_figure():
     ax.axvspan(convergence_h0 - convergence_sigma,
               convergence_h0 + convergence_sigma,
               alpha=0.2, color='gray', zorder=1,
-              label='Three-method convergence')
+              label='Three-method convergence (incl. Planck)')
     ax.axvline(convergence_h0, color='gray', linestyle='--',
               linewidth=2, alpha=0.7, zorder=2)
+
+    # Add JAGB+CC Planck-independent convergence band
+    jagb_cc_h0 = jagb_cc_data['H0_km_s_Mpc']
+    jagb_cc_sigma = jagb_cc_data['Sigma_km_s_Mpc']
+
+    ax.axvspan(jagb_cc_h0 - jagb_cc_sigma,
+              jagb_cc_h0 + jagb_cc_sigma,
+              alpha=0.15, color='green', zorder=1,
+              label='Planck-independent (JAGB+CC)')
+    ax.axvline(jagb_cc_h0, color='green', linestyle='-.',
+              linewidth=2, alpha=0.6, zorder=2)
 
     # Add 3σ threshold lines
     threshold_lower = convergence_h0 - 3 * convergence_sigma
@@ -95,11 +109,16 @@ def create_h0_compilation_figure():
     ax.set_xlim(65, 76)
     ax.grid(True, alpha=0.3, axis='x', linestyle='--')
 
-    # Add text annotation for weighted mean (bottom of plot to avoid legend overlap)
+    # Add text annotation for convergence points (bottom of plot to avoid legend overlap)
     ax.text(convergence_h0, -0.8,
-           f'Weighted mean:\n{convergence_h0:.2f} ± {convergence_sigma:.2f}',
+           f'Three-method:\n{convergence_h0:.2f} ± {convergence_sigma:.2f}',
            ha='center', va='top', fontsize=9,
            bbox=dict(boxstyle='round', facecolor='lightgray', alpha=0.7))
+
+    ax.text(jagb_cc_h0, -0.8,
+           f'Planck-free:\n{jagb_cc_h0:.2f} ± {jagb_cc_sigma:.2f}',
+           ha='center', va='top', fontsize=9,
+           bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.7))
 
     # Add note about Cepheid
     ax.text(0.98, 0.02,
@@ -122,7 +141,8 @@ def create_h0_compilation_figure():
     print("✅ Figure 4 generated successfully:")
     print("   - figures/figure4_h0_compilation.png (300 DPI)")
     print("   - figures/figure4_h0_compilation.pdf")
-    print(f"   Convergence: H₀ = {convergence_h0:.2f} ± {convergence_sigma:.2f} km s⁻¹ Mpc⁻¹")
+    print(f"   Three-method convergence: H₀ = {convergence_h0:.2f} ± {convergence_sigma:.2f} km s⁻¹ Mpc⁻¹")
+    print(f"   Planck-independent (JAGB+CC): H₀ = {jagb_cc_h0:.2f} ± {jagb_cc_sigma:.2f} km s⁻¹ Mpc⁻¹")
 
     plt.close()
 
