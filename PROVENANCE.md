@@ -20,9 +20,9 @@ Compilation of differential galaxy age measurements providing distance-independe
 - Simon et al. (2005, PhRvD, 71, 123001) - "Constraints on the redshift dependence"
 - Stern et al. (2010, JCAP, 2, 8) - "Cosmic chronometers"
 
-**File Location:** External (loaded from pcm-exploration repository)
-- Path: `pcm-exploration/perception-constraint-model/foundation/data/cosmic_chronometers_Hz.csv`
-- Fallback: `pcm-exploration/perception-constraint-model/data/processed/cosmic_chronometers_Hz.csv`
+**File Location:** `data/cosmic_chronometers_Hz.csv` (mirrored for self-contained reproducibility)
+- Original source: pcm-exploration repository (copied 2025-11-18)
+- Fallback paths: External pcm-exploration locations (if local copy unavailable)
 
 **Data Structure:**
 ```
@@ -109,6 +109,8 @@ Tip of the Red Giant Branch distance ladder measurements.
   note = {in press}
 }
 ```
+
+**Future Update:** Once final ApJ reference is published, update with volume/page details and remove "in press" note.
 
 ---
 
@@ -321,7 +323,7 @@ python3 analysis/create_figure_correlation_heatmap.py     # Correlation matrix
 ```
 
 ### External Dependencies
-The cosmic chronometer data file (`cosmic_chronometers_Hz.csv`) must be accessible from the pcm-exploration repository for Figure 5 regeneration. If unavailable, the script will raise `FileNotFoundError`.
+The cosmic chronometer data file (`cosmic_chronometers_Hz.csv`) is included in `data/` for self-contained reproducibility. Figure 5 regeneration will use the local copy; external paths serve as fallback only.
 
 ### Version Control
 All derived data files are tracked in git with full provenance in commit history:
@@ -340,8 +342,8 @@ python3 analysis/run_all.py --verify
 ## Contact and Issues
 
 For questions about data provenance or to report data integrity issues:
-- GitHub Issues: https://github.com/[repository]/issues
-- Primary Contact: [maintainer email]
+- GitHub Issues: https://github.com/ylecoyote/distance-ladder-systematics/issues
+- Primary Contact: awiley@outlook.com
 
 **Data Availability Statement:**
 All derived data files and analysis scripts are publicly available in this repository. External datasets are cited with DOIs/ADS bibcodes for independent verification.
@@ -349,6 +351,12 @@ All derived data files and analysis scripts are publicly available in this repos
 ---
 
 ## Change Log
+
+### 2025-11-18 (v8.6H - Polishing)
+- **Self-contained archive**: Mirrored cosmic chronometer data to `data/cosmic_chronometers_Hz.csv`
+- **Contact info**: Updated GitHub issues URL and maintainer email
+- **Future updates**: Added reminder to update Freedman2025a citation when published
+- Updated figure script to prioritize local data copy for reproducibility
 
 ### 2025-11-17 (v8.6H)
 - Initial PROVENANCE.md creation

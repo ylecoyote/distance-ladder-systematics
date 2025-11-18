@@ -19,6 +19,7 @@ from pathlib import Path
 # =============================================================================
 
 data_paths = [
+    Path("data/cosmic_chronometers_Hz.csv"),  # Local copy (self-contained archive)
     Path("/Users/awiley/Code/pcm-exploration/perception-constraint-model/foundation/data/cosmic_chronometers_Hz.csv"),
     Path("/Users/awiley/Code/pcm-exploration/perception-constraint-model/data/processed/cosmic_chronometers_Hz.csv")
 ]
