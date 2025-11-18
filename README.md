@@ -100,22 +100,36 @@ pdflatex manuscript.tex
 
 ---
 
-## Project structure
+## Project Structure
 
+**Core files:**
 - `reproduce_key_results.ipynb` – Interactive Jupyter notebook showcasing the four key results (recommended starting point)
+- `PROVENANCE.md` – Complete data provenance documentation with sources, citations, and retrieval dates
+- `CITATION.cff` – Citation metadata for the repository
+- `LICENSE` – MIT License
+- `README.md` – This file
+
+**Environment:**
 - `requirements.txt` – Python dependencies for pip/Binder/Colab environments
+- `environment.yml` – Reproducible conda environment specification
+
+**Analysis & Data:**
 - `analysis/` – Python scripts for error budgets, tension evolution, MCMC fits, robustness tests, and figure/table generation
 - `data/` – Input and generated data products:
-  - `systematic_error_budget.csv`, `tension_evolution.csv`, `h0_measurements_compilation.csv`, etc.
-  - `cchp_trgb_cepheid_comparison.csv`, `cchp_trgb_jagb_comparison.csv`, and JWST robustness results
-  - `tables/` – LaTeX table fragments written by `analysis/create_manuscript_tables.py`
-- `figures/` – Output figures for the manuscript (PDF + PNG for Figs. 1–5 and auxiliary plots)
-- `manuscript/` – LaTeX source (`manuscript.tex`), class file, BibTeX, and LaTeX logs
-- `overleaf_package_final/` – Final Overleaf-ready package for v8.6H (mirrors `manuscript/` + `figures/` + `tables/`)
-- `logs/` – JSON and run logs from analysis/validation sessions (not required to reproduce results)
-- `_tmp/` – Archived drafts, peer-review notes, AI review logs, and historical Overleaf packages (not needed for reproduction)
-- `docs/` – Development notes (internal); see `_tmp/` for historical validation and review documents
-- `environment.yml` – Reproducible Python environment specification
+  - `systematic_error_budget.csv`, `tension_evolution.csv`, `h0_measurements_compilation.csv`
+  - `cosmic_chronometers_Hz.csv` – Mirrored for self-contained reproducibility
+  - `cchp_trgb_cepheid_comparison.csv`, `cchp_trgb_jagb_comparison.csv` – JWST cross-validation
+  - `correlation_matrix_updated.csv` – 9×9 systematic correlation structure
+  - `tables/` – LaTeX table fragments for manuscript
+
+**Manuscript:**
+- `manuscript/` – LaTeX source (`manuscript.tex`), AASTeX class file, BibTeX references
+- `figures/` – Output figures (PDF + PNG for Figs. 1–5 and auxiliary plots)
+- `manuscript_overleaf_v8.6H.zip` – Ready-to-upload Overleaf package (manuscript + figures + tables)
+- `prepare_overleaf_updated.sh` – Script to rebuild Overleaf package
+
+**Documentation:**
+- `docs/` – Development notes and methodology documentation
 
 ---
 
