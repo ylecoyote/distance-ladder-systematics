@@ -249,7 +249,7 @@ where $R_{ij} = 1$ for $i=j$ (diagonal, independent variance) and $R_{ij} = \rho
 
 \textbf{Variance decomposition (baseline Scenario A + Prior 1):} To quantify the correlation inflation explicitly, we decompose the total variance:
 \begin{equation}
-\sigma_{\rm sys,corr}^2 = \underbrace{2.11~({\rm km~s^{-1}~Mpc^{-1}})^2}_{\text{diagonal: } \sum_i \sigma_i^2} + \underbrace{0.81~({\rm km~s^{-1}~Mpc^{-1}})^2}_{\text{off-diagonal: } 2\sum_{i<j} \sigma_i \sigma_j \rho_{ij}} = 2.92~({\rm km~s^{-1}~Mpc^{-1}})^2
+\sigma_{\rm sys,corr}^2 = \underbrace{2.11~(\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1})^2}_{\text{diagonal: } \sum_i \sigma_i^2} + \underbrace{0.81~(\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1})^2}_{\text{off-diagonal: } 2\sum_{i<j} \sigma_i \sigma_j \rho_{ij}} = 2.92~(\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1})^2
 \end{equation}
 yielding $\sigma_{\rm sys,corr} = 1.71$ km~s$^{-1}$~Mpc$^{-1}$ (versus $\sigma_{\rm sys,uncorr} = \sqrt{2.11} = 1.45$ km~s$^{-1}$~Mpc$^{-1}$ if uncorrelated). The off-diagonal covariance contributes 28\% of the total variance ($0.81/2.92 = 0.28$), inflating the combined uncertainty by 18\% ($1.71/1.45 = 1.18$). This decomposition is auditable from Table~\ref{tab:systematic_budget} and Table~\ref{tab:correlation_matrix}.
 
@@ -358,7 +358,7 @@ Conversely, we find SH0ES estimates \textit{conservative} for direct crowding ph
 
 Computing the simple quadrature sum (assuming independence) across 9 systematic sources yields $\sigma_{\rm sys,uncorr} = 1.45$ km~s$^{-1}$~Mpc$^{-1}$ for the baseline scenario. Accounting for correlations via covariance propagation (\S\ref{sec:methods_correlations}, Table~\ref{tab:correlation_matrix}) increases this to:
 \begin{equation}
-\sigma_{\rm sys,corr} = \sqrt{\sum_i \sum_j \sigma_i \sigma_j R_{ij}} = 1.71~{\rm km~s^{-1}~Mpc^{-1}}
+\sigma_{\rm sys,corr} = \sqrt{\sum_i \sum_j \sigma_i \sigma_j R_{ij}} = 1.71~\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1}
 \end{equation}
 where the 9$\times$9 correlation matrix $\mathbf{R}$ encodes physical dependencies (crowding-extinction coupling, metallicity-extinction coupling, period-metallicity coupling). This represents an 18\% inflation over the uncorrelated treatment, reflecting realistic covariance among systematic error sources. The smaller systematic uncertainty compared to earlier assessments arises from (1) removing covariant crowding as standalone term (following JWST validation showing negligible direct crowding bias), and (2) adopting updated 2025 metallicity consensus $\gamma=-0.2\pm0.1$ mag/dex (narrower than earlier empirical range $-0.2$ to $-0.5$ mag/dex).
 
@@ -467,11 +467,11 @@ A striking feature of the H$_0$ landscape emerges when we examine methods that d
 
 \textbf{Cosmic chronometer H$_0$ measurement.} We analyze 32 cosmic chronometer H(z) measurements spanning redshifts z = 0.07--1.965 \citep{Moresco2022}, fitting to a flat $\Lambda$CDM model with $\Omega_m = 0.315$ fixed from Planck \citep{Planck2018}. The best-fit H$_0$ is determined via $\chi^2$ minimization (Figure~\ref{fig:h6}):
 \begin{equation}
-H_{0,\rm H(z)} = 68.33 \pm 1.57~{\rm km~s^{-1}~Mpc^{-1}}
+H_{0,\rm H(z)} = 68.33 \pm 1.57~\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1}
 \end{equation}
 with $\chi^2_{\rm red} = 0.48$ for 31 degrees of freedom, indicating an excellent fit. To verify this constraint does not depend on assuming Planck's matter density, we perform a 2D fit allowing both H$_0$ and $\Omega_m$ to vary simultaneously. This yields:
 \begin{equation}
-H_{0,\rm H(z)} = 67.86 \pm 3.01~{\rm km~s^{-1}~Mpc^{-1}}, \quad \Omega_m = 0.325 \pm 0.059
+H_{0,\rm H(z)} = 67.86 \pm 3.01~\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1}, \quad \Omega_m = 0.325 \pm 0.059
 \end{equation}
 with $\chi^2_{\rm red} = 0.48$ (30 degrees of freedom). The H$_0$ constraint agrees with our Planck-fixed result at 0.05$\sigma$, and the derived $\Omega_m$ agrees with Planck's value (0.315) at 0.07$\sigma$, confirming our cosmic chronometer measurement is independent of Planck assumptions. We adopt the more precise Planck-fixed result (68.33 $\pm$ 1.57 km~s$^{-1}$~Mpc$^{-1}$) for the convergence analysis below, validated by the 2D fit.
 
@@ -492,7 +492,7 @@ These three methods share \textit{no systematic uncertainties} with each other. 
 
 Computing the inverse-variance weighted mean:
 \begin{equation}
-H_{0,\rm convergence} = \frac{\sum_i w_i H_{0,i}}{\sum_i w_i} = 67.48 \pm 0.50~{\rm km~s^{-1}~Mpc^{-1}}
+H_{0,\rm convergence} = \frac{\sum_i w_i H_{0,i}}{\sum_i w_i} = 67.48 \pm 0.50~\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1}
 \end{equation}
 where $w_i = 1/\sigma_i^2$. The reduced chi-squared for this combination is $\chi^2_{\rm red} = 0.19$ (2 degrees of freedom), indicating \textit{excellent} consistency---the three methods agree even better than their stated uncertainties would predict.
 
