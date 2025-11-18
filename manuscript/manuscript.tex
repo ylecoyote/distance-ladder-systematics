@@ -835,6 +835,8 @@ We adopt Gaussian priors informed by literature and empirical analyses:
 \item $\gamma \sim \mathcal{N}(-0.35, 0.08)$ mag/dex (mid-range of literature $-0.2$ to $-0.5$)
 \end{itemize}
 
+\textbf{Prior choice clarification:} This Appendix uses $\gamma \sim \mathcal{N}(-0.35, 0.08)$ (Prior 2, mid-range) for the probabilistic consistency check, \textit{not} the baseline Prior 1 ($\gamma = -0.2 \pm 0.1$) adopted in Table~\ref{tab:tension_stages} and \S\ref{sec:results_tension}. The mid-range prior tests robustness of the additive correction approach across a broader parameter space; the main text baseline remains Prior 1 (2025 consensus) as specified in \S\ref{sec:methods_bias_derivations}.
+
 \subsection{Posterior Sampling and Results}
 
 We draw $10^5$ Monte Carlo samples from the joint prior and propagate through the forward model to obtain the posterior distribution on $\Delta H_0$. Key results (Figure~\ref{fig:joint_posterior}):
