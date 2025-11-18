@@ -14,7 +14,7 @@
 
 ## Overview
 
-This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **~6.0σ to ~1σ**, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics.
+This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **5.9σ to 1.1σ**, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics.
 
 For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) and the data/figures listed below.
 
@@ -176,11 +176,11 @@ python3 analysis/create_manuscript_tables.py            # → data/tables/*.tex
 
 ### 3. Tension Reduction
 
-**Claim:** Realistic systematics reduce tension from ~6.0σ → ~1σ
+**Claim:** Realistic systematics reduce tension from 5.9σ → 1.1σ
 
 | Stage | Description | Tension vs Planck |
 |-------|-------------|-------------------|
-| 1 | SH0ES baseline (statistical only) | 6.0σ |
+| 1 | SH0ES baseline (statistical only) | 5.9σ |
 | 2 | Add uncorrelated systematics | 3.5σ |
 | 3 | Add realistic correlations | 2.9σ |
 | 4 | Apply three bias corrections | 1.6σ |
