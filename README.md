@@ -177,7 +177,7 @@ python3 analysis/create_manuscript_tables.py            # → data/tables/*.tex
 
 ### 3. Tension Reduction
 
-**Claim:** Realistic systematics reduce tension from 5.9σ → 1.1σ
+**Claim:** Realistic systematics reduce tension from 5.9σ → 1.1σ (Planck-relative)
 
 | Stage | Description | Tension vs Planck |
 |-------|-------------|-------------------|
