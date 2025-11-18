@@ -109,13 +109,13 @@ def create_h0_compilation_figure():
     ax.set_xlim(65, 76)
     ax.grid(True, alpha=0.3, axis='x', linestyle='--')
 
-    # Add text annotation for convergence points (bottom of plot to avoid legend overlap)
-    ax.text(convergence_h0, -0.8,
-           f'Three-method:\n{convergence_h0:.2f} ± {convergence_sigma:.2f}',
+    # Add text annotation for convergence points (stacked vertically to avoid overlap)
+    ax.text(convergence_h0, -0.6,
+           f'Three-method:\n{convergence_h0:.2f}',
            ha='center', va='top', fontsize=9,
            bbox=dict(boxstyle='round', facecolor='lightgray', alpha=0.7))
 
-    ax.text(jagb_cc_h0, -0.8,
+    ax.text(jagb_cc_h0, -1.0,
            f'Planck-free:\n{jagb_cc_h0:.2f} ± {jagb_cc_sigma:.2f}',
            ha='center', va='top', fontsize=9,
            bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.7))
