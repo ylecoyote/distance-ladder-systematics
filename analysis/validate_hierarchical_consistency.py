@@ -12,7 +12,6 @@ This addresses AWI-149: Validate consistency with main results.
 
 Author: Distance Ladder Systematics Project
 Date: 2025-11-03
-Linear: AWI-149
 """
 
 import numpy as np

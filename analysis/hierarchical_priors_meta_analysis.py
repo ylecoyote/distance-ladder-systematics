@@ -20,7 +20,6 @@ References:
 
 Author: Distance Ladder Systematics Project
 Date: 2025-11-03
-Linear: AWI-145
 """
 
 import numpy as np
