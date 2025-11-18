@@ -17,7 +17,7 @@ References:
     - data/correlation_matrix.csv (10×10 baseline correlation matrix)
     - Equation (6) covariance propagation formula
 
-Author: Distance Ladder Systematics Analysis
+Author: Distance Ladder Systematics Project
 Date: 2025-11-03
 Linear: AWI-148
 """

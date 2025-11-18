@@ -10,7 +10,7 @@ Validates that hierarchical components (§A.5) preserve core V7.3 findings:
 
 This addresses AWI-149: Validate consistency with main results.
 
-Author: Distance Ladder Systematics Analysis
+Author: Distance Ladder Systematics Project
 Date: 2025-11-03
 Linear: AWI-149
 """

@@ -29,7 +29,7 @@ References:
 - Anderson et al. 2016: Period-dependent slope variations
 - Riess et al. 2016: Statistical significance p < 0.001
 
-Author: Generated with Claude Code
+Author: Distance Ladder Systematics Project
 Date: November 2025
 """
 

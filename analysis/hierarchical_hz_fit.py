@@ -16,7 +16,7 @@ References:
     - Figure 5 in manuscript (cosmic chronometer compilation)
     - ΛCDM model with fixed Ω_m = 0.315
 
-Author: Distance Ladder Systematics Analysis
+Author: Distance Ladder Systematics Project
 Date: 2025-11-03
 Linear: AWI-147
 """
