@@ -7,6 +7,7 @@
 [![License](https://img.shields.io/badge/License-Pending%20Publication-orange)](LICENSE)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ylecoyote/distance-ladder-systematics/main)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ylecoyote/distance-ladder-systematics/blob/main/reproduce_key_results.ipynb)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17637857.svg)](https://doi.org/10.5281/zenodo.17637857)
 
 **Last Updated**: 2025-11-17
 
@@ -311,6 +312,8 @@ If you use this work, please cite:
 ```
 
 **Repository citation:** See tag [`v8.6H`](https://github.com/ylecoyote/distance-ladder-systematics/releases/tag/v8.6H) for the exact version corresponding to the submitted manuscript. GitHub also provides a "Cite this repository" button based on [`CITATION.cff`](CITATION.cff).
+
+**Archived release:** A permanent, citable version is archived on Zenodo: [https://doi.org/10.5281/zenodo.17637857](https://doi.org/10.5281/zenodo.17637857)
 
 ---
 
