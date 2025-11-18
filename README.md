@@ -22,7 +22,7 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 
 - **Systematic error reassessment**: σ_sys = 1.71 km/s/Mpc (correlated), representing a 1.6× underestimation in published uncertainties
 - **Multi-method convergence**: JAGB + cosmic chronometers → H₀ = 68.22 ± 1.36 km/s/Mpc (Planck-independent)
-- **Tension reduction**: From ~6.0σ → 1.2σ (Planck-relative) or 0.6σ (Planck-independent)
+- **Tension reduction**: From 5.9σ → 1.1σ (Planck-relative) or 0.6σ (Planck-independent)
 - **Robustness validated**: Tension remains <2σ across all tested systematic scenarios
 - **JWST cross-validation**: TRGB–JAGB RMS ≈ 0.048 mag vs. Cepheid–TRGB RMS ≈ 0.108 mag (~2.3× larger), confirming the enlarged Cepheid systematic budget
 
