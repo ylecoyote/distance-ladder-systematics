@@ -345,7 +345,7 @@ verify_manuscript_consistency.py
 ### Phase 3: Secondary Checks (60 minutes)
 
 4. **FigurePackageVerifier**
-   - Check all figures in `prepare_overleaf_updated.sh` exist
+   - Check all figures in `scripts/prepare_overleaf_updated.sh` exist
    - Verify modification times (figure file newer than script?)
 
 5. **TableConsistencyVerifier**
@@ -511,7 +511,7 @@ assert abs(mean_pi - 68.22) < 0.01
 **Criticality**: WARNING
 **Rationale**: Completeness check for Overleaf submission
 
-**Expected Figures** (from `prepare_overleaf_updated.sh`):
+**Expected Figures** (from `scripts/prepare_overleaf_updated.sh`):
 - figure1_tension_evolution.png
 - figure2_error_budget.png
 - figure3_cchp_crossval_real.png

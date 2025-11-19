@@ -126,7 +126,10 @@ pdflatex manuscript.tex
 - `manuscript/` – LaTeX source (`manuscript.tex`), AASTeX class file, BibTeX references
 - `figures/` – Output figures (PDF + PNG for Figs. 1–5 and auxiliary plots)
 - `manuscript_overleaf_v8.7.zip` – Ready-to-upload Overleaf package (manuscript + figures + tables)
-- `prepare_overleaf_updated.sh` – Script to rebuild Overleaf package
+
+**Scripts:**
+- `scripts/prepare_overleaf_updated.sh` – Build Overleaf package
+- `scripts/update_manuscript_hash.sh` – Update manuscript hash in config/numerical_claims.yaml
 
 **Documentation:**
 - `docs/` – Development notes and methodology documentation

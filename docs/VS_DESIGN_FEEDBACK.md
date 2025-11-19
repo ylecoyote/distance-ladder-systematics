@@ -83,7 +83,7 @@ Concretely:
    * Truth: your Overleaf packaging script (or a small `required_figures.txt`).
    * Validation:
 
-     * For each figure name expected in `prepare_overleaf_updated.sh` or `required_figures.txt`:
+     * For each figure name expected in `scripts/prepare_overleaf_updated.sh` or `required_figures.txt`:
 
        * File exists in `figures/`.
        * `fig.mtime >= script.mtime` OR at least “younger than X days” (7 is fine).

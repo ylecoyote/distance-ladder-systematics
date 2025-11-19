@@ -49,7 +49,7 @@ version_history:
 
 ## Automatic Version Propagation
 
-### 1. Overleaf Package (`prepare_overleaf_updated.sh`)
+### 1. Overleaf Package (`scripts/prepare_overleaf_updated.sh`)
 
 Reads version dynamically:
 
