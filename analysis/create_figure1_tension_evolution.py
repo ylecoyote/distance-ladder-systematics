@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import json
 
 # Planck 2018 values
 PLANCK_H0 = 67.36
@@ -155,6 +156,27 @@ def create_tension_evolution_figure():
     print("✅ Figure 1 generated successfully:")
     print("   - figures/figure1_tension_evolution.png (300 DPI)")
     print("   - figures/figure1_tension_evolution.pdf")
+
+    # Save JSON metadata for verification system
+    metadata = {
+        "figure_id": "figure1_tension_evolution",
+        "filename": "figure1_tension_evolution.pdf",
+        "key_values": {
+            "stage_1_h0": h0_values[0],
+            "stage_1_sigma": sigma_values[0],
+            "stage_1_tension": tension_values[0],
+            "stage_5_h0": h0_values[4],
+            "stage_5_sigma": sigma_values[4],
+            "stage_5_tension": tension_values[4],
+            "reduction_factor": round(tension_values[0] / tension_values[4], 1),
+            "planck_h0": PLANCK_H0,
+            "planck_sigma": PLANCK_SIGMA
+        }
+    }
+
+    with open('figures/figure1_tension_evolution_metadata.json', 'w') as f:
+        json.dump(metadata, f, indent=2)
+    print("   - figures/figure1_tension_evolution_metadata.json")
 
     plt.close()
 

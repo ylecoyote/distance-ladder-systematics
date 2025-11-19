@@ -21,6 +21,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from pathlib import Path
+import json
 
 # =============================================================================
 # Configuration
@@ -297,6 +298,32 @@ output_dir = Path(__file__).parent.parent / "data"
 output_file = output_dir / "cosmic_chronometer_random_effects_results.csv"
 results.to_csv(output_file, index=False)
 print(f"Results saved: {output_file}")
+
+# Save JSON summary for verification system
+summary_data = {
+    "metric": "cosmic_chronometer_h0_fit",
+    "standard_fit": {
+        "h0": round(H0_std, 2),
+        "h0_err": round(H0_err_std, 2),
+        "chi2_red": round(chi2_red_std, 2)
+    },
+    "random_effects_fit": {
+        "h0": round(H0_re, 2),
+        "h0_err": round(H0_err_re, 2),
+        "chi2_red": round(chi2_red_re, 2),
+        "scale_factor": round(scale_factor, 3)
+    },
+    "comparison": {
+        "delta_h0": round(delta_H0, 2),
+        "delta_h0_sigma": round(delta_H0_sigma, 2),
+        "fractional_change_percent": round(100 * delta_H0 / H0_std, 2)
+    }
+}
+
+json_output = output_dir / "cc_fit_results.json"
+with open(json_output, 'w') as f:
+    json.dump(summary_data, f, indent=2)
+print(f"JSON summary saved: {json_output}")
 print()
 
 # =============================================================================

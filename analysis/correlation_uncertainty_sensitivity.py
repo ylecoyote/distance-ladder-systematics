@@ -27,6 +27,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 from pathlib import Path
+import json
 
 # Set plotting style
 sns.set_style('whitegrid')
@@ -322,6 +323,31 @@ def main():
     mc_summary_df = pd.DataFrame([mc_summary])
     mc_file = OUTPUT_DIR / 'correlation_uncertainty_mc.csv'
     mc_summary_df.to_csv(mc_file, index=False)
+
+    # Save JSON summary for verification system
+    summary_data = {
+        "metric": "correlation_uncertainty_sensitivity",
+        "baseline": {
+            "sigma_sys_corr": round(sigma_baseline, 3)
+        },
+        "deterministic_sensitivity": {
+            "max_delta_sigma": round(max_delta, 3),
+            "max_rel_change_percent": round(max_rel_change, 2)
+        },
+        "monte_carlo": {
+            "mean": round(mc_summary['mean'], 3),
+            "median": round(mc_summary['median'], 3),
+            "std": round(mc_summary['std'], 3),
+            "ci_68": [round(mc_summary['q16'], 3), round(mc_summary['q84'], 3)],
+            "ci_95": [round(mc_summary['q025'], 3), round(mc_summary['q975'], 3)]
+        }
+    }
+
+    json_output = OUTPUT_DIR / "correlation_uncertainty_summary.json"
+    with open(json_output, 'w') as f:
+        json.dump(summary_data, f, indent=2)
+    print(f"JSON summary saved: {json_output}")
+    print()
 
     print("=" * 60)
     print("INTERPRETATION")

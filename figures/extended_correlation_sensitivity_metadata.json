@@ -1,0 +1,17 @@
+{
+  "figure_id": "extended_correlation_sensitivity",
+  "filename": "extended_correlation_sensitivity.png",
+  "key_values": {
+    "max_tension_sigma": 1.22,
+    "max_tension_rho": 0.0,
+    "max_tension_pair": "Period-Metallicity",
+    "min_tension_sigma": 1.11,
+    "min_tension_rho": 0.8,
+    "min_tension_pair": "Period-Metallicity",
+    "rho_range_min": 0.0,
+    "rho_range_max": 0.8,
+    "all_tensions_below_2sigma": true,
+    "n_correlation_pairs": 4,
+    "n_rho_samples": 17
+  }
+}

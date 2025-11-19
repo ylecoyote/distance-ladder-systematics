@@ -1,12 +1,17 @@
 #!/bin/bash
-# Prepare manuscript for Overleaf upload (Updated for v8.6H with expert feedback)
+# Prepare manuscript for Overleaf upload
 # Creates zip file with correct structure and path fixes
+# Version is dynamically loaded from config/numerical_claims.yaml
 
 set -e
 
+# Extract version from YAML (single source of truth)
+VERSION=$(python3 -c "import yaml; data = yaml.safe_load(open('config/numerical_claims.yaml')); print(data['metadata']['version'])")
+VERSION_DESC=$(python3 -c "import yaml; data = yaml.safe_load(open('config/numerical_claims.yaml')); print(data['version_history'][0]['description'])")
+
 echo "=========================================="
 echo "Distance Ladder Manuscript - Overleaf Prep"
-echo "Version: v8.6H (Expert Feedback)"
+echo "Version: v${VERSION}"
 echo "=========================================="
 echo ""
 
@@ -74,8 +79,8 @@ ls -lh "$TEMP_DIR/tables/" | tail -n +2 | awk '{print "      " $9 " (" $5 ")"}'
 echo ""
 echo "3. Creating Overleaf package..."
 
-# Create zip file (same name as current version)
-OUTPUT_ZIP="manuscript_overleaf_v8.6H.zip"
+# Create zip file (version from YAML)
+OUTPUT_ZIP="manuscript_overleaf_v${VERSION}.zip"
 rm -f "$OUTPUT_ZIP"
 
 cd "$TEMP_DIR"
@@ -92,14 +97,16 @@ echo "=========================================="
 echo "✅ Overleaf package ready!"
 echo "=========================================="
 echo ""
-echo "Package includes expert feedback updates:"
-echo "  • Tension standardized to 1.1σ (was 1.2σ)"
-echo "  • Fixed χ²_red to 0.02 (was 0.04)"
-echo "  • Enhanced Figure 1 with ΔH₀/Δσ labels"
-echo "  • Updated Figure 4 with Planck-independent convergence"
-echo "  • New correlation heatmap figure"
-echo "  • All 4 robustness checks added"
-echo "  • Enhanced table captions"
+echo "Package for v${VERSION}: ${VERSION_DESC}"
+echo ""
+echo "Key changes in this version:"
+python3 -c "
+import yaml
+data = yaml.safe_load(open('config/numerical_claims.yaml'))
+changes = data['version_history'][0]['changes']
+for change in changes:
+    print(f'  • {change}')
+"
 echo ""
 echo "Next steps:"
 echo "1. Go to https://www.overleaf.com"

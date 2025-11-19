@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import json
 
 # =============================================================================
 # Configuration
@@ -147,6 +148,22 @@ print(f"Figure saved to: {output_file}")
 output_file_pdf = output_dir / "figure2_error_budget.pdf"
 plt.savefig(output_file_pdf, bbox_inches='tight')
 print(f"PDF saved to: {output_file_pdf}")
+
+# Save JSON metadata for verification system
+metadata = {
+    "figure_id": "figure2_error_budget",
+    "filename": "figure2_error_budget.pdf",
+    "key_values": {
+        "shoes_systematic_total": round(shoes_total, 2),
+        "our_systematic_total": round(our_total, 2),
+        "ratio": round(factor, 2)
+    }
+}
+
+metadata_file = output_dir / "figure2_error_budget_metadata.json"
+with open(metadata_file, 'w') as f:
+    json.dump(metadata, f, indent=2)
+print(f"Metadata saved to: {metadata_file}")
 
 plt.close()
 

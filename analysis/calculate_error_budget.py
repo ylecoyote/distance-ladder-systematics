@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import json
 
 # =============================================================================
 # Load Data
@@ -211,6 +212,29 @@ results = pd.DataFrame({
 output_file = data_dir / "error_budget_summary.csv"
 results.to_csv(output_file, index=False)
 print(f"Results saved to: {output_file}")
+
+# Save JSON summary for verification system
+summary_data = {
+    "metric": "systematic_error_budget",
+    "shoes_systematic": round(shoes_systematic_total, 2),
+    "our_systematic": round(our_systematic_total, 2),
+    "ratio": round(our_systematic_total/shoes_systematic_total, 2),
+    "statistical": round(stat_unc, 2),
+    "shoes_total": round(shoes_total, 2),
+    "our_total": round(our_total, 2),
+    "tensions": {
+        "shoes": round(tension_shoes, 2),
+        "realistic": round(tension_realistic, 2),
+        "corrected": round(tension_corrected, 2)
+    },
+    "h0_corrected": round(H0_corrected, 2),
+    "sigma_corrected": round(sigma_corrected, 2)
+}
+
+json_output = data_dir / "error_budget_summary.json"
+with open(json_output, 'w') as f:
+    json.dump(summary_data, f, indent=2)
+print(f"JSON summary saved to: {json_output}")
 print()
 
 print("=" * 80)

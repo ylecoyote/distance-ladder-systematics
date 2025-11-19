@@ -9,6 +9,7 @@ Output: figures/figure_correlation_heatmap.png (publication quality)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import json
 from matplotlib.colors import LinearSegmentedColormap
 
 def create_correlation_heatmap():
@@ -103,6 +104,19 @@ def create_correlation_heatmap():
     # Save both PNG and PDF
     plt.savefig('figures/figure_correlation_heatmap.png', dpi=300, bbox_inches='tight')
     plt.savefig('figures/figure_correlation_heatmap.pdf', bbox_inches='tight')
+
+    # Save JSON metadata for verification system
+    metadata = {
+        "figure_id": "figure_correlation_heatmap",
+        "filename": "figure_correlation_heatmap.pdf",
+        "key_values": {
+            "matrix_size": corr_matrix.shape[0],
+            "n_nonzero_correlations": int((corr_matrix.values != 0).sum() - corr_matrix.shape[0]) // 2
+        }
+    }
+
+    with open('figures/figure_correlation_heatmap_metadata.json', 'w') as f:
+        json.dump(metadata, f, indent=2)
 
     print("✅ Correlation heatmap generated successfully:")
     print("   - figures/figure_correlation_heatmap.png (300 DPI)")

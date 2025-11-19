@@ -15,6 +15,7 @@ Date: November 2025
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import json
 from pathlib import Path
 
 # =============================================================================
@@ -221,6 +222,39 @@ plt.tight_layout()
 output_plot = output_dir / "extended_correlation_sensitivity.png"
 plt.savefig(output_plot, dpi=300, bbox_inches='tight')
 print(f"Figure saved: {output_plot}")
+
+# Save JSON metadata for verification system
+max_tension = results_df['hubble_tension_sigma'].max()
+min_tension = results_df['hubble_tension_sigma'].min()
+max_tension_idx = results_df['hubble_tension_sigma'].idxmax()
+min_tension_idx = results_df['hubble_tension_sigma'].idxmin()
+max_tension_rho = results_df.loc[max_tension_idx, 'rho']
+min_tension_rho = results_df.loc[min_tension_idx, 'rho']
+max_tension_pair = results_df.loc[max_tension_idx, 'correlation_pair']
+min_tension_pair = results_df.loc[min_tension_idx, 'correlation_pair']
+
+metadata = {
+    "figure_id": "extended_correlation_sensitivity",
+    "filename": "extended_correlation_sensitivity.png",
+    "key_values": {
+        "max_tension_sigma": round(max_tension, 2),
+        "max_tension_rho": round(max_tension_rho, 2),
+        "max_tension_pair": max_tension_pair,
+        "min_tension_sigma": round(min_tension, 2),
+        "min_tension_rho": round(min_tension_rho, 2),
+        "min_tension_pair": min_tension_pair,
+        "rho_range_min": 0.0,
+        "rho_range_max": 0.8,
+        "all_tensions_below_2sigma": bool(max_tension < 2.0),
+        "n_correlation_pairs": len(CORRELATION_PAIRS),
+        "n_rho_samples": 17
+    }
+}
+
+metadata_file = output_dir / "extended_correlation_sensitivity_metadata.json"
+with open(metadata_file, 'w') as f:
+    json.dump(metadata, f, indent=2)
+print(f"Metadata saved: {metadata_file}")
 
 plt.close()
 

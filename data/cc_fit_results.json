@@ -1,0 +1,19 @@
+{
+  "metric": "cosmic_chronometer_h0_fit",
+  "standard_fit": {
+    "h0": 68.33,
+    "h0_err": 1.57,
+    "chi2_red": 0.47
+  },
+  "random_effects_fit": {
+    "h0": 68.33,
+    "h0_err": 1.07,
+    "chi2_red": 1.0,
+    "scale_factor": 0.685
+  },
+  "comparison": {
+    "delta_h0": 0.0,
+    "delta_h0_sigma": 0.0,
+    "fractional_change_percent": 0.0
+  }
+}

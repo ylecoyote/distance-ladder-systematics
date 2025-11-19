@@ -1,0 +1,12 @@
+{
+  "figure_id": "figure3_cchp_crossval_real",
+  "filename": "figure3_cchp_crossval_real.pdf",
+  "key_values": {
+    "jagb_trgb_delta_mu": 0.002,
+    "cepheid_trgb_delta_mu": -0.024,
+    "jagb_trgb_delta_h0": 0.26,
+    "cepheid_trgb_delta_h0": -3.66,
+    "n_galaxies_jagb_trgb": 7,
+    "n_galaxies_cepheid_trgb": 15
+  }
+}
