@@ -9,6 +9,7 @@ Output: figures/figure4_h0_compilation.png (publication quality)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import json
 
 def create_h0_compilation_figure():
     """Create publication-quality H₀ compilation forest plot"""
@@ -109,13 +110,13 @@ def create_h0_compilation_figure():
     ax.set_xlim(65, 76)
     ax.grid(True, alpha=0.3, axis='x', linestyle='--')
 
-    # Add text annotation for convergence points (bottom of plot to avoid legend overlap)
-    ax.text(convergence_h0, -0.8,
-           f'Three-method:\n{convergence_h0:.2f} ± {convergence_sigma:.2f}',
+    # Add text annotation for convergence points (stacked vertically to avoid overlap)
+    ax.text(convergence_h0, -0.6,
+           f'Three-method:\n{convergence_h0:.2f}',
            ha='center', va='top', fontsize=9,
            bbox=dict(boxstyle='round', facecolor='lightgray', alpha=0.7))
 
-    ax.text(jagb_cc_h0, -0.8,
+    ax.text(jagb_cc_h0, -1.0,
            f'Planck-free:\n{jagb_cc_h0:.2f} ± {jagb_cc_sigma:.2f}',
            ha='center', va='top', fontsize=9,
            bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.7))
@@ -137,6 +138,22 @@ def create_h0_compilation_figure():
     # Save both PNG and PDF
     plt.savefig('figures/figure4_h0_compilation.png', dpi=300, bbox_inches='tight')
     plt.savefig('figures/figure4_h0_compilation.pdf', bbox_inches='tight')
+
+    # Save JSON metadata for verification system
+    metadata = {
+        "figure_id": "figure4_h0_compilation",
+        "filename": "figure4_h0_compilation.pdf",
+        "key_values": {
+            "three_method_convergence_h0": round(convergence_h0, 2),
+            "three_method_convergence_sigma": round(convergence_sigma, 2),
+            "planck_independent_jagb_cc_h0": round(jagb_cc_h0, 2),
+            "planck_independent_jagb_cc_sigma": round(jagb_cc_sigma, 2),
+            "n_methods": len(data)
+        }
+    }
+
+    with open('figures/figure4_h0_compilation_metadata.json', 'w') as f:
+        json.dump(metadata, f, indent=2)
 
     print("✅ Figure 4 generated successfully:")
     print("   - figures/figure4_h0_compilation.png (300 DPI)")

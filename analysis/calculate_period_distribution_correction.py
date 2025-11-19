@@ -29,13 +29,14 @@ References:
 - Anderson et al. 2016: Period-dependent slope variations
 - Riess et al. 2016: Statistical significance p < 0.001
 
-Author: Generated with Claude Code
+Author: Distance Ladder Systematics Project
 Date: November 2025
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
+import json
 
 # ============================================================================
 # Input Parameters (from literature)
@@ -249,13 +250,21 @@ def main():
     print(f"Summary saved to: {output_file}")
     print()
 
-    # Sensitivity plot
-    create_sensitivity_plot(output_dir)
+    # Prepare metadata for JSON export
+    metadata = {
+        "conservative_h0_bias": round(conservative, 2),
+        "mid_range_h0_bias": round(mid_range, 2),
+        "aggressive_h0_bias": round(aggressive, 2),
+        "recommended_bracket": [round(conservative, 2), round(mid_range, 2)]
+    }
+
+    # Sensitivity plot (with metadata)
+    create_sensitivity_plot(output_dir, metadata)
 
     return results, dilution_results
 
-def create_sensitivity_plot(output_dir):
-    """Create sensitivity plot showing ΔH₀ vs Δβ."""
+def create_sensitivity_plot(output_dir, metadata):
+    """Create sensitivity plot showing ΔH₀ vs Δβ and save metadata JSON."""
 
     # Grid of Δβ values
     delta_beta_range = np.linspace(0.2, 0.8, 100)
@@ -301,6 +310,16 @@ def create_sensitivity_plot(output_dir):
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     print(f"Sensitivity plot saved to: {output_file}")
     plt.close()
+
+    # Save metadata sidecar JSON
+    metadata_file = output_dir.parent / "figures" / "period_distribution_sensitivity_metadata.json"
+    with open(metadata_file, 'w') as f:
+        json.dump({
+            "figure_id": "period_distribution_sensitivity",
+            "filename": "period_distribution_sensitivity.png",
+            "key_values": metadata
+        }, f, indent=2)
+    print(f"Metadata saved to: {metadata_file}")
 
 # ============================================================================
 # Execute

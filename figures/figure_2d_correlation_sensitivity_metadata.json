@@ -1,0 +1,58 @@
+{
+  "figure_id": "figure7",
+  "filename": "figure_2d_correlation_sensitivity.png",
+  "title": "2D Correlation Sensitivity Contour",
+  "generator": "analysis/create_correlation_sensitivity_figures.py",
+  "generated_at": "2025-11-19T00:00:00Z",
+  "version": "v8.7",
+  "description": "2D contour map showing systematic budget ratio sensitivity to extinction-chain and period-metallicity correlations",
+  "key_values": {
+    "shoes_sigma_sys": {
+      "value": 1.04,
+      "unit": "km/s/Mpc",
+      "description": "SH0ES published systematic uncertainty (constant)",
+      "constant": true
+    },
+    "ratio_uncorrelated": {
+      "value": 1.39,
+      "unit": "dimensionless",
+      "description": "Ratio at (ρ_ext=0, ρ_per=0)",
+      "coordinates": [0.0, 0.0]
+    },
+    "ratio_baseline": {
+      "value": 1.65,
+      "unit": "dimensionless",
+      "description": "Ratio at baseline (ρ_ext=0.3, ρ_per=0.3)",
+      "coordinates": [0.3, 0.3]
+    },
+    "ratio_max": {
+      "value": 2.00,
+      "unit": "dimensionless",
+      "description": "Maximum ratio at (ρ_ext=0.8, ρ_per=0.8)",
+      "coordinates": [0.8, 0.8]
+    }
+  },
+  "axes": {
+    "x_axis": {
+      "name": "ρ_ext",
+      "description": "Extinction-chain correlation coefficient",
+      "range": [0.0, 0.8]
+    },
+    "y_axis": {
+      "name": "ρ_per",
+      "description": "Period-metallicity correlation coefficient",
+      "range": [0.0, 0.8]
+    }
+  },
+  "data_sources": [
+    "data/systematic_error_budget.csv",
+    "data/correlation_matrix_updated.csv",
+    "config/numerical_claims.yaml"
+  ],
+  "verification": {
+    "shoes_published": 1.04,
+    "ratio_range": [1.39, 2.00],
+    "baseline_ratio": 1.65,
+    "tolerance": 0.02
+  }
+}

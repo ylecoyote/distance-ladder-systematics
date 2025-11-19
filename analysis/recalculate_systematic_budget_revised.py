@@ -13,7 +13,6 @@ Calculates correlated systematic uncertainty: σ²_sys,corr = σᵀ R σ
 
 Author: Distance Ladder Systematics Project
 Date: 2025-11-05
-Linear: AWI-156
 """
 
 import numpy as np

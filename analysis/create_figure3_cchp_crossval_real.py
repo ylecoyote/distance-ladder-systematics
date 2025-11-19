@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import json
 
 # =============================================================================
 # Load Real CCHP Data
@@ -159,6 +160,25 @@ print(f"Figure saved: {output_file}")
 output_file_pdf = output_dir / "figure3_cchp_crossval_real.pdf"
 plt.savefig(output_file_pdf, bbox_inches='tight')
 print(f"Figure saved: {output_file_pdf}")
+
+# Save JSON metadata for verification system
+metadata = {
+    "figure_id": "figure3_cchp_crossval_real",
+    "filename": "figure3_cchp_crossval_real.pdf",
+    "key_values": {
+        "jagb_trgb_delta_mu": round(weighted_mean_jagb, 3),
+        "cepheid_trgb_delta_mu": round(weighted_mean_ceph, 3),
+        "jagb_trgb_delta_h0": round(weighted_mean_jagb * H0_conversion, 2),
+        "cepheid_trgb_delta_h0": round(weighted_mean_ceph * H0_conversion, 2),
+        "n_galaxies_jagb_trgb": len(trgb_jagb),
+        "n_galaxies_cepheid_trgb": len(trgb_cepheid)
+    }
+}
+
+metadata_file = output_dir / "figure3_cchp_crossval_real_metadata.json"
+with open(metadata_file, 'w') as f:
+    json.dump(metadata, f, indent=2)
+print(f"Metadata saved: {metadata_file}")
 
 plt.close()
 

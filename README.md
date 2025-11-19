@@ -2,19 +2,20 @@
 
 **Systematic Error Assessment in Cepheid Distance Ladder Measurements**
 
-[![Status](https://img.shields.io/badge/Status-Submission%20Ready-success)](manuscript_overleaf_v8.6H.zip)
+[![Status](https://img.shields.io/badge/Status-Submission%20Ready-success)](manuscript_overleaf_v8.7.zip)
 [![Journal](https://img.shields.io/badge/Target-ApJ-blue)](https://iopscience.iop.org/journal/0004-637X)
 [![License](https://img.shields.io/badge/License-Pending%20Publication-orange)](LICENSE)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ylecoyote/distance-ladder-systematics/main)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ylecoyote/distance-ladder-systematics/blob/main/reproduce_key_results.ipynb)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17637857.svg)](https://doi.org/10.5281/zenodo.17637857)
 
-**Last Updated**: 2025-11-17
+**Last Updated**: 2025-11-18
 
 ---
 
 ## Overview
 
-This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **~6.0σ to ~1σ**, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics.
+This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **5.9σ to 1.1σ**, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics.
 
 For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) and the data/figures listed below.
 
@@ -22,7 +23,7 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 
 - **Systematic error reassessment**: σ_sys = 1.71 km/s/Mpc (correlated), representing a 1.6× underestimation in published uncertainties
 - **Multi-method convergence**: JAGB + cosmic chronometers → H₀ = 68.22 ± 1.36 km/s/Mpc (Planck-independent)
-- **Tension reduction**: From ~6.0σ → 1.2σ (Planck-relative) or 0.6σ (Planck-independent)
+- **Tension reduction**: From 5.9σ → 1.1σ (Planck-relative) or 0.6σ (Planck-independent)
 - **Robustness validated**: Tension remains <2σ across all tested systematic scenarios
 - **JWST cross-validation**: TRGB–JAGB RMS ≈ 0.048 mag vs. Cepheid–TRGB RMS ≈ 0.108 mag (~2.3× larger), confirming the enlarged Cepheid systematic budget
 
@@ -67,7 +68,7 @@ Click one of the badges above to launch an interactive environment in your brows
 
 The fastest way to view or edit the manuscript is to use the pre-built Overleaf package.
 
-1. Download the pre-built package: [`manuscript_overleaf_v8.6H.zip`](manuscript_overleaf_v8.6H.zip)
+1. Download the pre-built package: [`manuscript_overleaf_v8.7.zip`](manuscript_overleaf_v8.7.zip)
 
 2. Upload to [Overleaf](https://www.overleaf.com):
    - Click "New Project" → "Upload Project"
@@ -99,22 +100,36 @@ pdflatex manuscript.tex
 
 ---
 
-## Project structure
+## Project Structure
 
+**Core files:**
 - `reproduce_key_results.ipynb` – Interactive Jupyter notebook showcasing the four key results (recommended starting point)
+- `PROVENANCE.md` – Complete data provenance documentation with sources, citations, and retrieval dates
+- `CITATION.cff` – Citation metadata for the repository
+- `LICENSE` – MIT License
+- `README.md` – This file
+
+**Environment:**
 - `requirements.txt` – Python dependencies for pip/Binder/Colab environments
+- `environment.yml` – Reproducible conda environment specification
+
+**Analysis & Data:**
 - `analysis/` – Python scripts for error budgets, tension evolution, MCMC fits, robustness tests, and figure/table generation
 - `data/` – Input and generated data products:
-  - `systematic_error_budget.csv`, `tension_evolution.csv`, `h0_measurements_compilation.csv`, etc.
-  - `cchp_trgb_cepheid_comparison.csv`, `cchp_trgb_jagb_comparison.csv`, and JWST robustness results
-  - `tables/` – LaTeX table fragments written by `analysis/create_manuscript_tables.py`
-- `figures/` – Output figures for the manuscript (PDF + PNG for Figs. 1–5 and auxiliary plots)
-- `manuscript/` – LaTeX source (`manuscript.tex`), class file, BibTeX, and LaTeX logs
-- `overleaf_package_final/` – Final Overleaf-ready package for v8.6H (mirrors `manuscript/` + `figures/` + `tables/`)
-- `logs/` – JSON and run logs from analysis/validation sessions (not required to reproduce results)
-- `_tmp/` – Archived drafts, peer-review notes, AI review logs, and historical Overleaf packages (not needed for reproduction)
-- `docs/` – Development notes (internal); see `_tmp/` for historical validation and review documents
-- `environment.yml` – Reproducible Python environment specification
+  - `systematic_error_budget.csv`, `tension_evolution.csv`, `h0_measurements_compilation.csv`
+  - `cosmic_chronometers_Hz.csv` – Mirrored for self-contained reproducibility
+  - `cchp_trgb_cepheid_comparison.csv`, `cchp_trgb_jagb_comparison.csv` – JWST cross-validation
+  - `correlation_matrix_updated.csv` – 9×9 systematic correlation structure
+  - `tables/` – LaTeX table fragments for manuscript
+
+**Manuscript:**
+- `manuscript/` – LaTeX source (`manuscript.tex`), AASTeX class file, BibTeX references
+- `figures/` – Output figures (PDF + PNG for Figs. 1–5 and auxiliary plots)
+- `manuscript_overleaf_v8.7.zip` – Ready-to-upload Overleaf package (manuscript + figures + tables)
+- `prepare_overleaf_updated.sh` – Script to rebuild Overleaf package
+
+**Documentation:**
+- `docs/` – Development notes and methodology documentation
 
 ---
 
@@ -135,11 +150,16 @@ python3 analysis/cosmic_chronometer_fit_random_effects.py  # → data/cosmic_chr
 ### 2. Generate figures
 
 ```bash
+# Master script - runs all figure generation
+python3 analysis/run_all.py
+
+# Or generate figures individually:
 python3 analysis/create_figure1_tension_evolution.py    # → figures/figure1_tension_evolution.*
-python3 analysis/create_figure2_error_budget.py         # → figures/figure2_error_budget_stacked.png
+python3 analysis/create_figure2_error_budget.py         # → figures/figure2_error_budget.*
 python3 analysis/create_figure3_cchp_crossval_real.py   # → figures/figure3_cchp_crossval_real.*
 python3 analysis/create_figure4_h0_compilation.py       # → figures/figure4_h0_compilation.*
-python3 analysis/create_figure5_hz_fit_intrinsic_scatter.py  # → figures/figure5_h6_fit.png
+python3 analysis/create_figure5_hz_fit_intrinsic_scatter.py  # → figures/figure5_h6_fit.*
+python3 analysis/create_figure_correlation_heatmap.py   # → figures/figure_correlation_heatmap.*
 ```
 
 ### 3. Generate tables
@@ -149,6 +169,48 @@ python3 analysis/create_manuscript_tables.py            # → data/tables/*.tex
 ```
 
 **Total runtime:** ~1–2 minutes on a modern laptop (no GPU required).
+
+### 4. Verify numerical consistency
+
+The repository includes an automated verification system to ensure numerical consistency across data files, figures, tables, and documentation.
+
+```bash
+# Run full verification
+python3 analysis/verify_manuscript_consistency.py
+
+# Run specific categories only
+python3 analysis/verify_manuscript_consistency.py --only tension systematics
+
+# Output JSON for CI/CD integration
+python3 analysis/verify_manuscript_consistency.py --json
+```
+
+**What it checks:**
+- ✅ Tension evolution values (CSV ↔ figures ↔ README)
+- ✅ Systematic budget quadrature sums
+- ✅ H₀ three-method convergence calculations
+- ✅ Figure metadata accuracy
+- ✅ Figure package completeness
+
+**Exit codes:**
+- `0`: All checks passed (manuscript ready for submission)
+- `1`: Errors or warnings detected (review required)
+
+**Pre-commit hook:**
+The repository includes a pre-commit hook that automatically runs verification before each commit:
+- ❌ **Blocks commits** with numerical errors
+- ⚠️  **Allows commits** with warnings (but shows them)
+
+The hook is installed at `.git/hooks/pre-commit` and runs automatically. To bypass (not recommended):
+```bash
+git commit --no-verify
+```
+
+For implementation details, see:
+- [`docs/VERIFICATION_SYSTEM_DESIGN.md`](docs/VERIFICATION_SYSTEM_DESIGN.md) - Design rationale and architecture
+- [`docs/VS_DESIGN_FEEDBACK.md`](docs/VS_DESIGN_FEEDBACK.md) - Expert review feedback
+- [`docs/IMPLEMENTATION_LOG.md`](docs/IMPLEMENTATION_LOG.md) - Implementation narrative
+- [`config/numerical_claims.yaml`](config/numerical_claims.yaml) - Single source of truth for all numerical claims
 
 ---
 
@@ -176,16 +238,17 @@ python3 analysis/create_manuscript_tables.py            # → data/tables/*.tex
 
 ### 3. Tension Reduction
 
-**Claim:** Realistic systematics reduce tension from ~6.0σ → ~1σ
+**Claim:** Realistic systematics reduce tension from 5.9σ → 1.1σ (Planck-relative)
 
 | Stage | Description | Tension vs Planck |
 |-------|-------------|-------------------|
-| 1 | SH0ES baseline (statistical only) | 6.0σ |
-| 2 | Add uncorrelated systematics | 3.5σ |
-| 3 | Add realistic correlations | 2.9σ |
-| 4 | Apply three bias corrections | 1.6σ |
-| 5 | Sensitivity across scenarios | 0.3σ - 1.7σ |
+| 1 | SH0ES baseline (statistical only) | 5.9σ |
+| 2 | Add SH0ES total uncertainty | 4.0σ |
+| 3 | Scenario A zero-point | 4.0σ |
+| 4 | Add period distribution correction | 1.9σ |
+| 5 | Add metallicity + correlated systematics | 1.1σ |
 
+**Scenario range:** 0.2σ to 1.7σ across conservative/aggressive assumptions
 **Planck-independent:** 0.6σ (vs JAGB+chronometers convergence)
 
 See Fig. 1 and Table 2 in the manuscript for the full staged tension-evolution visualization.
@@ -255,7 +318,7 @@ Generated by `analysis/create_manuscript_tables.py` and used directly in the man
 
 ## Manuscript Status
 
-✅ Submission-ready for ApJ (version v8.6H):
+✅ Submission-ready for ApJ (version v8.7):
 - ✅ All numerical claims verified against data files
 - ✅ All citations cross-checked in bibliography
 - ✅ Computational results fully reproducible
@@ -263,12 +326,10 @@ Generated by `analysis/create_manuscript_tables.py` and used directly in the man
 - ✅ All figures and tables render correctly
 - ✅ Author metadata complete (ORCID included)
 
-See [`docs/MANUSCRIPT_STATUS.md`](docs/MANUSCRIPT_STATUS.md) for validation details.
-
-**Package:** [`manuscript_overleaf_v8.6H.zip`](manuscript_overleaf_v8.6H.zip) (4.5 MB)
+**Package:** [`manuscript_overleaf_v8.7.zip`](manuscript_overleaf_v8.7.zip) (4.0 MB)
 
 **Submission:**  
-Package `manuscript_overleaf_v8.6H.zip` has been tested on Overleaf and is ready for ApJ submission.
+Package `manuscript_overleaf_v8.7.zip` has been tested on Overleaf and is ready for ApJ submission.
 
 ---
 
@@ -310,7 +371,9 @@ If you use this work, please cite:
 }
 ```
 
-**Repository citation:** See tag [`v8.6H`](https://github.com/ylecoyote/distance-ladder-systematics/releases/tag/v8.6H) for the exact version corresponding to the submitted manuscript. GitHub also provides a "Cite this repository" button based on [`CITATION.cff`](CITATION.cff).
+**Repository citation:** See tag [`v8.7`](https://github.com/ylecoyote/distance-ladder-systematics/releases/tag/v8.7) for the exact version corresponding to the submitted manuscript. GitHub also provides a "Cite this repository" button based on [`CITATION.cff`](CITATION.cff).
+
+**Archived release:** A permanent, citable version is archived on Zenodo: [https://doi.org/10.5281/zenodo.17637857](https://doi.org/10.5281/zenodo.17637857) (draft DOI - will be finalized upon publication)
 
 ---
 

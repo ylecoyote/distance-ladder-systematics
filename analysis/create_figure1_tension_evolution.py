@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import json
 
 # Planck 2018 values
 PLANCK_H0 = 67.36
@@ -69,16 +70,19 @@ def create_tension_evolution_figure():
 
     # Plot tension evolution
     colors = ['red', 'orange', 'gold', 'yellowgreen', 'green']
+    # Different marker shapes for grayscale compatibility
+    markers = ['o', 's', '^', 'D', 'v']  # circle, square, triangle-up, diamond, triangle-down
 
-    # Connect stages 1-5 with line
-    ax.plot(x_pos, h0_values, 'o-', color='darkred', linewidth=2,
-            markersize=8, zorder=3, label='Tension evolution (Scenario A + Prior 1 baseline)')
+    # Connect stages 1-5 with line (no markers on connecting line to avoid clutter)
+    ax.plot(x_pos, h0_values, '-', color='darkred', linewidth=2,
+            zorder=3, label='Tension evolution (Scenario A + Prior 1 baseline)')
 
-    # Error bars
+    # Error bars with distinct markers for grayscale compatibility
     for i in range(len(stages)):
         ax.errorbar(x_pos[i], h0_values[i], yerr=sigma_values[i],
-                   fmt='o', color=colors[i], markersize=8, capsize=5,
-                   capthick=2, linewidth=2, zorder=4)
+                   fmt=markers[i], color=colors[i], markersize=8, capsize=5,
+                   capthick=2, linewidth=2, zorder=4, markerfacecolor=colors[i],
+                   markeredgecolor='black', markeredgewidth=0.5)
 
         # Add tension value labels
         ax.text(x_pos[i], h0_values[i] + sigma_values[i] + 0.5,
@@ -120,7 +124,6 @@ def create_tension_evolution_figure():
                alpha=0.5, label='3σ threshold')
 
     # Formatting
-    ax.set_xlabel('Stage', fontsize=12, fontweight='bold')
     ax.set_ylabel('H₀ (km s⁻¹ Mpc⁻¹)', fontsize=12, fontweight='bold')
     ax.set_title('Tension Evolution: Progressive Reduction Through Realistic Systematics',
                 fontsize=14, fontweight='bold', pad=20)
@@ -153,6 +156,27 @@ def create_tension_evolution_figure():
     print("✅ Figure 1 generated successfully:")
     print("   - figures/figure1_tension_evolution.png (300 DPI)")
     print("   - figures/figure1_tension_evolution.pdf")
+
+    # Save JSON metadata for verification system
+    metadata = {
+        "figure_id": "figure1_tension_evolution",
+        "filename": "figure1_tension_evolution.pdf",
+        "key_values": {
+            "stage_1_h0": h0_values[0],
+            "stage_1_sigma": sigma_values[0],
+            "stage_1_tension": tension_values[0],
+            "stage_5_h0": h0_values[4],
+            "stage_5_sigma": sigma_values[4],
+            "stage_5_tension": tension_values[4],
+            "reduction_factor": round(tension_values[0] / tension_values[4], 1),
+            "planck_h0": PLANCK_H0,
+            "planck_sigma": PLANCK_SIGMA
+        }
+    }
+
+    with open('figures/figure1_tension_evolution_metadata.json', 'w') as f:
+        json.dump(metadata, f, indent=2)
+    print("   - figures/figure1_tension_evolution_metadata.json")
 
     plt.close()
 

@@ -1,0 +1,13 @@
+{
+  "figure_id": "figure5_h6_fit",
+  "filename": "figure5_h6_fit.pdf",
+  "key_values": {
+    "h0_original": 68.33,
+    "h0_err_original": 1.57,
+    "chi2_red_original": 0.47,
+    "h0_final": 68.33,
+    "h0_err_final": 1.07,
+    "chi2_red_final": 1.0,
+    "scale_factor": 0.685
+  }
+}

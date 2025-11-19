@@ -13,12 +13,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit, minimize_scalar
 from pathlib import Path
+import json
 
 # =============================================================================
 # Load Cosmic Chronometer Data
 # =============================================================================
 
 data_paths = [
+    Path("data/cosmic_chronometers_Hz.csv"),  # Local copy (self-contained archive)
     Path("/Users/awiley/Code/pcm-exploration/perception-constraint-model/foundation/data/cosmic_chronometers_Hz.csv"),
     Path("/Users/awiley/Code/pcm-exploration/perception-constraint-model/data/processed/cosmic_chronometers_Hz.csv")
 ]
@@ -234,9 +236,28 @@ output_dir.mkdir(exist_ok=True)
 plt.savefig(output_dir / "figure5_h6_fit.png", dpi=300, bbox_inches='tight')
 plt.savefig(output_dir / "figure5_h6_fit.pdf", bbox_inches='tight')
 
+# Save JSON metadata for verification system
+metadata = {
+    "figure_id": "figure5_h6_fit",
+    "filename": "figure5_h6_fit.pdf",
+    "key_values": {
+        "h0_original": round(H0_original, 2),
+        "h0_err_original": round(H0_err_original, 2),
+        "chi2_red_original": round(chi2_red_original, 2),
+        "h0_final": round(H0_final, 2),
+        "h0_err_final": round(H0_err_final, 2),
+        "chi2_red_final": round(chi2_red_final, 2),
+        "scale_factor": round(scale_factor, 3)
+    }
+}
+
+with open(output_dir / "figure5_h6_fit_metadata.json", 'w') as f:
+    json.dump(metadata, f, indent=2)
+
 print(f"✅ Figure 5 generated successfully:")
 print(f"   - figures/figure5_h6_fit.png (300 DPI)")
 print(f"   - figures/figure5_h6_fit.pdf")
+print(f"   - figures/figure5_h6_fit_metadata.json")
 
 plt.close()
 

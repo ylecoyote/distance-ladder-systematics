@@ -18,9 +18,8 @@ References:
     - Multi-galaxy P-L relation studies
     - Metallicity coefficient literature compilation
 
-Author: Distance Ladder Systematics Analysis
+Author: Distance Ladder Systematics Project
 Date: 2025-11-03
-Linear: AWI-145
 """
 
 import numpy as np

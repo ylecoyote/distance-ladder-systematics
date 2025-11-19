@@ -2,7 +2,7 @@
 # Data source: SH0ES baseline (Riess+ 2022) vs. our reassessment (Scenario A + Prior 1)
 # Key result: Our assessment 1.4× larger (uncorrelated) / 1.6× larger (correlated) than SH0ES
 # Columns: Error_Source, SH0ES_Estimate_km_s_Mpc, Our_Assessment_km_s_Mpc, Confidence_Level, Notes, References
-# Last updated: 2025-11-14 (v8.6H)
+# Last updated: 2025-11-19 (v8.7)
 Error_Source,SH0ES_Estimate_km_s_Mpc,Our_Assessment_km_s_Mpc,Confidence_Level,Notes,References
 Parallax_Zero_Point,0.3,0.3,High,"Scenario A (baseline): adopt SH0ES internal fit with residual uncertainty; Scenario B: 1.0 with external Gaia prior","Riess+ 2022; Peer Review M1"
 Period_Distribution,0.0,1.0,High,"Explicit bracket [-1.5, -3.5] km/s/Mpc; mid-range correction -2.5; uncertainty ±1.0","Peer Review M1; calculate_period_distribution_correction.py"

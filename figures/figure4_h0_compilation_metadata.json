@@ -1,0 +1,11 @@
+{
+  "figure_id": "figure4_h0_compilation",
+  "filename": "figure4_h0_compilation.pdf",
+  "key_values": {
+    "three_method_convergence_h0": 67.48,
+    "three_method_convergence_sigma": 0.5,
+    "planck_independent_jagb_cc_h0": 68.22,
+    "planck_independent_jagb_cc_sigma": 1.36,
+    "n_methods": 8
+  }
+}

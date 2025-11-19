@@ -1,7 +1,7 @@
 # Manuscript Status Report
 
 **Title**: Forensic Analysis of Distance Ladder Systematics: The Hubble Tension Reduced from 6σ to 1σ
-**Authors**: [Your Name] et al.
+**Authors**: Aaron Wiley et al.
 **Target Journal**: The Astrophysical Journal (ApJ)
 **Date**: 2025-11-01
 **Current Version**: v2 (V5 + V6 critical fixes complete)

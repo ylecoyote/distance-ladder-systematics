@@ -1,0 +1,16 @@
+{
+  "metric": "systematic_error_budget",
+  "shoes_systematic": 1.04,
+  "our_systematic": 1.45,
+  "ratio": 1.39,
+  "statistical": 0.8,
+  "shoes_total": 1.31,
+  "our_total": 1.66,
+  "tensions": {
+    "shoes": 4.0,
+    "realistic": 3.26,
+    "corrected": 4.49
+  },
+  "h0_corrected": 71.88,
+  "sigma_corrected": 0.85
+}

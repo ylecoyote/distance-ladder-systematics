@@ -1,0 +1,63 @@
+# Cosmic Chronometer H(z) Measurements Compilation
+# Direct measurements of Hubble parameter from differential aging of galaxies
+# Date: October 21, 2025
+#
+# Columns:
+#   z: Effective redshift
+#   Hz: Hubble parameter H(z) in km/s/Mpc
+#   sigma_Hz: 1σ uncertainty in km/s/Mpc
+#   reference: Citation
+#   notes: Additional information
+#
+# Method: Cosmic chronometers measure H(z) = -1/(1+z) × dz/dt
+#         from differential ages of passively evolving galaxies
+#
+# Advantage: Model-independent, no distance ladder, direct H(z)
+# Systematics: Stellar population age-dating (~5-10% typical)
+#
+# Key References:
+# [1] Simon+ 2005, ApJ 631, 1172 (pioneering work)
+# [2] Stern+ 2010, JCAP 1002, 008 (SDSS sample)
+# [3] Moresco+ 2012, JCAP 1207, 053 (improved technique)
+# [4] Zhang+ 2014, RAA 14, 1221 (WiggleZ)
+# [5] Moresco 2015, MNRAS 450, L16 (high-z)
+# [6] Moresco+ 2016, JCAP 1605, 014 (BOSS compilation, most comprehensive)
+# [7] Ratsimbazafy+ 2017, MNRAS 467, 3239 (BOSS extension)
+# [8] Borghi+ 2022, ApJ 928, L4 (latest)
+#
+# This compilation uses primarily Moresco+ 2016 (comprehensive)
+# plus Borghi+ 2022 (latest high-precision measurements)
+#
+z,Hz,sigma_Hz,reference,notes
+0.07,69,19.6,Zhang+ 2014,Early measurement
+0.09,69,12,Simon+ 2005,Pioneering CC work
+0.12,68.6,26.2,Zhang+ 2014,Large uncertainty
+0.17,83,8,Simon+ 2005,
+0.179,75,4,Moresco+ 2016,BOSS sample
+0.199,75,5,Moresco+ 2016,BOSS sample
+0.20,72.9,29.6,Zhang+ 2014,WiggleZ
+0.27,77,14,Simon+ 2005,
+0.28,88.8,36.6,Zhang+ 2014,Large uncertainty
+0.352,83,14,Moresco+ 2016,BOSS sample
+0.3802,83,13.5,Moresco+ 2016,BOSS sample
+0.4,95,17,Simon+ 2005,
+0.4004,77,10.2,Moresco+ 2016,BOSS sample
+0.4247,87.1,11.2,Moresco+ 2016,BOSS sample
+0.4497,92.8,12.9,Moresco+ 2016,BOSS sample
+0.47,89,49.6,Ratsimbazafy+ 2017,Large uncertainty
+0.4783,80.9,9,Moresco+ 2016,BOSS sample
+0.48,97,62,Stern+ 2010,Large uncertainty
+0.593,104,13,Moresco+ 2016,BOSS sample
+0.6797,92,8,Moresco+ 2016,BOSS sample
+0.75,98.8,33.6,Borghi+ 2022,Recent high-precision
+0.7812,105,12,Moresco+ 2016,BOSS sample
+0.8754,125,17,Moresco+ 2016,BOSS sample
+0.88,90,40,Stern+ 2010,
+0.9,117,23,Simon+ 2005,
+1.037,154,20,Moresco+ 2016,High-z
+1.3,168,17,Simon+ 2005,
+1.363,160,33.6,Moresco 2015,
+1.43,177,18,Simon+ 2005,
+1.53,140,14,Simon+ 2005,
+1.75,202,40,Simon+ 2005,
+1.965,186.5,50.4,Moresco 2015,Highest-z CC

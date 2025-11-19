@@ -1,0 +1,23 @@
+{
+  "metric": "correlation_uncertainty_sensitivity",
+  "baseline": {
+    "sigma_sys_corr": 2.95
+  },
+  "deterministic_sensitivity": {
+    "max_delta_sigma": 0.086,
+    "max_rel_change_percent": 2.92
+  },
+  "monte_carlo": {
+    "mean": 2.922,
+    "median": 2.921,
+    "std": 0.03,
+    "ci_68": [
+      2.892,
+      2.952
+    ],
+    "ci_95": [
+      2.864,
+      2.98
+    ]
+  }
+}

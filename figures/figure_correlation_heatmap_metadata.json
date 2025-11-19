@@ -1,0 +1,8 @@
+{
+  "figure_id": "figure_correlation_heatmap",
+  "filename": "figure_correlation_heatmap.pdf",
+  "key_values": {
+    "matrix_size": 9,
+    "n_nonzero_correlations": 7
+  }
+}

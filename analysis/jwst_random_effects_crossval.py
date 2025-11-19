@@ -16,9 +16,8 @@ References:
     - Freedman+ 2024 (CCHP JWST NIRCam multi-method comparison)
     - Table 4 (JWST cross-validation) in manuscript
 
-Author: Distance Ladder Systematics Analysis
+Author: Distance Ladder Systematics Project
 Date: 2025-11-03
-Linear: AWI-146
 """
 
 import numpy as np

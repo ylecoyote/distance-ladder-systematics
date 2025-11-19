@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import json
 
 # =============================================================================
 # Constants
@@ -185,6 +186,23 @@ data_dir = Path(__file__).parent.parent / "data"
 output_file = data_dir / "tension_evolution.csv"
 evolution_data.to_csv(output_file, index=False)
 print(f"Results saved to: {output_file}")
+
+# Save JSON summary for verification system
+summary_data = {
+    "metric": "tension_evolution",
+    "initial_tension": round(tension_baseline_stat, 2),
+    "final_tension": round(tension_after_metallicity, 2),
+    "reduction_factor": round(tension_baseline_stat/tension_after_metallicity, 2),
+    "stages": {
+        "1": {"h0": round(H0_SHOES_2024, 2), "sigma": round(sigma_shoes_stat_only, 2)},
+        "5": {"h0": round(H0_after_metallicity, 2), "sigma": round(sigma_realistic, 2)}
+    }
+}
+
+json_output = data_dir / "tension_evolution_summary.json"
+with open(json_output, 'w') as f:
+    json.dump(summary_data, f, indent=2)
+print(f"JSON summary saved to: {json_output}")
 print()
 
 # =============================================================================
