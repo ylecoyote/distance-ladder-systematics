@@ -1,403 +1,315 @@
-# Numerical Claims Registry - Single Source of Truth
-# All expected values for manuscript consistency verification
-# Last updated: 2025-11-19 (v8.7)
-#
-# This file serves as the authoritative source for all numerical claims
-# in the manuscript. All verification checks, figure generation, and
-# documentation should validate against these values.
-
-# =============================================================================
-# Metadata
-# =============================================================================
 metadata:
-  version: "8.7"
-  last_updated: "2025-11-19"
-  manuscript_hash: "60d10fcc859567f96936847388a6035182c4f53a"
-  description: "Numerical claims registry for distance ladder systematics analysis"
-
-# =============================================================================
-# Version History
-# =============================================================================
+  version: '8.7'
+  last_updated: '2025-11-19'
+  manuscript_hash: c0db1c15b68145768605441fad62b450b367b1f7
+  description: Numerical claims registry for distance ladder systematics analysis
 version_history:
-  - version: "8.7"
-    date: "2025-11-19"
-    description: "Citation defense strengthening + terminology standardization"
-    changes:
-      - "Added Ngeow2006 & Kodric2015 as empirical P-L evidence (6 locations)"
-      - "Repositioned Anderson2016 as theoretical mechanism only"
-      - "Removed Anderson2016 from metallicity context (citation hallucination fix)"
-      - "Changed '2025 consensus' to 'consensus baseline' (8 locations in manuscript)"
-      - "Enhanced Freedman2025a description with JWST/NIRCam details"
-      - "Added citation provenance tracking in numerical_claims.yaml"
-      - "Updated manuscript dates: received/revised November 19, 2025"
-      - "Added JSON metadata sidecars for all 9 figures (machine-readable outputs)"
-      - "Added JSON summaries for 3 key calculation scripts"
-      - "YAML-first verification architecture fully validated"
-      - "Fixed generator paths in figures configuration"
-      - "End-to-end reproducibility pipeline operational"
-      - "Removed phantom hz_data_with_fit.pdf figure"
-    significance: "Major citation defense milestone + complete machine-verifiable pipeline"
-    commit: "60d10fc"
-
-  - version: "8.6H"
-    date: "2025-11-18"
-    description: "Expert feedback responses integrated"
-    changes:
-      - "Tension standardized to 1.1σ baseline (Scenario A + Prior 1)"
-      - "Fixed χ²_red = 0.47 for cosmic chronometers (was 0.04)"
-      - "Enhanced Figure 1 with ΔH₀ and Δσ transition labels"
-      - "Updated Figure 4 with Planck-independent JAGB+CC convergence"
-      - "Added correlation matrix heatmap figure"
-      - "Implemented 4 robustness checks (AWI-175 to AWI-178)"
-      - "Enhanced table captions with additional context"
-    significance: "Major expert feedback revision cycle"
-    commit: "6a6ffb0"
-
-# =============================================================================
-# Tolerances for Numerical Comparisons
-# =============================================================================
+- version: '8.7'
+  date: '2025-11-19'
+  description: Citation defense strengthening + terminology standardization
+  changes:
+  - Added Ngeow2006 & Kodric2015 as empirical P-L evidence (6 locations)
+  - Repositioned Anderson2016 as theoretical mechanism only
+  - Removed Anderson2016 from metallicity context (citation hallucination fix)
+  - Changed '2025 consensus' to 'consensus baseline' (8 locations in manuscript)
+  - Enhanced Freedman2025a description with JWST/NIRCam details
+  - Added citation provenance tracking in numerical_claims.yaml
+  - 'Updated manuscript dates: received/revised November 19, 2025'
+  - Added JSON metadata sidecars for all 9 figures (machine-readable outputs)
+  - Added JSON summaries for 3 key calculation scripts
+  - YAML-first verification architecture fully validated
+  - Fixed generator paths in figures configuration
+  - End-to-end reproducibility pipeline operational
+  - Removed phantom hz_data_with_fit.pdf figure
+  significance: Major citation defense milestone + complete machine-verifiable pipeline
+  commit: c0db1c1
+- version: 8.6H
+  date: '2025-11-18'
+  description: Expert feedback responses integrated
+  changes:
+  - Tension standardized to 1.1σ baseline (Scenario A + Prior 1)
+  - Fixed χ²_red = 0.47 for cosmic chronometers (was 0.04)
+  - Enhanced Figure 1 with ΔH₀ and Δσ transition labels
+  - Updated Figure 4 with Planck-independent JAGB+CC convergence
+  - Added correlation matrix heatmap figure
+  - Implemented 4 robustness checks (AWI-175 to AWI-178)
+  - Enhanced table captions with additional context
+  significance: Major expert feedback revision cycle
+  commit: 6a6ffb0
 tolerances:
-  h0: 0.01          # km/s/Mpc - H₀ values
-  sigma: 0.01       # km/s/Mpc - Uncertainty values
-  tension: 0.05     # σ units - Tension calculations
-  ratio: 0.02       # Dimensionless - Systematic budget ratios
-
-# =============================================================================
-# Tension Evolution (Figure 1, Table 2, README)
-# =============================================================================
+  h0: 0.01
+  sigma: 0.01
+  tension: 0.05
+  ratio: 0.02
 tension_evolution:
-  description: "Progressive reduction of Hubble tension through systematic corrections"
-
-  # Planck 2018 reference
+  description: Progressive reduction of Hubble tension through systematic corrections
   planck:
-    h0: 67.36       # km/s/Mpc
-    sigma: 0.54     # km/s/Mpc
-
-  # Five stages of tension reduction
+    h0: 67.36
+    sigma: 0.54
   stages:
-    - stage: 1
-      name: "Statistical only"
-      h0: 73.04      # km/s/Mpc
-      sigma: 0.80    # km/s/Mpc (statistical only)
-      tension: 5.9   # σ
-      description: "Baseline SH0ES H₀ with statistical uncertainty only"
-
-    - stage: 2
-      name: "SH0ES total"
-      h0: 73.04      # km/s/Mpc
-      sigma: 1.31    # km/s/Mpc (stat ⊕ sys: √(0.80² + 1.04²))
-      tension: 4.0   # σ
-      description: "SH0ES published total uncertainty"
-
-    - stage: 3
-      name: "Scenario A (Parallax ZP)"
-      h0: 73.04      # km/s/Mpc (no bias correction in Scenario A)
-      sigma: 1.31    # km/s/Mpc
-      tension: 4.0   # σ
-      description: "Conservative parallax zero-point (Scenario A: no bias correction)"
-
-    - stage: 4
-      name: "Period distribution"
-      h0: 70.54      # km/s/Mpc (−2.5 km/s/Mpc correction)
-      sigma: 1.65    # km/s/Mpc (√(0.80² + 1.04² + 1.0²))
-      tension: 1.9   # σ
-      description: "Explicit period distribution modeling (−2.5 km/s/Mpc)"
-
-    - stage: 5
-      name: "Metallicity + Realistic σ"
-      h0: 69.54      # km/s/Mpc (−1.0 km/s/Mpc metallicity correction)
-      sigma: 1.89    # km/s/Mpc (√(0.80² + 1.71²))
-      tension: 1.1   # σ
-      description: "Metallicity correction (Prior 1) + realistic systematic budget"
-
-  # Key claims for README/Abstract
+  - stage: 1
+    name: Statistical only
+    h0: 73.04
+    sigma: 0.8
+    tension: 5.9
+    description: Baseline SH0ES H₀ with statistical uncertainty only
+  - stage: 2
+    name: SH0ES total
+    h0: 73.04
+    sigma: 1.31
+    tension: 4.0
+    description: SH0ES published total uncertainty
+  - stage: 3
+    name: Scenario A (Parallax ZP)
+    h0: 73.04
+    sigma: 1.31
+    tension: 4.0
+    description: 'Conservative parallax zero-point (Scenario A: no bias correction)'
+  - stage: 4
+    name: Period distribution
+    h0: 70.54
+    sigma: 1.65
+    tension: 1.9
+    description: Explicit period distribution modeling (−2.5 km/s/Mpc)
+  - stage: 5
+    name: Metallicity + Realistic σ
+    h0: 69.54
+    sigma: 1.89
+    tension: 1.1
+    description: Metallicity correction (Prior 1) + realistic systematic budget
   summary:
-    initial_tension: 5.9   # σ (Stage 1)
-    final_tension: 1.1     # σ (Stage 5)
-    reduction_factor: 5.4  # 5.9 / 1.1 ≈ 5.4×
-
-# =============================================================================
-# Systematic Error Budget (Figure 2, Table S1)
-# =============================================================================
+    initial_tension: 5.9
+    final_tension: 1.1
+    reduction_factor: 5.4
 systematic_budget:
-  description: "Systematic uncertainty components and quadrature sums"
-
-  # SH0ES 2022 systematic budget
+  description: Systematic uncertainty components and quadrature sums
   shoes:
-    uncorrelated: 1.04    # km/s/Mpc (quadrature sum of SH0ES components)
-    correlated: 1.04      # km/s/Mpc (SH0ES is a published value, not recalculated)
+    uncorrelated: 1.04
+    correlated: 1.04
     components:
-      - name: "Parallax zero point"
-        value: 0.3        # km/s/Mpc
-      - name: "Period distribution"
-        value: 0.0        # km/s/Mpc (SH0ES doesn't model explicit period distribution)
-      - name: "Metallicity correction"
-        value: 0.4        # km/s/Mpc
-      - name: "Crowding (blending)"
-        value: 0.5        # km/s/Mpc
-      - name: "Photometric calibration"
-        value: 0.3        # km/s/Mpc
-      - name: "Extinction reddening"
-        value: 0.4        # km/s/Mpc
-      - name: "LMC distance"
-        value: 0.2        # km/s/Mpc
-      - name: "NGC4258 distance"
-        value: 0.2        # km/s/Mpc
-      - name: "SNe Ia standardization"
-        value: 0.5        # km/s/Mpc
-
-  # Our Assessment (Scenario A + Prior 1)
+    - name: Parallax zero point
+      value: 0.3
+    - name: Period distribution
+      value: 0.0
+    - name: Metallicity correction
+      value: 0.4
+    - name: Crowding (blending)
+      value: 0.5
+    - name: Photometric calibration
+      value: 0.3
+    - name: Extinction reddening
+      value: 0.4
+    - name: LMC distance
+      value: 0.2
+    - name: NGC4258 distance
+      value: 0.2
+    - name: SNe Ia standardization
+      value: 0.5
   our_assessment:
-    uncorrelated: 1.45    # km/s/Mpc (ρ=0, quadrature sum)
-    correlated: 1.71      # km/s/Mpc (ρ=0.3 baseline, with correlation matrix)
+    uncorrelated: 1.45
+    correlated: 1.71
     components:
-      - name: "Parallax zero point"
-        value: 0.3        # km/s/Mpc (Scenario A: conservative)
-      - name: "Period distribution"
-        value: 1.0        # km/s/Mpc (explicit bracket mid-range)
-      - name: "Metallicity correction"
-        value: 0.5        # km/s/Mpc (Prior 1: γ=-0.2±0.1)
-      - name: "Crowding direct"
-        value: 0.3        # km/s/Mpc (JWST validated)
-      - name: "Photometric calibration"
-        value: 0.3        # km/s/Mpc
-      - name: "Extinction reddening"
-        value: 0.5        # km/s/Mpc
-      - name: "LMC distance"
-        value: 0.2        # km/s/Mpc (geometric anchor)
-      - name: "NGC4258 distance"
-        value: 0.2        # km/s/Mpc (maser)
-      - name: "SNe Ia standardization"
-        value: 0.5        # km/s/Mpc
-
-  # Systematic budget ratios (Figure 2, 6, 7)
+    - name: Parallax zero point
+      value: 0.3
+    - name: Period distribution
+      value: 1.0
+    - name: Metallicity correction
+      value: 0.5
+    - name: Crowding direct
+      value: 0.3
+    - name: Photometric calibration
+      value: 0.3
+    - name: Extinction reddening
+      value: 0.5
+    - name: LMC distance
+      value: 0.2
+    - name: NGC4258 distance
+      value: 0.2
+    - name: SNe Ia standardization
+      value: 0.5
   ratios:
-    uncorrelated: 1.40    # Our/SH0ES (1.45/1.04 ≈ 1.4×)
-    correlated: 1.65      # Our/SH0ES (1.71/1.04 ≈ 1.6×)
-    range: [1.39, 1.65]   # Min (ρ=0) to max (ρ=0.3)
-
-  # Correlation matrix baseline (ρ=0.3)
+    uncorrelated: 1.4
+    correlated: 1.65
+    range:
+    - 1.39
+    - 1.65
   correlations:
     baseline_rho: 0.3
     pairs:
-      - name: "Period-Metallicity"
-        i: 1
-        j: 2
-        rho: 0.3
-      - name: "Metallicity-Crowding"
-        i: 2
-        j: 3
-        rho: 0.2
-      - name: "Metallicity-Extinction"
-        i: 2
-        j: 5
-        rho: 0.3
-      - name: "Crowding-Extinction"
-        i: 3
-        j: 5
-        rho: 0.3
-      - name: "Photometry-Extinction"
-        i: 4
-        j: 5
-        rho: 0.2
-      - name: "Metallicity-SNe"
-        i: 2
-        j: 8
-        rho: 0.2
-      - name: "Extinction-SNe"
-        i: 5
-        j: 8
-        rho: 0.15
-
-  # Citation provenance for systematic components
+    - name: Period-Metallicity
+      i: 1
+      j: 2
+      rho: 0.3
+    - name: Metallicity-Crowding
+      i: 2
+      j: 3
+      rho: 0.2
+    - name: Metallicity-Extinction
+      i: 2
+      j: 5
+      rho: 0.3
+    - name: Crowding-Extinction
+      i: 3
+      j: 5
+      rho: 0.3
+    - name: Photometry-Extinction
+      i: 4
+      j: 5
+      rho: 0.2
+    - name: Metallicity-SNe
+      i: 2
+      j: 8
+      rho: 0.2
+    - name: Extinction-SNe
+      i: 5
+      j: 8
+      rho: 0.15
   citation_sources:
-    description: "Literature sources supporting systematic uncertainty estimates"
-
+    description: Literature sources supporting systematic uncertainty estimates
     period_distribution:
       empirical_evidence:
-        - name: "Ngeow2006"
-          citation: "Ngeow & Kanbur (2006), MNRAS 363:831"
-          contribution: "LMC Cepheids F-test rejection of linear P-L at p<0.001"
-          doi: "10.1111/j.1365-2966.2005.09477.x"
-        - name: "Kodric2015"
-          citation: "Kodric et al. (2015), MNRAS 451:724"
-          contribution: "M31 independent confirmation of broken P-L relations"
-          doi: "10.1093/mnras/stv873"
+      - name: Ngeow2006
+        citation: Ngeow & Kanbur (2006), MNRAS 363:831
+        contribution: LMC Cepheids F-test rejection of linear P-L at p<0.001
+        doi: 10.1111/j.1365-2966.2005.09477.x
+      - name: Kodric2015
+        citation: Kodric et al. (2015), MNRAS 451:724
+        contribution: M31 independent confirmation of broken P-L relations
+        doi: 10.1093/mnras/stv873
       theoretical_mechanism:
-        - name: "Anderson2016"
-          citation: "Anderson et al. (2016), ApJS 226:18"
-          contribution: "Period-dependent rotation effects in Cepheid populations"
-      statistical_significance: "p<0.001 (Ngeow2006 F-tests)"
-      correction_value: -2.5  # km/s/Mpc
-      uncertainty: 1.0        # km/s/Mpc
-
+      - name: Anderson2016
+        citation: Anderson et al. (2016), ApJS 226:18
+        contribution: Period-dependent rotation effects in Cepheid populations
+      statistical_significance: p<0.001 (Ngeow2006 F-tests)
+      correction_value: -2.5
+      uncertainty: 1.0
     metallicity_correction:
       primary_sources:
-        - name: "Riess2022"
-          value: -0.2        # mag/dex
-          contribution: "SH0ES Cepheid distance ladder"
-        - name: "Freedman2025a"
-          value: -0.17       # mag/dex
-          uncertainty: 0.11  # mag/dex
-          contribution: "JWST/NIRCam TRGB-based calibrations (consistent with zero at 1.5σ)"
-        - name: "Freedman2001"
-          value_range: [-0.3, -0.2]  # mag/dex
-          contribution: "HST Key Project calibrations"
-      prior_1_baseline: -0.2  # mag/dex (consensus baseline)
-      prior_1_uncertainty: 0.1  # mag/dex
-      justification: "Genuine between-study empirical scatter, not measurement error"
-
-# =============================================================================
-# H₀ Compilation and Multi-Method Convergence (Figure 4, Table 3)
-# =============================================================================
+      - name: Riess2022
+        value: -0.2
+        contribution: SH0ES Cepheid distance ladder
+      - name: Freedman2025a
+        value: -0.17
+        uncertainty: 0.11
+        contribution: JWST/NIRCam TRGB-based calibrations (consistent with zero at
+          1.5σ)
+      - name: Freedman2001
+        value_range:
+        - -0.3
+        - -0.2
+        contribution: HST Key Project calibrations
+      prior_1_baseline: -0.2
+      prior_1_uncertainty: 0.1
+      justification: Genuine between-study empirical scatter, not measurement error
 h0_compilation:
-  description: "Multi-method H₀ measurements and convergence analysis"
-
-  # Three-method convergence (Planck + JAGB + Cosmic Chronometers)
+  description: Multi-method H₀ measurements and convergence analysis
   three_method_convergence:
-    name: "Planck + JAGB + CC convergence"
-    h0: 67.48         # km/s/Mpc (inverse-variance weighted mean)
-    sigma: 0.50       # km/s/Mpc (√(1/Σw_i))
-    description: "Three independent methods converge at 67.5 ± 0.5 km/s/Mpc"
+    name: Planck + JAGB + CC convergence
+    h0: 67.48
+    sigma: 0.5
+    description: Three independent methods converge at 67.5 ± 0.5 km/s/Mpc
     methods:
-      - "Planck CMB"
-      - "JAGB"
-      - "Cosmic Chronometers (H(z))"
-
-  # Planck-independent convergence (JAGB + CC only)
+    - Planck CMB
+    - JAGB
+    - Cosmic Chronometers (H(z))
   planck_independent:
-    name: "JAGB + Cosmic Chronometers"
-    h0: 68.22         # km/s/Mpc
-    sigma: 1.36       # km/s/Mpc
-    description: "Planck-independent distance ladder + H(z) convergence"
-
-  # Individual methods (for reference)
+    name: JAGB + Cosmic Chronometers
+    h0: 68.22
+    sigma: 1.36
+    description: Planck-independent distance ladder + H(z) convergence
   methods:
-    - name: "Planck CMB"
-      h0: 67.36
-      sigma: 0.54
-      category: "Early Universe"
-
-    - name: "JAGB"
-      h0: 67.96
-      sigma: 2.65
-      category: "Distance Ladder"
-
-    - name: "Cosmic Chronometers (H(z))"
-      h0: 68.33
-      sigma: 1.57
-      category: "Model-Independent"
-
-    - name: "Corrected Cepheid (Scenario A + Prior 1)"
-      h0: 69.54
-      sigma: 1.89
-      category: "Distance Ladder"
-
-    - name: "TRGB"
-      h0: 69.85
-      sigma: 2.33
-      category: "Distance Ladder"
-
-    - name: "SH0ES Cepheid"
-      h0: 73.04
-      sigma: 1.31
-      category: "Distance Ladder"
-
-# =============================================================================
-# Correlation Sensitivity Analysis (Figures 6, 7, Extended Analysis)
-# =============================================================================
+  - name: Planck CMB
+    h0: 67.36
+    sigma: 0.54
+    category: Early Universe
+  - name: JAGB
+    h0: 67.96
+    sigma: 2.65
+    category: Distance Ladder
+  - name: Cosmic Chronometers (H(z))
+    h0: 68.33
+    sigma: 1.57
+    category: Model-Independent
+  - name: Corrected Cepheid (Scenario A + Prior 1)
+    h0: 69.54
+    sigma: 1.89
+    category: Distance Ladder
+  - name: TRGB
+    h0: 69.85
+    sigma: 2.33
+    category: Distance Ladder
+  - name: SH0ES Cepheid
+    h0: 73.04
+    sigma: 1.31
+    category: Distance Ladder
 correlation_sensitivity:
-  description: "Sensitivity of systematic budget to correlation assumptions"
-
-  # Extended sweep results (ρ ∈ [0.0, 0.8])
+  description: Sensitivity of systematic budget to correlation assumptions
   extended_sweep:
-    rho_range: [0.0, 0.8]
-    tension_range: [1.05, 1.23]  # σ (min to max across all pairs)
-    description: "All tensions remain <2σ across full ρ range"
-
+    rho_range:
+    - 0.0
+    - 0.8
+    tension_range:
+    - 1.05
+    - 1.23
+    description: All tensions remain <2σ across full ρ range
     max_tension:
-      value: 1.23       # σ
-      rho: 0.0          # At uncorrelated limit
-      pair: "Period-Metallicity"
-
+      value: 1.23
+      rho: 0.0
+      pair: Period-Metallicity
     min_tension:
-      value: 1.05       # σ
-      rho: 0.8          # At strong correlation limit
-      pair: "Period-Metallicity"
-
-# =============================================================================
-# Figure Package Requirements
-# =============================================================================
+      value: 1.05
+      rho: 0.8
+      pair: Period-Metallicity
 figures:
-  description: "Required figures for manuscript submission"
-
+  description: Required figures for manuscript submission
   required:
-    - filename: "figure1_tension_evolution.pdf"
-      title: "Tension Evolution"
-      generator: "analysis/create_figure1_tension_evolution.py"
-
-    - filename: "figure2_error_budget.pdf"
-      title: "Systematic Error Budget"
-      generator: "analysis/create_figure2_error_budget.py"
-
-    - filename: "figure3_cchp_crossval_real.pdf"
-      title: "CCHP Cross-Validation"
-      generator: "analysis/create_figure3_cchp_crossval_real.py"
-
-    - filename: "figure4_h0_compilation.pdf"
-      title: "H₀ Compilation Forest Plot"
-      generator: "analysis/create_figure4_h0_compilation.py"
-
-    - filename: "figure5_h6_fit.pdf"
-      title: "Hierarchical H(z) Bayesian Fit"
-      generator: "analysis/create_figure5_hz_fit_intrinsic_scatter.py"
-
-    - filename: "figure_correlation_heatmap.pdf"
-      title: "Correlation Matrix Heatmap"
-      generator: "analysis/create_figure_correlation_heatmap.py"
-
-    - filename: "sensitivity_correlation.png"
-      title: "Correlation Sensitivity (1D)"
-      generator: "analysis/create_correlation_sensitivity_figures.py"
-      metadata: "figures/sensitivity_correlation_metadata.json"
-
-    - filename: "figure_2d_correlation_sensitivity.png"
-      title: "Correlation Sensitivity (2D)"
-      generator: "analysis/create_correlation_sensitivity_figures.py"
-      metadata: "figures/figure_2d_correlation_sensitivity_metadata.json"
-
-    - filename: "extended_correlation_sensitivity.png"
-      title: "Extended Correlation Sensitivity"
-      generator: "analysis/extended_correlation_sensitivity.py"
-
-# =============================================================================
-# Verification Checks Configuration
-# =============================================================================
+  - filename: figure1_tension_evolution.pdf
+    title: Tension Evolution
+    generator: analysis/create_figure1_tension_evolution.py
+  - filename: figure2_error_budget.pdf
+    title: Systematic Error Budget
+    generator: analysis/create_figure2_error_budget.py
+  - filename: figure3_cchp_crossval_real.pdf
+    title: CCHP Cross-Validation
+    generator: analysis/create_figure3_cchp_crossval_real.py
+  - filename: figure4_h0_compilation.pdf
+    title: H₀ Compilation Forest Plot
+    generator: analysis/create_figure4_h0_compilation.py
+  - filename: figure5_h6_fit.pdf
+    title: Hierarchical H(z) Bayesian Fit
+    generator: analysis/create_figure5_hz_fit_intrinsic_scatter.py
+  - filename: figure_correlation_heatmap.pdf
+    title: Correlation Matrix Heatmap
+    generator: analysis/create_figure_correlation_heatmap.py
+  - filename: sensitivity_correlation.png
+    title: Correlation Sensitivity (1D)
+    generator: analysis/create_correlation_sensitivity_figures.py
+    metadata: figures/sensitivity_correlation_metadata.json
+  - filename: figure_2d_correlation_sensitivity.png
+    title: Correlation Sensitivity (2D)
+    generator: analysis/create_correlation_sensitivity_figures.py
+    metadata: figures/figure_2d_correlation_sensitivity_metadata.json
+  - filename: extended_correlation_sensitivity.png
+    title: Extended Correlation Sensitivity
+    generator: analysis/extended_correlation_sensitivity.py
 verification:
-  description: "Configuration for manuscript consistency checks"
-
+  description: Configuration for manuscript consistency checks
   categories:
-    - name: "tension"
-      severity: "ERROR"
-      description: "Tension evolution consistency across CSV, figures, tables, README"
-
-    - name: "systematics"
-      severity: "ERROR"
-      description: "Systematic budget calculations and ratios"
-
-    - name: "h0_compilation"
-      severity: "WARNING"
-      description: "H₀ compilation and multi-method convergence"
-
-    - name: "figures"
-      severity: "WARNING"
-      description: "Figure package integrity and timestamps"
-
-    - name: "manuscript"
-      severity: "INFO"
-      description: "Manuscript vs README consistency"
-
-  # Fail-fast behavior
+  - name: tension
+    severity: ERROR
+    description: Tension evolution consistency across CSV, figures, tables, README
+  - name: systematics
+    severity: ERROR
+    description: Systematic budget calculations and ratios
+  - name: h0_compilation
+    severity: WARNING
+    description: H₀ compilation and multi-method convergence
+  - name: figures
+    severity: WARNING
+    description: Figure package integrity and timestamps
+  - name: manuscript
+    severity: INFO
+    description: Manuscript vs README consistency
   fail_fast:
     enabled: false
-    on_severity: "ERROR"
+    on_severity: ERROR
