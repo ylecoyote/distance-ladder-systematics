@@ -3,8 +3,8 @@
   "filename": "sensitivity_correlation.png",
   "title": "Systematic Budget Ratio Sensitivity to Correlations",
   "generator": "analysis/create_correlation_sensitivity_figures.py",
-  "generated_at": "2025-11-18T00:00:00Z",
-  "version": "v8.6H",
+  "generated_at": "2025-11-19T00:00:00Z",
+  "version": "v8.7",
   "description": "Shows how systematic budget ratio (Our/SH0ES) varies with correlation coefficient ρ",
   "key_values": {
     "shoes_sigma_sys": {

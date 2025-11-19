@@ -2,7 +2,7 @@
 # Superseded by: correlation_matrix_updated.csv (9×9 matrix after removing covariant crowding term)
 # Used for: Historical reference; sensitivity analysis with crowding covariance term included
 # Note: Includes crowding-extinction (ρ=0.6) and metallicity-crowding (ρ=0.4) correlations
-# Last updated: 2025-11-14 (v8.6H)
+# Last updated: 2025-11-19 (v8.7)
 ,Parallax Zero Point,Period Distribution,Metallicity Correcti,Crowding Direct,Crowding Covariant,Photometric Calibrat,Extinction Reddening,LMC Distance,NGC4258 Distance,SNe Ia Standardizati
 Parallax Zero Point,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 Period Distribution,0.0,1.0,0.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0

@@ -1,8 +1,3 @@
-# Cosmic Chronometer H(z) Fit Results (Standard vs Random Effects)
-# Data source: 32 cosmic chronometer H(z) measurements (Moresco+ 2022 compilation)
-# Key result: H₀ = 68.33 ± 1.57 km/s/Mpc (standard fit, χ²_red = 0.47, 31 dof)
-# Columns: Fit_Type, H0_km_s_Mpc, H0_err_km_s_Mpc, chi2, dof, chi2_red, error_scale_factor
-# Last updated: 2025-11-14 (v8.6H)
 Fit_Type,H0_km_s_Mpc,H0_err_km_s_Mpc,chi2,dof,chi2_red,error_scale_factor
 Standard,68.33304818689737,1.565189398251633,14.536374592302202,31,0.4689153094291033,1.0
 Random_Effects,68.33304818783989,1.0718008647080268,31.0,31,1.0,0.684773911177334

@@ -2,8 +2,8 @@
 
 This document tracks all external datasets, their sources, retrieval dates, and citations used in this analysis. All data processing and derivation steps are documented to ensure complete reproducibility.
 
-**Last Updated:** 2025-11-17
-**Analysis Version:** v8.6H
+**Last Updated:** 2025-11-19
+**Analysis Version:** v8.7
 **Branch:** expert-feedback-revisions
 
 ---

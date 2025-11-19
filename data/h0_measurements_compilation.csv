@@ -2,7 +2,7 @@
 # Data sources: Planck 2018, SH0ES 2022, CCHP 2025, cosmic chronometers (this work)
 # Key result: Three-method convergence (JAGB + CC + Planck) → H₀ = 67.48 ± 0.50 km/s/Mpc
 # Columns: Method, H0_km_s_Mpc, Sigma_km_s_Mpc, Category, Shares_Systematics_With_Cepheid
-# Last updated: 2025-11-14 (v8.6H)
+# Last updated: 2025-11-19 (v8.7)
 Method,H0_km_s_Mpc,Sigma_km_s_Mpc,Category,Shares_Systematics_With_Cepheid
 Planck CMB,67.36,0.54,Early Universe,False
 Weighted Mean,67.4812658240218,0.5012579612451308,Convergence,False

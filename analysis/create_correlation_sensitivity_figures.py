@@ -10,6 +10,7 @@ Output:
 """
 import numpy as np
 import matplotlib.pyplot as plt
+import json
 from matplotlib.colors import LinearSegmentedColormap
 
 # =============================================================================
@@ -244,6 +245,24 @@ def create_1d_sensitivity_figure():
     # Save
     output_file = '../figures/sensitivity_correlation.png'
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
+
+    # Save JSON metadata for verification system
+    metadata = {
+        "figure_id": "sensitivity_correlation",
+        "filename": "sensitivity_correlation.png",
+        "key_values": {
+            "shoes_uncorrelated": round(shoes_uncorr, 2),
+            "shoes_nominal_rho_0_3": round(shoes_nominal, 2),
+            "our_uncorrelated": round(our_uncorr, 2),
+            "our_nominal_rho_0_3": round(our_nominal, 2),
+            "ratio_uncorrelated": round(ratio_uncorr, 2),
+            "ratio_nominal_rho_0_3": round(ratio_nominal, 2)
+        }
+    }
+
+    with open('../figures/sensitivity_correlation_metadata.json', 'w') as f:
+        json.dump(metadata, f, indent=2)
+
     print(f"✅ Figure saved: {output_file}")
     print(f"   SH0ES σ_sys: {shoes_uncorr:.2f} (ρ=0) → {shoes_nominal:.2f} (ρ=0.3) km/s/Mpc")
     print(f"   Our σ_sys: {our_uncorr:.2f} (ρ=0) → {our_nominal:.2f} (ρ=0.3) km/s/Mpc")
@@ -361,6 +380,22 @@ def create_2d_sensitivity_figure():
     # Save
     output_file = '../figures/figure_2d_correlation_sensitivity.png'
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
+
+    # Save JSON metadata for verification system
+    metadata = {
+        "figure_id": "figure_2d_correlation_sensitivity",
+        "filename": "figure_2d_correlation_sensitivity.png",
+        "key_values": {
+            "baseline_ratio_rho_0_3": round(baseline_ratio, 2),
+            "uncorrelated_ratio_rho_0": round(uncorr_ratio, 2),
+            "ratio_min": round(float(RATIOS.min()), 2),
+            "ratio_max": round(float(RATIOS.max()), 2)
+        }
+    }
+
+    with open('../figures/figure_2d_correlation_sensitivity_metadata.json', 'w') as f:
+        json.dump(metadata, f, indent=2)
+
     print(f"✅ Figure saved: {output_file}")
     print(f"   Baseline ratio (ρ=0.3): {baseline_ratio:.2f}×")
     print(f"   Uncorrelated ratio (ρ=0): {uncorr_ratio:.2f}×")

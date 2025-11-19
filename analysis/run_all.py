@@ -20,32 +20,38 @@ import subprocess
 import time
 from pathlib import Path
 import argparse
+import yaml
 
-# Figure generation scripts in logical order
-FIGURE_SCRIPTS = [
-    'analysis/create_figure1_tension_evolution.py',
-    'analysis/create_figure2_error_budget.py',
-    'analysis/create_figure3_cchp_crossval_real.py',
-    'analysis/create_figure4_h0_compilation.py',
-    'analysis/create_figure5_hz_fit_intrinsic_scatter.py',
-    'analysis/create_figure_correlation_heatmap.py',
-]
+# Load figure scripts and expected outputs from YAML contract
+# This eliminates the "shadow config" and ensures single source of truth
+def load_targets_from_contract():
+    """Load figure generation scripts and expected outputs from numerical_claims.yaml"""
+    config_path = Path(__file__).parent.parent / 'config' / 'numerical_claims.yaml'
 
-# Expected output files (for verification)
-EXPECTED_OUTPUTS = [
-    'figures/figure1_tension_evolution.png',
-    'figures/figure1_tension_evolution.pdf',
-    'figures/figure2_error_budget.png',
-    'figures/figure2_error_budget.pdf',
-    'figures/figure3_cchp_crossval_real.png',
-    'figures/figure3_cchp_crossval_real.pdf',
-    'figures/figure4_h0_compilation.png',
-    'figures/figure4_h0_compilation.pdf',
-    'figures/figure5_h6_fit.png',
-    'figures/figure5_h6_fit.pdf',
-    'figures/figure_correlation_heatmap.png',
-    'figures/figure_correlation_heatmap.pdf',
-]
+    with open(config_path) as f:
+        data = yaml.safe_load(f)
+
+    scripts = []
+    expected_outputs = []
+
+    for fig in data['figures']['required']:
+        # Add generator script (avoid duplicates if multiple figures from one script)
+        if 'generator' in fig:
+            if fig['generator'] not in scripts:
+                scripts.append(fig['generator'])
+
+        # Add expected output file (both PNG and PDF if applicable)
+        filename = fig['filename']
+        expected_outputs.append(f"figures/{filename}")
+
+        # If it's a PDF, also expect PNG version
+        if filename.endswith('.pdf'):
+            expected_outputs.append(f"figures/{filename.replace('.pdf', '.png')}")
+
+    return scripts, expected_outputs
+
+# Dynamically load from YAML contract
+FIGURE_SCRIPTS, EXPECTED_OUTPUTS = load_targets_from_contract()
 
 # Critical data files (for integrity verification)
 CRITICAL_DATA_FILES = [
@@ -235,6 +241,41 @@ def main():
 
     # Print summary
     print_summary(results, present_files, missing_files, elapsed_total)
+
+    # Run manuscript verification
+    if not args.figures_only:
+        if verbose:
+            print("\n" + "="*70)
+            print("RUNNING MANUSCRIPT VERIFICATION")
+            print("="*70 + "\n")
+
+        try:
+            verify_result = subprocess.run(
+                ['python3', 'analysis/verify_manuscript_consistency.py'],
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+
+            if verbose:
+                print(verify_result.stdout)
+
+            # Check verification exit code
+            if verify_result.returncode != 0:
+                print("\n⚠️  Note: Manuscript verification reported issues.")
+                print("   Run manually for details: python3 analysis/verify_manuscript_consistency.py")
+                print()
+            else:
+                if verbose:
+                    print("\n✅ Manuscript verification passed!")
+                    print()
+
+        except subprocess.TimeoutExpired:
+            print("\n⚠️  Verification timeout (skipping)")
+        except FileNotFoundError:
+            print("\n⚠️  Verification script not found (skipping)")
+        except Exception as e:
+            print(f"\n⚠️  Verification failed: {e}")
 
     # Exit with error code if any failures
     if any(not r['success'] for r in results) or missing_files:
