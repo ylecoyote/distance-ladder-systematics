@@ -19,7 +19,7 @@
 - **Removed covariant crowding standalone term** (unsupported by JWST validation)
 - **Derived period distribution explicitly** (bracket [-1.5, -3.5] km/s/Mpc from broken P-L physics)
 - **Implemented two-scenario parallax framework** (Scenario A: internal fit; Scenario B: external prior)
-- **Three-prior metallicity analysis** (2025 consensus γ=-0.2 baseline + sensitivity tests)
+- **Three-prior metallicity analysis** (consensus baseline γ=-0.2 baseline + sensitivity tests)
 
 **Impact on Key Values (v8.5 → v8.6A):**
 - **σ_sys (correlated)**: 3.14 km/s/Mpc → **1.71 km/s/Mpc** (-46%)
@@ -263,7 +263,7 @@ SH0ES underestimates Cepheid systematics by factor **1.6×** (1.04 → 1.71 km/s
 ### Three Bias Corrections (Scenario A + Prior 1 Baseline)
 1. **Parallax zero point (Scenario A)**: 0 km/s/Mpc (adopt SH0ES internally-fitted ZP)
 2. **Period distribution**: -2.5 km/s/Mpc (mid-range of explicit bracket [-1.5, -3.5])
-3. **Metallicity (Prior 1)**: -1.0 km/s/Mpc (γ = -0.2 ± 0.1, 2025 consensus)
+3. **Metallicity (Prior 1)**: -1.0 km/s/Mpc (γ = -0.2 ± 0.1, consensus baseline)
 
 **Total correction**: -3.5 km/s/Mpc (73.17 → 69.67)
 **MAP estimate**: -2.33 km/s/Mpc (consistent within 68% CI)

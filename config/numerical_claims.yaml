@@ -12,7 +12,7 @@
 metadata:
   version: "8.7"
   last_updated: "2025-11-19"
-  manuscript_hash: "ed4bbdb5ddf02b9c4dc6f1af0a91bfd7458dc1c2"
+  manuscript_hash: "60d10fcc859567f96936847388a6035182c4f53a"
   description: "Numerical claims registry for distance ladder systematics analysis"
 
 # =============================================================================
@@ -21,16 +21,23 @@ metadata:
 version_history:
   - version: "8.7"
     date: "2025-11-19"
-    description: "Complete JSON metadata pipeline + verification infrastructure"
+    description: "Citation defense strengthening + terminology standardization"
     changes:
+      - "Added Ngeow2006 & Kodric2015 as empirical P-L evidence (6 locations)"
+      - "Repositioned Anderson2016 as theoretical mechanism only"
+      - "Removed Anderson2016 from metallicity context (citation hallucination fix)"
+      - "Changed '2025 consensus' to 'consensus baseline' (8 locations in manuscript)"
+      - "Enhanced Freedman2025a description with JWST/NIRCam details"
+      - "Added citation provenance tracking in numerical_claims.yaml"
+      - "Updated manuscript dates: received/revised November 19, 2025"
       - "Added JSON metadata sidecars for all 9 figures (machine-readable outputs)"
       - "Added JSON summaries for 3 key calculation scripts"
       - "YAML-first verification architecture fully validated"
       - "Fixed generator paths in figures configuration"
       - "End-to-end reproducibility pipeline operational"
       - "Removed phantom hz_data_with_fit.pdf figure"
-    significance: "Infrastructure milestone - complete machine-verifiable pipeline"
-    commit: "ed4bbdb5ddf02b9c4dc6f1af0a91bfd7458dc1c2"
+    significance: "Major citation defense milestone + complete machine-verifiable pipeline"
+    commit: "60d10fc"
 
   - version: "8.6H"
     date: "2025-11-18"
@@ -201,6 +208,44 @@ systematic_budget:
         i: 5
         j: 8
         rho: 0.15
+
+  # Citation provenance for systematic components
+  citation_sources:
+    description: "Literature sources supporting systematic uncertainty estimates"
+
+    period_distribution:
+      empirical_evidence:
+        - name: "Ngeow2006"
+          citation: "Ngeow & Kanbur (2006), MNRAS 363:831"
+          contribution: "LMC Cepheids F-test rejection of linear P-L at p<0.001"
+          doi: "10.1111/j.1365-2966.2005.09477.x"
+        - name: "Kodric2015"
+          citation: "Kodric et al. (2015), MNRAS 451:724"
+          contribution: "M31 independent confirmation of broken P-L relations"
+          doi: "10.1093/mnras/stv873"
+      theoretical_mechanism:
+        - name: "Anderson2016"
+          citation: "Anderson et al. (2016), ApJS 226:18"
+          contribution: "Period-dependent rotation effects in Cepheid populations"
+      statistical_significance: "p<0.001 (Ngeow2006 F-tests)"
+      correction_value: -2.5  # km/s/Mpc
+      uncertainty: 1.0        # km/s/Mpc
+
+    metallicity_correction:
+      primary_sources:
+        - name: "Riess2022"
+          value: -0.2        # mag/dex
+          contribution: "SH0ES Cepheid distance ladder"
+        - name: "Freedman2025a"
+          value: -0.17       # mag/dex
+          uncertainty: 0.11  # mag/dex
+          contribution: "JWST/NIRCam TRGB-based calibrations (consistent with zero at 1.5σ)"
+        - name: "Freedman2001"
+          value_range: [-0.3, -0.2]  # mag/dex
+          contribution: "HST Key Project calibrations"
+      prior_1_baseline: -0.2  # mag/dex (consensus baseline)
+      prior_1_uncertainty: 0.1  # mag/dex
+      justification: "Genuine between-study empirical scatter, not measurement error"
 
 # =============================================================================
 # H₀ Compilation and Multi-Method Convergence (Figure 4, Table 3)

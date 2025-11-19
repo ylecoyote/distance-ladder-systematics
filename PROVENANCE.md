@@ -234,13 +234,13 @@ Derived from period distribution mismatch between NGC4258/LMC anchors and SN hos
 
 ### Metallicity Correction
 
-**Magnitude:** -1.0 km/s/Mpc (Prior 1: 2025 consensus)
+**Magnitude:** -1.0 km/s/Mpc (Prior 1: consensus baseline)
 
 **Uncertainty:** Absorbed into correlated systematic budget
 
 **Prior 1 Specification:**
 - γ = -0.2 ± 0.1 mag/dex
-- Synthesizes: Riess2022, Freedman2025a, Anderson2016, Freedman2011
+- Synthesizes: Riess2022, Freedman2025a (JWST/NIRCam), Freedman2001
 - Narrower than SH0ES range (-0.2 to -0.5 mag/dex)
 
 **File:** Derived in manuscript text (§4.4), values in `data/tension_evolution.csv`
