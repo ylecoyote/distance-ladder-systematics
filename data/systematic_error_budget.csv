@@ -6,7 +6,7 @@
 Error_Source,SH0ES_Estimate_km_s_Mpc,Our_Assessment_km_s_Mpc,Confidence_Level,Notes,References
 Parallax_Zero_Point,0.3,0.3,High,"Scenario A (baseline): adopt SH0ES internal fit with residual uncertainty; Scenario B: 1.0 with external Gaia prior","Riess+ 2022; Peer Review M1"
 Period_Distribution,0.0,1.0,High,"Explicit bracket [-1.5, -3.5] km/s/Mpc; mid-range correction -2.5; uncertainty ±1.0","Peer Review M1; calculate_period_distribution_correction.py"
-Metallicity_Correction,0.4,0.5,High,"Prior 1 (2025 consensus): γ=-0.2±0.1; uncertainty 0.5; Prior 2: 0.7; Prior 3: 0.5","Peer Review M1; 2025 literature consensus"
+Metallicity_Correction,0.4,0.5,High,"Prior 1 (consensus baseline): γ=-0.2±0.1; uncertainty 0.5; Prior 2: 0.7; Prior 3: 0.5","Peer Review M1; metallicity consensus baseline"
 Crowding_Direct,0.5,0.3,High,"SH0ES JWST validation shows no systematic bias (-0.01±0.03 mag)","Riess+ 2024 JWST"
 Crowding_Covariant,0.0,0.0,Removed,"Removed as standalone term per peer review; retained only through correlation structure","Peer Review M1; JWST constraints"
 Photometric_Calibration,0.3,0.3,High,"Well-controlled with HST standards","Riess+ 2022"
