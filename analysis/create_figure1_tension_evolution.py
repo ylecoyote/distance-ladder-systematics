@@ -123,7 +123,6 @@ def create_tension_evolution_figure():
                alpha=0.5, label='3σ threshold')
 
     # Formatting
-    ax.set_xlabel('Stage', fontsize=12, fontweight='bold')
     ax.set_ylabel('H₀ (km s⁻¹ Mpc⁻¹)', fontsize=12, fontweight='bold')
     ax.set_title('Tension Evolution: Progressive Reduction Through Realistic Systematics',
                 fontsize=14, fontweight='bold', pad=20)
