@@ -22,6 +22,8 @@ from pathlib import Path
 import argparse
 import yaml
 
+PYTHON = sys.executable
+
 # Load figure scripts and expected outputs from YAML contract
 # This eliminates the "shadow config" and ensures single source of truth
 def load_targets_from_contract():
@@ -72,7 +74,7 @@ def run_script(script_path, verbose=True):
 
     try:
         result = subprocess.run(
-            ['python3', script_path],
+            [PYTHON, script_path],
             capture_output=True,
             text=True,
             check=True,
@@ -251,7 +253,7 @@ def main():
 
         try:
             verify_result = subprocess.run(
-                ['python3', 'analysis/verify_manuscript_consistency.py'],
+                [PYTHON, 'analysis/verify_manuscript_consistency.py'],
                 capture_output=True,
                 text=True,
                 timeout=10

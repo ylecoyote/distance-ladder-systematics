@@ -1,37 +1,46 @@
 #!/usr/bin/env python3
 """
-Calculate Tension Evolution: Step-by-Step Corrections
+Calculate Tension Evolution: Step-by-Step Corrections (Scenario A + Prior 1 Baseline)
 
-Shows how H₀ tension reduces from 5.6σ (SH0ES claim) to ~2σ (realistic assessment)
-as we apply systematic corrections.
+Shows how H₀ tension reduces from 5.9σ to 1.1σ as we apply systematic corrections.
+
+Values must match manuscript (manuscript.tex §3.2) and YAML contract
+(config/numerical_claims.yaml → tension_evolution).
+
+Scenario A + Prior 1 baseline:
+  - Stage 1: Statistical only (H₀ = 73.04, σ = 0.80)
+  - Stage 2: quoted SH0ES systematic budget + statistical uncertainty (H₀ = 73.04, σ = 1.31)
+  - Stage 3: Scenario A parallax ZP — no bias correction (H₀ = 73.04, σ = 1.31)
+  - Stage 4: Period distribution correction −2.5 km/s/Mpc (H₀ = 70.54, σ = 1.65)
+  - Stage 5: Metallicity −1.0 + realistic correlated σ_sys (H₀ = 69.54, σ = 1.89)
 
 Author: Distance Ladder Systematics Project
-Date: October 22, 2025
 """
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 import json
+from pathlib import Path
 
 # =============================================================================
-# Constants
+# Constants (from manuscript and YAML contract)
 # =============================================================================
 
-H0_SHOES_2024 = 73.17  # km/s/Mpc (SH0ES 2024, Riess et al.)
-H0_PLANCK = 67.36  # km/s/Mpc (Planck 2018 + ΛCDM)
-SIGMA_PLANCK = 0.54  # km/s/Mpc
+H0_SHOES = 73.04       # km/s/Mpc (SH0ES 2022, Riess et al.)
+H0_PLANCK = 67.36      # km/s/Mpc (Planck 2018 + ΛCDM)
+SIGMA_PLANCK = 0.54    # km/s/Mpc
 
 # SH0ES uncertainties
-SIGMA_SHOES_STAT = 0.80  # km/s/Mpc (statistical)
-SIGMA_SHOES_SYS = 1.04  # km/s/Mpc (systematic, claimed)
+SIGMA_SHOES_STAT = 0.80   # km/s/Mpc (statistical)
+SIGMA_SHOES_SYS = 1.04    # km/s/Mpc (systematic, claimed)
 
-# Our systematics assessment (from error budget)
-SIGMA_PARALLAX = 1.0  # km/s/Mpc
-SIGMA_PERIOD = 1.0  # km/s/Mpc
-SIGMA_METALLICITY = 1.0  # km/s/Mpc (mid-range of 0.5-1.5)
-SIGMA_CROWDING = 1.5  # km/s/Mpc (covariant effects)
+# Bias corrections (Scenario A + Prior 1 baseline)
+PARALLAX_CORRECTION = 0.0    # Scenario A: adopt SH0ES internal ZP, no bias correction
+PERIOD_CORRECTION = -2.5     # mid-range of bracket [−1.5, −3.5] km/s/Mpc
+METALLICITY_CORRECTION = -1.0  # Prior 1: γ = −0.2 ± 0.1, Δ[Fe/H] = +0.15
+
+# Our systematic assessment (Scenario A + Prior 1, correlated)
+SIGMA_SYS_CORR = 1.71   # km/s/Mpc (from 9×9 correlated error budget)
 
 # =============================================================================
 # Helper Functions
@@ -48,95 +57,77 @@ def quadrature(*args):
     return np.sqrt(sum(x**2 for x in args))
 
 # =============================================================================
-# Tension Evolution Calculation
+# Tension Evolution: 5 Stages (Scenario A + Prior 1)
 # =============================================================================
 
 print("=" * 80)
-print("TENSION EVOLUTION: STEP-BY-STEP ANALYSIS")
+print("TENSION EVOLUTION: SCENARIO A + PRIOR 1 BASELINE")
 print("=" * 80)
 print()
 
-# Step 0: Baseline (SH0ES claim using statistical uncertainty only)
-sigma_shoes_stat_only = SIGMA_SHOES_STAT
-tension_baseline_stat = calculate_tension(H0_SHOES_2024, sigma_shoes_stat_only)
+# Stage 1: Baseline (statistical only)
+h0_s1 = H0_SHOES
+sigma_s1 = SIGMA_SHOES_STAT
+tension_s1 = calculate_tension(h0_s1, sigma_s1)
 
-print("STEP 0: BASELINE (SH0ES Statistical Uncertainty Only)")
-print("-" * 80)
-print(f"H₀ (SH0ES):        {H0_SHOES_2024:.2f} ± {sigma_shoes_stat_only:.2f} km/s/Mpc (stat only)")
-print(f"H₀ (Planck):       {H0_PLANCK:.2f} ± {SIGMA_PLANCK:.2f} km/s/Mpc")
-print(f"Tension:           {tension_baseline_stat:.1f}σ")
-print(f"                   ^ This is what SH0ES claims: '5-6σ tension'")
-print("-" * 80)
+print(f"Stage 1: Statistical only")
+print(f"  H₀ = {h0_s1:.2f} ± {sigma_s1:.2f} km/s/Mpc")
+print(f"  Tension = {tension_s1:.1f}σ")
 print()
 
-# Step 1: Include SH0ES systematic uncertainties
-sigma_shoes_total = quadrature(SIGMA_SHOES_STAT, SIGMA_SHOES_SYS)
-tension_shoes_total = calculate_tension(H0_SHOES_2024, sigma_shoes_total)
+# Stage 2: SH0ES total uncertainty (stat + sys in quadrature)
+h0_s2 = H0_SHOES
+sigma_s2 = quadrature(SIGMA_SHOES_STAT, SIGMA_SHOES_SYS)  # sqrt(0.80² + 1.04²) = 1.31
+tension_s2 = calculate_tension(h0_s2, sigma_s2)
 
-print("STEP 1: SH0ES Total Uncertainty (stat + sys)")
-print("-" * 80)
-print(f"H₀ (SH0ES):        {H0_SHOES_2024:.2f} ± {sigma_shoes_total:.2f} km/s/Mpc")
-print(f"Tension:           {tension_shoes_total:.1f}σ")
-print(f"Reduction:         {tension_baseline_stat:.1f}σ → {tension_shoes_total:.1f}σ")
-print("-" * 80)
+print(f"Stage 2: quoted SH0ES systematic budget + statistical uncertainty")
+print(f"  H₀ = {h0_s2:.2f} ± {sigma_s2:.2f} km/s/Mpc")
+print(f"  Tension = {tension_s2:.1f}σ")
 print()
 
-# Step 2: Apply parallax correction
-H0_after_parallax = H0_SHOES_2024 - SIGMA_PARALLAX
-sigma_after_parallax = quadrature(SIGMA_SHOES_STAT, SIGMA_SHOES_SYS)  # Same uncertainty
-tension_after_parallax = calculate_tension(H0_after_parallax, sigma_after_parallax)
+# Stage 3: Scenario A parallax — no bias correction, same uncertainty
+h0_s3 = H0_SHOES + PARALLAX_CORRECTION  # 73.04 + 0.0 = 73.04
+sigma_s3 = sigma_s2  # unchanged
+tension_s3 = calculate_tension(h0_s3, sigma_s3)
 
-print("STEP 2: After Parallax Zero Point Correction")
-print("-" * 80)
-print(f"Correction:        -{SIGMA_PARALLAX:.2f} km/s/Mpc (Dec 2024 finding)")
-print(f"H₀ (corrected):    {H0_after_parallax:.2f} ± {sigma_after_parallax:.2f} km/s/Mpc")
-print(f"Tension:           {tension_after_parallax:.1f}σ")
-print(f"Reduction:         {tension_shoes_total:.1f}σ → {tension_after_parallax:.1f}σ")
-print("-" * 80)
+print(f"Stage 3: Scenario A parallax (no bias correction)")
+print(f"  H₀ = {h0_s3:.2f} ± {sigma_s3:.2f} km/s/Mpc")
+print(f"  Tension = {tension_s3:.1f}σ")
 print()
 
-# Step 3: Apply period distribution correction
-H0_after_period = H0_after_parallax - SIGMA_PERIOD
-sigma_after_period = sigma_after_parallax  # Same uncertainty
-tension_after_period = calculate_tension(H0_after_period, sigma_after_period)
+# Stage 4: Period distribution correction
+h0_s4 = h0_s3 + PERIOD_CORRECTION  # 73.04 − 2.5 = 70.54
+# Uncertainty grows: add period correction uncertainty (±1.0) in quadrature
+sigma_s4 = quadrature(SIGMA_SHOES_STAT, SIGMA_SHOES_SYS, 1.0)  # sqrt(0.80² + 1.04² + 1.0²) = 1.65
+tension_s4 = calculate_tension(h0_s4, sigma_s4)
 
-print("STEP 3: After Period Distribution Correction")
-print("-" * 80)
-print(f"Correction:        -{SIGMA_PERIOD:.2f} km/s/Mpc (Dec 2024, p < 0.001)")
-print(f"H₀ (corrected):    {H0_after_period:.2f} ± {sigma_after_period:.2f} km/s/Mpc")
-print(f"Tension:           {tension_after_period:.1f}σ")
-print(f"Reduction:         {tension_after_parallax:.1f}σ → {tension_after_period:.1f}σ")
-print("-" * 80)
+print(f"Stage 4: After period distribution correction ({PERIOD_CORRECTION:+.1f} km/s/Mpc)")
+print(f"  H₀ = {h0_s4:.2f} ± {sigma_s4:.2f} km/s/Mpc")
+print(f"  Tension = {tension_s4:.1f}σ")
 print()
 
-# Step 4: Apply metallicity correction + realistic systematic uncertainty
-H0_after_metallicity = H0_after_period - SIGMA_METALLICITY
-sigma_realistic = quadrature(SIGMA_SHOES_STAT, SIGMA_PARALLAX, SIGMA_PERIOD,
-                              SIGMA_METALLICITY, SIGMA_CROWDING)
-tension_after_metallicity = calculate_tension(H0_after_metallicity, sigma_realistic)
+# Stage 5: Metallicity correction + realistic correlated systematics
+h0_s5 = h0_s4 + METALLICITY_CORRECTION  # 70.54 − 1.0 = 69.54
+# Replace SH0ES systematics with our correlated assessment
+sigma_s5 = quadrature(SIGMA_SHOES_STAT, SIGMA_SYS_CORR)  # sqrt(0.80² + 1.71²) = 1.89
+tension_s5 = calculate_tension(h0_s5, sigma_s5)
 
-print("STEP 4: After Metallicity Correction + Realistic Systematics")
-print("-" * 80)
-print(f"Correction:        -{SIGMA_METALLICITY:.2f} km/s/Mpc (mid-range estimate)")
-print(f"H₀ (final):        {H0_after_metallicity:.2f} ± {sigma_realistic:.2f} km/s/Mpc")
-print(f"Realistic σ_sys:   {quadrature(SIGMA_PARALLAX, SIGMA_PERIOD, SIGMA_METALLICITY, SIGMA_CROWDING):.2f} km/s/Mpc")
-print(f"Tension:           {tension_after_metallicity:.1f}σ")
-print(f"Reduction:         {tension_after_period:.1f}σ → {tension_after_metallicity:.1f}σ")
-print("-" * 80)
+print(f"Stage 5: After metallicity correction ({METALLICITY_CORRECTION:+.1f} km/s/Mpc) + realistic σ_sys")
+print(f"  H₀ = {h0_s5:.2f} ± {sigma_s5:.2f} km/s/Mpc")
+print(f"  σ_sys,corr = {SIGMA_SYS_CORR:.2f} km/s/Mpc")
+print(f"  Tension = {tension_s5:.1f}σ")
 print()
 
 # =============================================================================
 # Summary
 # =============================================================================
 
-print("SUMMARY:")
 print("=" * 80)
-print(f"Original SH0ES claim:      {tension_baseline_stat:.1f}σ (using stat uncertainty only)")
-print(f"With SH0ES total σ:        {tension_shoes_total:.1f}σ")
-print(f"After all corrections:     {tension_after_metallicity:.1f}σ")
-print()
-print(f"Overall reduction:         {tension_baseline_stat:.1f}σ → {tension_after_metallicity:.1f}σ")
-print(f"Factor reduction:          {tension_baseline_stat/tension_after_metallicity:.1f}×")
+print("SUMMARY")
+print("=" * 80)
+print(f"  Tension reduction: {tension_s1:.1f}σ → {tension_s5:.1f}σ")
+print(f"  Factor:            {tension_s1/tension_s5:.1f}×")
+print(f"  Corrected H₀:     {h0_s5:.2f} ± {sigma_s5:.2f} km/s/Mpc")
 print("=" * 80)
 print()
 
@@ -144,92 +135,73 @@ print()
 # Save Results
 # =============================================================================
 
+data_dir = Path(__file__).parent.parent / "data"
+
+# CSV
 evolution_data = pd.DataFrame({
     'Stage': [
-        'Baseline (stat only)',
-        'SH0ES total σ',
-        'After parallax',
-        'After period',
+        'Statistical only',
+        'Quoted SH0ES sys. + stat.',
+        'Scenario A parallax',
+        'After period distribution',
         'After metallicity + realistic σ'
     ],
-    'H0_km_s_Mpc': [
-        H0_SHOES_2024,
-        H0_SHOES_2024,
-        H0_after_parallax,
-        H0_after_period,
-        H0_after_metallicity
-    ],
-    'Sigma_km_s_Mpc': [
-        sigma_shoes_stat_only,
-        sigma_shoes_total,
-        sigma_after_parallax,
-        sigma_after_period,
-        sigma_realistic
-    ],
-    'Tension_sigma': [
-        tension_baseline_stat,
-        tension_shoes_total,
-        tension_after_parallax,
-        tension_after_period,
-        tension_after_metallicity
-    ],
+    'H0_km_s_Mpc': [h0_s1, h0_s2, h0_s3, h0_s4, h0_s5],
+    'Sigma_km_s_Mpc': [sigma_s1, sigma_s2, sigma_s3, sigma_s4, sigma_s5],
+    'Tension_sigma': [tension_s1, tension_s2, tension_s3, tension_s4, tension_s5],
     'Description': [
-        'SH0ES 2024 statistical uncertainty only',
-        'SH0ES total (stat + sys)',
-        'Parallax zero point corrected',
-        'Period distribution corrected',
-        'Metallicity corrected, realistic systematics'
+        'Baseline SH0ES H₀ with statistical uncertainty only',
+        'Reconstructed from SH0ES statistical uncertainty plus quoted systematic budget',
+        'Scenario A: adopt SH0ES internal parallax ZP, no bias correction',
+        'Period distribution correction −2.5 km/s/Mpc (mid-range of bracket)',
+        'Metallicity correction −1.0 km/s/Mpc (Prior 1) + realistic correlated σ_sys = 1.71'
     ]
 })
 
-data_dir = Path(__file__).parent.parent / "data"
-output_file = data_dir / "tension_evolution.csv"
-evolution_data.to_csv(output_file, index=False)
-print(f"Results saved to: {output_file}")
+csv_path = data_dir / "tension_evolution.csv"
+evolution_data.to_csv(csv_path, index=False)
+print(f"CSV saved to: {csv_path}")
 
-# Save JSON summary for verification system
+# JSON summary
 summary_data = {
     "metric": "tension_evolution",
-    "initial_tension": round(tension_baseline_stat, 2),
-    "final_tension": round(tension_after_metallicity, 2),
-    "reduction_factor": round(tension_baseline_stat/tension_after_metallicity, 2),
+    "scenario": "Scenario A + Prior 1 (baseline)",
+    "initial_tension": round(tension_s1, 2),
+    "final_tension": round(tension_s5, 2),
+    "reduction_factor": round(tension_s1 / tension_s5, 2),
     "stages": {
-        "1": {"h0": round(H0_SHOES_2024, 2), "sigma": round(sigma_shoes_stat_only, 2)},
-        "5": {"h0": round(H0_after_metallicity, 2), "sigma": round(sigma_realistic, 2)}
+        "1": {"name": "Statistical only", "h0": round(h0_s1, 2), "sigma": round(sigma_s1, 2), "tension": round(tension_s1, 2)},
+        "2": {"name": "Quoted SH0ES sys. + stat.", "h0": round(h0_s2, 2), "sigma": round(sigma_s2, 2), "tension": round(tension_s2, 2)},
+        "3": {"name": "Scenario A parallax", "h0": round(h0_s3, 2), "sigma": round(sigma_s3, 2), "tension": round(tension_s3, 2)},
+        "4": {"name": "Period distribution", "h0": round(h0_s4, 2), "sigma": round(sigma_s4, 2), "tension": round(tension_s4, 2)},
+        "5": {"name": "Metallicity + realistic σ", "h0": round(h0_s5, 2), "sigma": round(sigma_s5, 2), "tension": round(tension_s5, 2)}
     }
 }
 
-json_output = data_dir / "tension_evolution_summary.json"
-with open(json_output, 'w') as f:
+json_path = data_dir / "tension_evolution_summary.json"
+with open(json_path, 'w') as f:
     json.dump(summary_data, f, indent=2)
-print(f"JSON summary saved to: {json_output}")
+print(f"JSON saved to: {json_path}")
 print()
 
 # =============================================================================
-# Comparison with TRGB/JAGB
+# Comparison with Alternative Distance Indicators
 # =============================================================================
 
 H0_TRGB = 69.85
 SIGMA_TRGB = 2.33
 H0_JAGB = 67.96
 SIGMA_JAGB = 2.65
+H0_CC = 68.33
+SIGMA_CC = 1.57
 
 print("COMPARISON WITH ALTERNATIVE DISTANCE INDICATORS:")
 print("=" * 80)
-print(f"Corrected Cepheid: {H0_after_metallicity:.2f} ± {sigma_realistic:.2f} km/s/Mpc")
-print(f"CCHP TRGB:         {H0_TRGB:.2f} ± {SIGMA_TRGB:.2f} km/s/Mpc")
-print(f"CCHP JAGB:         {H0_JAGB:.2f} ± {SIGMA_JAGB:.2f} km/s/Mpc")
-print(f"Planck:            {H0_PLANCK:.2f} ± {SIGMA_PLANCK:.2f} km/s/Mpc")
-print()
-
-ceph_trgb_diff = abs(H0_after_metallicity - H0_TRGB)
-ceph_jagb_diff = abs(H0_after_metallicity - H0_JAGB)
-ceph_planck_diff = abs(H0_after_metallicity - H0_PLANCK)
-
-print(f"Corrected Cepheid vs TRGB:   {ceph_trgb_diff:.2f} km/s/Mpc ({ceph_trgb_diff/H0_TRGB*100:.1f}%)")
-print(f"Corrected Cepheid vs JAGB:   {ceph_jagb_diff:.2f} km/s/Mpc ({ceph_jagb_diff/H0_JAGB*100:.1f}%)")
-print(f"Corrected Cepheid vs Planck: {ceph_planck_diff:.2f} km/s/Mpc ({ceph_planck_diff/H0_PLANCK*100:.1f}%)")
+print(f"  Corrected Cepheid: {h0_s5:.2f} ± {sigma_s5:.2f} km/s/Mpc")
+print(f"  CCHP TRGB:         {H0_TRGB:.2f} ± {SIGMA_TRGB:.2f} km/s/Mpc  (Δ = {abs(h0_s5 - H0_TRGB):.2f}, {abs(h0_s5 - H0_TRGB)/np.sqrt(sigma_s5**2 + SIGMA_TRGB**2):.1f}σ)")
+print(f"  CCHP JAGB:         {H0_JAGB:.2f} ± {SIGMA_JAGB:.2f} km/s/Mpc  (Δ = {abs(h0_s5 - H0_JAGB):.2f}, {abs(h0_s5 - H0_JAGB)/np.sqrt(sigma_s5**2 + SIGMA_JAGB**2):.1f}σ)")
+print(f"  Cosmic Chron.:     {H0_CC:.2f} ± {SIGMA_CC:.2f} km/s/Mpc  (Δ = {abs(h0_s5 - H0_CC):.2f}, {abs(h0_s5 - H0_CC)/np.sqrt(sigma_s5**2 + SIGMA_CC**2):.1f}σ)")
+print(f"  Planck:            {H0_PLANCK:.2f} ± {SIGMA_PLANCK:.2f} km/s/Mpc  (Δ = {abs(h0_s5 - H0_PLANCK):.2f}, {tension_s5:.1f}σ)")
 print("=" * 80)
 print()
-
 print("ANALYSIS COMPLETE")

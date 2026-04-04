@@ -27,6 +27,7 @@ Version: 2.0 (Refactored with YAML-first architecture)
 from __future__ import annotations
 import argparse
 import json
+import re
 import sys
 import time
 from dataclasses import dataclass, asdict
@@ -51,6 +52,7 @@ DATA_DIR = ROOT / "data"
 FIGURES_DIR = ROOT / "figures"
 ANALYSIS_DIR = ROOT / "analysis"
 DOCS_DIR = ROOT / "docs"
+MANUSCRIPT_DIR = ROOT / "manuscript"
 
 CLAIMS_FILE = CONFIG_DIR / "numerical_claims.yaml"
 
@@ -402,6 +404,82 @@ def check_tension_csv(claims: Dict) -> CheckResult:
 
 
 # =============================================================================
+# Check #1b: Tension Evolution Table Consistency
+# =============================================================================
+
+@framework.register_check(
+    id="TENSION_002",
+    name="Tension evolution table vs CSV",
+    category="tension",
+    severity="ERROR"
+)
+def check_tension_table(claims: Dict) -> CheckResult:
+    """Verify the manuscript table fragment matches the tension CSV."""
+
+    if not HAS_ANALYSIS_LIBS:
+        return CheckResult(
+            id="TENSION_002",
+            name="Tension evolution table vs CSV",
+            category="tension",
+            severity="ERROR",
+            passed=False,
+            details="pandas not available",
+            hint="Install pandas: pip install pandas"
+        )
+
+    csv_path = DATA_DIR / "tension_evolution.csv"
+    table_path = DATA_DIR / "tables" / "table2_tension_evolution.tex"
+
+    if not csv_path.exists() or not table_path.exists():
+        missing = []
+        if not csv_path.exists():
+            missing.append(str(csv_path))
+        if not table_path.exists():
+            missing.append(str(table_path))
+        return CheckResult(
+            id="TENSION_002",
+            name="Tension evolution table vs CSV",
+            category="tension",
+            severity="ERROR",
+            passed=False,
+            details="Missing required file(s): " + ", ".join(missing),
+            hint="Regenerate the table and CSV products"
+        )
+
+    df = pd.read_csv(csv_path, comment="#")
+    table_text = table_path.read_text(encoding="utf-8")
+
+    mismatches = []
+    for idx, (_, row) in enumerate(df.iterrows(), start=1):
+        expected_fragment = (
+            f"{idx} & {row['H0_km_s_Mpc']:.2f} & {row['Sigma_km_s_Mpc']:.2f} & "
+            f"{row['Tension_sigma']:.1f}$\\sigma$"
+        )
+        if expected_fragment not in table_text:
+            mismatches.append(expected_fragment)
+
+    if mismatches:
+        return CheckResult(
+            id="TENSION_002",
+            name="Tension evolution table vs CSV",
+            category="tension",
+            severity="ERROR",
+            passed=False,
+            details=f"Found {len(mismatches)} table mismatches; example expected fragment: {mismatches[0]}",
+            hint="Run: python3 analysis/create_manuscript_tables.py"
+        )
+
+    return CheckResult(
+        id="TENSION_002",
+        name="Tension evolution table vs CSV",
+        category="tension",
+        severity="ERROR",
+        passed=True,
+        details="table2_tension_evolution.tex matches tension_evolution.csv"
+    )
+
+
+# =============================================================================
 # Check #2: Systematic Budget Quadrature Sums
 # =============================================================================
 
@@ -544,6 +622,83 @@ def check_h0_compilation(claims: Dict) -> CheckResult:
 
 
 # =============================================================================
+# Check #3b: H0 Compilation Table Consistency
+# =============================================================================
+
+@framework.register_check(
+    id="H0_COMP_002",
+    name="H0 compilation table vs CSV",
+    category="h0_compilation",
+    severity="WARNING"
+)
+def check_h0_compilation_table(claims: Dict) -> CheckResult:
+    """Verify the Table 3 fragment matches the H0 compilation CSV for key rows."""
+
+    if not HAS_ANALYSIS_LIBS:
+        return CheckResult(
+            id="H0_COMP_002",
+            name="H0 compilation table vs CSV",
+            category="h0_compilation",
+            severity="WARNING",
+            passed=True,
+            details="pandas not available (check skipped)"
+        )
+
+    csv_path = DATA_DIR / "h0_measurements_compilation.csv"
+    table_path = DATA_DIR / "tables" / "table3_h0_compilation.tex"
+    if not csv_path.exists() or not table_path.exists():
+        return CheckResult(
+            id="H0_COMP_002",
+            name="H0 compilation table vs CSV",
+            category="h0_compilation",
+            severity="WARNING",
+            passed=False,
+            details="Missing H0 compilation CSV or table fragment",
+            hint="Regenerate the compilation and manuscript tables"
+        )
+
+    df = pd.read_csv(csv_path, comment="#").set_index("Method")
+    table_text = table_path.read_text(encoding="utf-8")
+
+    methods_to_check = [
+        "SH0ES Cepheid",
+        "TRGB",
+        "JAGB",
+        "Cosmic Chronometers (H(z))",
+        "Planck CMB",
+        "JAGB + Cosmic Chron.",
+        "Weighted Mean",
+    ]
+
+    mismatches = []
+    for method in methods_to_check:
+        row = df.loc[method]
+        expected_fragment = f"{method} & {row['H0_km_s_Mpc']:.2f} & {row['Sigma_km_s_Mpc']:.2f}"
+        if expected_fragment not in table_text:
+            mismatches.append(expected_fragment)
+
+    if mismatches:
+        return CheckResult(
+            id="H0_COMP_002",
+            name="H0 compilation table vs CSV",
+            category="h0_compilation",
+            severity="WARNING",
+            passed=False,
+            details=f"Found {len(mismatches)} table mismatches; example expected fragment: {mismatches[0]}",
+            hint="Run: python3 analysis/create_manuscript_tables.py"
+        )
+
+    return CheckResult(
+        id="H0_COMP_002",
+        name="H0 compilation table vs CSV",
+        category="h0_compilation",
+        severity="WARNING",
+        passed=True,
+        details="table3_h0_compilation.tex matches h0_measurements_compilation.csv"
+    )
+
+
+# =============================================================================
 # Check #4: Figure Metadata Consistency
 # =============================================================================
 
@@ -588,17 +743,31 @@ def check_figure_metadata(claims: Dict) -> CheckResult:
         with open(metadata_path) as f:
             metadata = json.load(f)
 
-        # Verify key values
+        # Verify key values. Support both the older nested metadata shape and the
+        # current flat scalar shape emitted by the figure generators.
         if 'key_values' in metadata:
-            ratio_uncorr = metadata['key_values'].get('ratio_uncorrelated', {}).get('value')
-            ratio_baseline = metadata['key_values'].get('ratio_baseline', {}).get('value')
+            key_values = metadata['key_values']
 
-            if ratio_uncorr and abs(ratio_uncorr - expected_ratio_min) > tolerance_ratio:
+            def read_ratio(*names: str) -> Optional[float]:
+                for name in names:
+                    value = key_values.get(name)
+                    if isinstance(value, dict):
+                        nested = value.get('value')
+                        if nested is not None:
+                            return float(nested)
+                    elif value is not None:
+                        return float(value)
+                return None
+
+            ratio_uncorr = read_ratio('ratio_uncorrelated', 'uncorrelated_ratio_rho_0')
+            ratio_baseline = read_ratio('ratio_baseline', 'ratio_nominal_rho_0_3', 'baseline_ratio_rho_0_3')
+
+            if ratio_uncorr is not None and abs(ratio_uncorr - expected_ratio_min) > tolerance_ratio:
                 issues.append(
                     f"{fig['filename']}: ratio_uncorrelated={ratio_uncorr:.2f}, expected={expected_ratio_min:.2f}"
                 )
 
-            if ratio_baseline and abs(ratio_baseline - expected_ratio_max) > tolerance_ratio:
+            if ratio_baseline is not None and abs(ratio_baseline - expected_ratio_max) > tolerance_ratio:
                 issues.append(
                     f"{fig['filename']}: ratio_baseline={ratio_baseline:.2f}, expected={expected_ratio_max:.2f}"
                 )
@@ -691,6 +860,65 @@ def check_package_integrity(claims: Dict) -> CheckResult:
             passed=True,
             details=f"All {len(required_figures)} required figures present and current"
         )
+
+
+# =============================================================================
+# Check #6: Manuscript Asset Paths
+# =============================================================================
+
+@framework.register_check(
+    id="MANUSCRIPT_001",
+    name="Manuscript asset paths resolve locally",
+    category="manuscript",
+    severity="ERROR"
+)
+def check_manuscript_asset_paths(claims: Dict) -> CheckResult:
+    """Verify includegraphics/input paths resolve relative to manuscript/manuscript.tex."""
+
+    manuscript_path = MANUSCRIPT_DIR / "manuscript.tex"
+    if not manuscript_path.exists():
+        return CheckResult(
+            id="MANUSCRIPT_001",
+            name="Manuscript asset paths resolve locally",
+            category="manuscript",
+            severity="ERROR",
+            passed=False,
+            details=f"Missing manuscript source: {manuscript_path}",
+            hint="Restore manuscript/manuscript.tex"
+        )
+
+    text = manuscript_path.read_text(encoding="utf-8")
+    patterns = [
+        r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}",
+        r"\\input\{([^}]+)\}",
+    ]
+
+    missing = []
+    for pattern in patterns:
+        for rel_path in re.findall(pattern, text):
+            resolved = (manuscript_path.parent / rel_path).resolve()
+            if not resolved.exists():
+                missing.append(rel_path)
+
+    if missing:
+        return CheckResult(
+            id="MANUSCRIPT_001",
+            name="Manuscript asset paths resolve locally",
+            category="manuscript",
+            severity="ERROR",
+            passed=False,
+            details=f"Unresolved asset paths: {', '.join(missing[:4])}",
+            hint="Fix manuscript include paths or regenerate missing assets"
+        )
+
+    return CheckResult(
+        id="MANUSCRIPT_001",
+        name="Manuscript asset paths resolve locally",
+        category="manuscript",
+        severity="ERROR",
+        passed=True,
+        details="All includegraphics/input paths resolve from manuscript/manuscript.tex"
+    )
 
 
 # =============================================================================

@@ -1,14 +1,14 @@
-# H₀ Measurement Compilation and Multi-Method Convergence
+# H0 Measurement Compilation and Multi-Method Convergence
 # Data sources: Planck 2018, SH0ES 2022, CCHP 2025, cosmic chronometers (this work)
-# Key result: Three-method convergence (JAGB + CC + Planck) → H₀ = 67.48 ± 0.50 km/s/Mpc
-# Columns: Method, H0_km_s_Mpc, Sigma_km_s_Mpc, Category, Shares_Systematics_With_Cepheid
-# Last updated: 2025-11-19 (v8.7)
+# Key result: Three-method convergence (JAGB + CC + Planck) -> H0 = 67.48 +/- 0.50 km/s/Mpc
+# SH0ES row uses the published Riess et al. 2022 uncertainty; tension evolution uses a separate
+# internal reconstruction built from statistical and quoted systematic components.
 Method,H0_km_s_Mpc,Sigma_km_s_Mpc,Category,Shares_Systematics_With_Cepheid
 Planck CMB,67.36,0.54,Early Universe,False
-Weighted Mean,67.4812658240218,0.5012579612451308,Convergence,False
+Weighted Mean,67.48126582373727,0.5012579613289593,Convergence,False
 JAGB,67.96,2.65,Distance Ladder,False
-Cosmic Chronometers (H(z)),68.33304818689737,1.565189398251633,Model-Independent,False
+Cosmic Chronometers (H(z)),68.33304818690101,1.5651894008037965,Model-Independent,False
 JAGB + Cosmic Chron.,68.22,1.36,Planck-Independent,False
 Corrected Cepheid (Scenario A + Prior 1),69.54,1.89,Distance Ladder,True
 TRGB,69.85,2.33,Distance Ladder,False
-SH0ES Cepheid,73.04,1.31,Distance Ladder,True
+SH0ES Cepheid,73.04,1.04,Distance Ladder,True

@@ -234,7 +234,7 @@ def main():
     print()
 
     # Impact on tension
-    H0_SHOES = 73.17  # km/s/Mpc (SH0ES 2022, with stat unc)
+    H0_SHOES = 73.04  # km/s/Mpc (Riess et al. 2022, consistent with manuscript)
     H0_PLANCK = 67.36  # km/s/Mpc (Planck 2018)
     SIGMA_PLANCK = 0.54  # km/s/Mpc
 

@@ -1,12 +1,15 @@
 Metric,Value
-SH0ES σ_sys,1.04 km/s/Mpc
-Our Assessment σ_sys,1.45 km/s/Mpc
-Ratio (Ours/SH0ES),1.39×
-Statistical σ_stat,0.80 km/s/Mpc
-SH0ES σ_total,1.31 km/s/Mpc
-Our Assessment σ_total,1.66 km/s/Mpc
-SH0ES H₀,73.04 ± 1.31 km/s/Mpc
-Tension (SH0ES σ),4.0σ
-Tension (realistic σ),3.3σ
-Corrected H₀,71.88 ± 0.85 km/s/Mpc
-Tension (corrected),4.5σ
+SH0ES σ_sys (uncorrelated),1.0392304845413265
+SH0ES σ_sys (correlated),1.2505998560690785
+Our σ_sys (uncorrelated),1.449137674618944
+Our σ_sys (correlated),1.7131841699011814
+Correlation inflation factor,1.1822093924593255
+Statistical σ_stat,0.8
+SH0ES σ_total,1.3114877048604003
+Our σ_total (uncorrelated),1.6552945357246849
+Our σ_total (correlated),1.8907670401189038
+Corrected H₀,69.54
+Tension vs Planck (SH0ES σ_total),4.004769477051949
+Tension vs Planck (realistic σ only),2.8885754270442927
+Tension vs Planck (corrected baseline),1.1086433857317906
+Tension vs JAGB+CC (corrected baseline),0.5667480981025008

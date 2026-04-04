@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Generate Figure 5: H(z) Cosmic Chronometer Fit with Intrinsic Scatter
+Generate Figure 5: H(z) Cosmic Chronometer Fit with Error Rescaling
 
-Addresses Peer Review Issue #5: χ²_red < 1 by adding intrinsic scatter term
-to achieve χ²_red ≈ 1, following methodology from Perplexity research.
+Addresses Peer Review Issue #5: chi2_red < 1 by rescaling the quoted errors
+to achieve chi2_red ~= 1.
 
 Data source: pcm-exploration cosmic chronometer data
 Output: figures/figure5_h6_fit.png (publication quality)
@@ -52,11 +52,11 @@ def H_LCDM(z, H0, Omega_m=OMEGA_M_PLANCK):
     return H0 * np.sqrt(Omega_m * (1+z)**3 + Omega_Lambda)
 
 # =============================================================================
-# Fit WITHOUT Intrinsic Scatter (Original)
+# Fit WITHOUT Error Rescaling (Original)
 # =============================================================================
 
 print("\n" + "="*80)
-print("FIT 1: WITHOUT INTRINSIC SCATTER (Original)")
+print("FIT 1: WITHOUT ERROR RESCALING (Original)")
 print("="*80)
 
 popt_original, pcov_original = curve_fit(H_LCDM, z, Hz, p0=[70.0],
@@ -76,11 +76,11 @@ print(f"DOF:       {dof}")
 print(f"χ²_red:    {chi2_red_original:.3f}  ← PROBLEM: Well below 1!")
 
 # =============================================================================
-# Fit WITH Intrinsic Scatter (Corrected)
+# Fit WITH Error Rescaling (Corrected)
 # =============================================================================
 
 print("\n" + "="*80)
-print("FIT 2: WITH INTRINSIC SCATTER (Corrected)")
+print("FIT 2: WITH ERROR RESCALING (Corrected)")
 print("="*80)
 
 def fit_with_intrinsic_scatter(sigma_int):
@@ -110,8 +110,8 @@ def fit_with_intrinsic_scatter(sigma_int):
 scale_factor = np.sqrt(chi2_red_original)  # σ_scaled = σ_original × scale_factor
 sigma_Hz_scaled = sigma_Hz * scale_factor
 
-print(f"\nNote: χ²_red < 1 indicates over-estimated errors")
-print(f"Scaling factor: {scale_factor:.3f} (reduces errors to achieve χ²_red = 1)")
+print(f"\nNote: chi2_red < 1 indicates conservative quoted errors")
+print(f"Scaling factor: {scale_factor:.3f} (reduces errors to achieve chi2_red = 1)")
 
 # Refit with scaled errors
 popt_scaled, pcov_scaled = curve_fit(H_LCDM, z, Hz, p0=[70.0],
@@ -124,7 +124,7 @@ Hz_model_scaled = H_LCDM(z, H0_scaled)
 chi2_scaled = np.sum(((Hz - Hz_model_scaled) / sigma_Hz_scaled)**2)
 chi2_red_scaled = chi2_scaled / dof
 
-# For display purposes, treat this as "no intrinsic scatter needed"
+# For display purposes, treat this as an error-rescaling correction
 sigma_intrinsic_optimal = 0.0
 H0_final = H0_scaled
 H0_err_final = H0_err_scaled
@@ -152,7 +152,7 @@ fig = plt.figure(figsize=(12, 8))
 gs = fig.add_gridspec(3, 1, height_ratios=[2, 1, 1], hspace=0.05)
 ax1 = fig.add_subplot(gs[0])  # Main H(z) fit
 ax2 = fig.add_subplot(gs[1], sharex=ax1)  # Residuals (original)
-ax3 = fig.add_subplot(gs[2], sharex=ax1)  # Residuals (with intrinsic scatter)
+ax3 = fig.add_subplot(gs[2], sharex=ax1)  # Residuals (with rescaled errors)
 
 # -----------------------------------------------------------------------------
 # Panel 1: H(z) data and fits
@@ -183,7 +183,7 @@ ax1.plot(z_model, Hz_planck, ':', color='blue', linewidth=2,
         alpha=0.7, label=f'Planck: H₀ = {H0_PLANCK:.2f}')
 
 ax1.set_ylabel('H(z) [km s⁻¹ Mpc⁻¹]', fontsize=12, fontweight='bold')
-ax1.set_title('Cosmic Chronometer H(z) Measurements with Intrinsic Scatter',
+ax1.set_title('Cosmic Chronometer H(z) Measurements with Error Rescaling',
              fontsize=14, fontweight='bold', pad=15)
 ax1.legend(fontsize=9, loc='upper left', framealpha=0.9)
 ax1.grid(alpha=0.3, linestyle='--')
@@ -209,7 +209,7 @@ ax2.tick_params(labelbottom=False)
 ax2.set_ylim(-4, 4)
 
 # -----------------------------------------------------------------------------
-# Panel 3: Residuals (with intrinsic scatter, χ²_red ≈ 1)
+# Panel 3: Residuals (with rescaled errors, χ²_red ≈ 1)
 # -----------------------------------------------------------------------------
 
 residuals_final = (Hz - Hz_model_final) / sigma_total_final
@@ -266,7 +266,7 @@ plt.close()
 # =============================================================================
 
 print("\n" + "="*80)
-print("SUMMARY: ADDRESSING χ²_red < 1 ISSUE")
+print("SUMMARY: ADDRESSING chi2_red < 1 ISSUE")
 print("="*80)
 print(f"Original H₀:         {H0_original:.2f} ± {H0_err_original:.2f} km/s/Mpc  (χ²_red = {chi2_red_original:.2f})")
 print(f"Scaled H₀:           {H0_final:.2f} ± {H0_err_final:.2f} km/s/Mpc  (χ²_red = {chi2_red_final:.2f})")
@@ -274,8 +274,8 @@ print(f"Error scale factor:  {scale_factor:.3f} (reduces errors by factor {1/sca
 print(f"\nCentral value:       UNCHANGED ({abs(H0_final - H0_original):.3f} km/s/Mpc difference)")
 print(f"Uncertainty change:  {H0_err_final - H0_err_original:+.2f} km/s/Mpc ({100*(H0_err_final/H0_err_original - 1):+.0f}%)")
 print(f"\nInterpretation:")
-print(f"  • χ²_red < 1 indicates reported H(z) errors may be conservative")
-print(f"  • Scaling errors to achieve χ²_red = 1 tightens H₀ constraint")
+print(f"  • chi2_red < 1 indicates reported H(z) errors may be conservative")
+print(f"  • Scaling errors to achieve chi2_red = 1 tightens H₀ constraint")
 print(f"  • H₀ ≈ 68.3 km/s/Mpc remains consistent with JAGB and Planck")
 print(f"  • Convergence at 67-68 km/s/Mpc is robust to error treatment")
 print("="*80)

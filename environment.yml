@@ -1,7 +1,7 @@
 # Conda environment specification for Distance Ladder Systematics analysis
 # Reproducibility metadata for manuscript: Forensic Analysis of Distance Ladder Systematics
 # Repository: https://github.com/ylecoyote/distance-ladder-systematics
-# Version: v8.7
+# Version: v8.9
 
 name: distance-ladder-systematics
 channels:

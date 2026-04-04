@@ -1,16 +1,26 @@
 {
   "metric": "systematic_error_budget",
-  "shoes_systematic": 1.04,
-  "our_systematic": 1.45,
-  "ratio": 1.39,
+  "baseline": "Scenario A + Prior 1",
+  "shoes_systematic_uncorrelated": 1.04,
+  "shoes_systematic_correlated": 1.25,
+  "our_systematic_uncorrelated": 1.45,
+  "our_systematic_correlated": 1.71,
+  "correlation_inflation_factor": 1.18,
   "statistical": 0.8,
   "shoes_total": 1.31,
-  "our_total": 1.66,
-  "tensions": {
-    "shoes": 4.0,
-    "realistic": 3.26,
-    "corrected": 4.49
+  "our_total_uncorrelated": 1.66,
+  "our_total_correlated": 1.89,
+  "bias_corrections": {
+    "parallax": 0.0,
+    "period_distribution": -2.5,
+    "metallicity": -1.0
   },
-  "h0_corrected": 71.88,
-  "sigma_corrected": 0.85
+  "tensions": {
+    "shoes_published_sigma": 4.0,
+    "realistic_sigma_only": 2.89,
+    "corrected_baseline_planck": 1.11,
+    "corrected_baseline_jagb_cc": 0.57
+  },
+  "h0_corrected": 69.54,
+  "sigma_corrected": 1.89
 }

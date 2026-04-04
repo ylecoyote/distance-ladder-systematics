@@ -2,15 +2,15 @@
 """
 Random-Effects Cosmic Chronometer H₀ Fit (AWI-176)
 
-Addresses low χ²_red = 0.48 by scaling errors to achieve χ²_red ≈ 1.0,
+Addresses low chi2_red = 0.48 by rescaling quoted errors to achieve chi2_red ~= 1.0,
 demonstrating that H₀ constraint remains robust to error model assumptions.
 
-Low χ²_red can indicate:
+Low chi2_red can indicate:
 1. Conservative quoted uncertainties (data quality good)
 2. Unaccounted correlations between measurements
 3. Overly simple model
 
-Random-effects approach: scale errors to χ²_red ≈ 1 and show H₀ unchanged.
+Random-effects approach: rescale the quoted errors to chi2_red ~= 1 and show H0 unchanged.
 
 Author: Distance Ladder Systematics Project
 Date: November 2025
@@ -153,7 +153,7 @@ scale_factor = np.sqrt(chi2_red_std)
 sigma_Hz_scaled = sigma_Hz_original * scale_factor
 
 print(f"Error scale factor: {scale_factor:.3f}")
-print(f"  (Applied to inflate errors from χ²_red={chi2_red_std:.2f} to χ²_red≈1.0)")
+print(f"  (Applied to rescale quoted errors from chi2_red={chi2_red_std:.2f} to chi2_red~=1.0)")
 print()
 
 # Refit with scaled errors
@@ -196,7 +196,7 @@ err_ratio = H0_err_re / H0_err_std
 print(f"Standard error:    {H0_err_std:.2f} km/s/Mpc")
 print(f"Scaled error:      {H0_err_re:.2f} km/s/Mpc")
 print(f"Error ratio:       {err_ratio:.3f} (scaled/standard)")
-print(f"  (Expected ratio = 1/scale_factor = {1/scale_factor:.3f})")
+print(f"  (Expected ratio = scale_factor = {scale_factor:.3f})")
 print()
 
 # =============================================================================
@@ -208,8 +208,8 @@ print("VALIDATION: ERROR SCALING CONSISTENCY")
 print("=" * 80)
 print()
 
-# The uncertainty should scale as σ_H0_scaled = σ_H0_unscaled / sqrt(χ²_red_unscaled)
-expected_err_ratio = 1 / scale_factor
+# The uncertainty should scale as sigma_H0_scaled = sigma_H0_unscaled * sqrt(chi2_red_unscaled)
+expected_err_ratio = scale_factor
 actual_err_ratio = H0_err_re / H0_err_std
 err_ratio_check = abs(expected_err_ratio - actual_err_ratio) / expected_err_ratio
 
@@ -235,23 +235,23 @@ print("=" * 80)
 print()
 
 print(f"1. Standard fit yields H₀ = {H0_std:.2f} ± {H0_err_std:.2f} km/s/Mpc")
-print(f"   with χ²_red = {chi2_red_std:.2f} (<<1, conservative uncertainties)")
+print(f"   with chi2_red = {chi2_red_std:.2f} (<<1, conservative uncertainties)")
 print()
 
-print(f"2. Random-effects fit (error scaling by {scale_factor:.3f}×) yields")
-print(f"   H₀ = {H0_re:.2f} ± {H0_err_re:.2f} km/s/Mpc with χ²_red = {chi2_red_re:.2f}")
+print(f"2. Random-effects fit (error rescaling by {scale_factor:.3f}x) yields")
+print(f"   H₀ = {H0_re:.2f} ± {H0_err_re:.2f} km/s/Mpc with chi2_red = {chi2_red_re:.2f}")
 print()
 
 print(f"3. Central value difference: {delta_H0:.2f} km/s/Mpc ({delta_H0_sigma:.2f}σ)")
 print(f"   → Negligible change, demonstrating robustness")
 print()
 
-print(f"4. Uncertainty increases by factor {err_ratio:.2f}× (as expected from scaling)")
+print(f"4. Uncertainty decreases to {err_ratio:.2f}x of the original value (as expected from scaling)")
 print()
 
 print("5. Conclusion: H₀ constraint is ROBUST to error model assumptions.")
-print("   Whether using conservative quoted uncertainties (χ²_red=0.48) or")
-print("   inflated errors (χ²_red=1.0), the central value remains unchanged.")
+print("   Whether using conservative quoted uncertainties (chi2_red=0.48) or")
+print("   rescaled errors (chi2_red=1.0), the central value remains unchanged.")
 print()
 
 # =============================================================================
@@ -260,7 +260,7 @@ print()
 
 H0_PLANCK = 67.36
 H0_JAGB = 67.96
-H0_CORRECTED_CEPHEID = 69.67
+H0_CORRECTED_CEPHEID = 69.54
 
 print("=" * 80)
 print("COMPARISON WITH OTHER METHODS:")

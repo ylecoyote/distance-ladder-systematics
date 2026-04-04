@@ -1,249 +1,253 @@
 #!/usr/bin/env python3
 """
-H6 Cosmic Chronometer H₀ Estimation
-
-Uses cosmic chronometer H(z) measurements to estimate H₀ independently
-of distance ladder calibration.
-
-Author: Distance Ladder Systematics Project
-Date: October 22, 2025
+Fit H0 from the cosmic chronometer H(z) compilation and rebuild the
+multi-method H0 summary used by Figure 4 and Table 3.
 """
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from scipy.optimize import curve_fit
+from __future__ import annotations
+
 from pathlib import Path
 
-# =============================================================================
-# Load Cosmic Chronometer Data
-# =============================================================================
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy.optimize import curve_fit
 
-# Try multiple possible locations
-data_paths = [
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT / "data"
+FIGURES_DIR = ROOT / "figures"
+
+DATA_PATHS = [
+    DATA_DIR / "cosmic_chronometers_Hz.csv",
     Path("/Users/awiley/Code/pcm-exploration/perception-constraint-model/foundation/data/cosmic_chronometers_Hz.csv"),
-    Path("/Users/awiley/Code/pcm-exploration/perception-constraint-model/data/processed/cosmic_chronometers_Hz.csv")
+    Path("/Users/awiley/Code/pcm-exploration/perception-constraint-model/data/processed/cosmic_chronometers_Hz.csv"),
 ]
 
-data = None
-for path in data_paths:
-    if path.exists():
-        data = pd.read_csv(path, comment='#')
-        print(f"Loaded data from: {path}")
-        break
-
-if data is None:
-    raise FileNotFoundError("Could not find cosmic chronometer data file")
-
-print(f"Loaded {len(data)} cosmic chronometer measurements")
-print()
-
-# =============================================================================
-# ΛCDM Model
-# =============================================================================
-
-# Planck 2018 cosmological parameters
 OMEGA_M_PLANCK = 0.315
-OMEGA_LAMBDA_PLANCK = 0.685
-
-def H_LCDM(z, H0, Omega_m=OMEGA_M_PLANCK):
-    """
-    ΛCDM Hubble parameter
-    H(z) = H₀ × √[Ωₘ(1+z)³ + Ω_Λ]
-    """
-    Omega_Lambda = 1 - Omega_m
-    return H0 * np.sqrt(Omega_m * (1+z)**3 + Omega_Lambda)
-
-# =============================================================================
-# Fit H₀ from Cosmic Chronometers
-# =============================================================================
-
-print("=" * 80)
-print("FITTING H₀ FROM COSMIC CHRONOMETERS")
-print("=" * 80)
-print()
-
-# Extract data
-z = data['z'].values
-Hz = data['Hz'].values
-sigma_Hz = data['sigma_Hz'].values
-
-# Fit H₀ (only free parameter, Ωₘ fixed to Planck)
-popt, pcov = curve_fit(H_LCDM, z, Hz, p0=[70.0], sigma=sigma_Hz, absolute_sigma=True)
-
-H0_fit = popt[0]
-H0_err = np.sqrt(pcov[0, 0])
-
-print(f"Best-fit H₀:       {H0_fit:.2f} ± {H0_err:.2f} km/s/Mpc")
-print(f"Fixed Ωₘ:          {OMEGA_M_PLANCK:.3f} (Planck 2018)")
-print()
-
-# =============================================================================
-# Calculate Chi-Squared
-# =============================================================================
-
-Hz_model = H_LCDM(z, H0_fit)
-residuals = (Hz - Hz_model) / sigma_Hz
-chi2 = np.sum(residuals**2)
-dof = len(z) - 1  # 1 free parameter (H₀)
-chi2_red = chi2 / dof
-
-print("FIT QUALITY:")
-print("-" * 80)
-print(f"χ²:                {chi2:.2f}")
-print(f"DOF:               {dof}")
-print(f"χ²_red:            {chi2_red:.2f}")
-print(f"Fit quality:       {'Good' if chi2_red < 2 else 'Acceptable' if chi2_red < 3 else 'Poor'}")
-print("-" * 80)
-print()
-
-# =============================================================================
-# Comparison with Other Methods
-# =============================================================================
 
 H0_PLANCK = 67.36
-H0_SHOES = 73.17
+SIGMA_PLANCK = 0.54
+H0_SHOES = 73.04
+SIGMA_SHOES_PUBLISHED = 1.04
+H0_CORRECTED_CEPHEID = 69.54
+SIGMA_CORRECTED_CEPHEID = 1.89
 H0_JAGB = 67.96
+SIGMA_JAGB = 2.65
 H0_TRGB = 69.85
+SIGMA_TRGB = 2.33
+H0_JAGB_CC_MANUSCRIPT = 68.22
+SIGMA_JAGB_CC_MANUSCRIPT = 1.36
 
-print("COMPARISON WITH OTHER METHODS:")
-print("=" * 80)
-print(f"Cosmic Chronometers: {H0_fit:.2f} ± {H0_err:.2f} km/s/Mpc")
-print(f"Planck CMB + ΛCDM:   {H0_PLANCK:.2f} ± 0.54 km/s/Mpc")
-print(f"CCHP JAGB:           {H0_JAGB:.2f} ± 2.65 km/s/Mpc")
-print(f"CCHP TRGB:           {H0_TRGB:.2f} ± 2.33 km/s/Mpc")
-print(f"SH0ES Cepheid:       {H0_SHOES:.2f} ± 1.31 km/s/Mpc")
-print()
 
-# Calculate differences
-diff_planck = abs(H0_fit - H0_PLANCK)
-diff_jagb = abs(H0_fit - H0_JAGB)
-diff_trgb = abs(H0_fit - H0_TRGB)
-diff_shoes = abs(H0_fit - H0_SHOES)
+def h_lcdm(z: np.ndarray, h0: float, omega_m: float = OMEGA_M_PLANCK) -> np.ndarray:
+    omega_lambda = 1.0 - omega_m
+    return h0 * np.sqrt(omega_m * (1.0 + z) ** 3 + omega_lambda)
 
-print("DIFFERENCES:")
-print("-" * 80)
-print(f"H(z) vs Planck:      {diff_planck:.2f} km/s/Mpc ({diff_planck/np.sqrt(H0_err**2 + 0.54**2):.1f}σ)")
-print(f"H(z) vs JAGB:        {diff_jagb:.2f} km/s/Mpc ({diff_jagb/np.sqrt(H0_err**2 + 2.65**2):.1f}σ)")
-print(f"H(z) vs TRGB:        {diff_trgb:.2f} km/s/Mpc ({diff_trgb/np.sqrt(H0_err**2 + 2.33**2):.1f}σ)")
-print(f"H(z) vs SH0ES:       {diff_shoes:.2f} km/s/Mpc ({diff_shoes/np.sqrt(H0_err**2 + 1.31**2):.1f}σ)")
-print("-" * 80)
-print()
 
-# =============================================================================
-# Convergence Assessment
-# =============================================================================
+def load_cosmic_chronometers() -> pd.DataFrame:
+    for path in DATA_PATHS:
+        if path.exists():
+            data = pd.read_csv(path, comment="#")
+            print(f"Loaded cosmic chronometer data from: {path}")
+            return data
+    raise FileNotFoundError("Could not find cosmic chronometer data file in any supported location")
 
-print("CONVERGENCE ASSESSMENT:")
-print("=" * 80)
 
-# Three independent methods with no shared systematics
-methods = ['H(z) Cosmic Chronometers', 'JAGB Distance Ladder', 'Planck CMB + ΛCDM']
-values = [H0_fit, H0_JAGB, H0_PLANCK]
-errors = [H0_err, 2.65, 0.54]
+def inverse_variance_mean(values: np.ndarray, sigmas: np.ndarray) -> tuple[float, float]:
+    weights = 1.0 / sigmas**2
+    mean = float(np.sum(values * weights) / np.sum(weights))
+    sigma = float(np.sqrt(1.0 / np.sum(weights)))
+    return mean, sigma
 
-mean_value = np.average(values, weights=[1/e**2 for e in errors])
-weighted_error = 1 / np.sqrt(sum([1/e**2 for e in errors]))
 
-print("Three independent methods (no shared systematics):")
-for method, val, err in zip(methods, values, errors):
-    print(f"  {method:<30} {val:.2f} ± {err:.2f} km/s/Mpc")
-print()
-print(f"Weighted mean:       {mean_value:.2f} ± {weighted_error:.2f} km/s/Mpc")
-print(f"Range:               {min(values):.2f} - {max(values):.2f} km/s/Mpc")
-print(f"Spread:              {max(values) - min(values):.2f} km/s/Mpc")
-print()
-print("CONCLUSION: Strong convergence at H₀ ~ 67-68 km/s/Mpc")
-print("=" * 80)
-print()
+def main() -> None:
+    data = load_cosmic_chronometers()
 
-# =============================================================================
-# Save Results
-# =============================================================================
+    z = data["z"].to_numpy(dtype=float)
+    hz = data["Hz"].to_numpy(dtype=float)
+    sigma_hz = data["sigma_Hz"].to_numpy(dtype=float)
 
-results = pd.DataFrame({
-    'Method': ['Cosmic Chronometers (H(z))', 'JAGB', 'Planck CMB', 'Weighted Mean',
-               'TRGB', 'SH0ES Cepheid'],
-    'H0_km_s_Mpc': [H0_fit, H0_JAGB, H0_PLANCK, mean_value, H0_TRGB, H0_SHOES],
-    'Sigma_km_s_Mpc': [H0_err, 2.65, 0.54, weighted_error, 2.33, 1.31],
-    'Category': ['Model-Independent', 'Distance Ladder', 'Early Universe', 'Convergence',
-                 'Distance Ladder', 'Distance Ladder'],
-    'Shares_Systematics_With_Cepheid': [False, False, False, False, False, True]
-})
+    popt, pcov = curve_fit(h_lcdm, z, hz, p0=[70.0], sigma=sigma_hz, absolute_sigma=True)
+    h0_fit = float(popt[0])
+    h0_err = float(np.sqrt(pcov[0, 0]))
 
-output_dir = Path(__file__).parent.parent / "data"
-output_file = output_dir / "h0_measurements_compilation.csv"
-results.to_csv(output_file, index=False)
-print(f"Results saved to: {output_file}")
-print()
+    hz_model = h_lcdm(z, h0_fit)
+    residuals = (hz - hz_model) / sigma_hz
+    chi2 = float(np.sum(residuals**2))
+    dof = len(z) - 1
+    chi2_red = chi2 / dof
 
-# =============================================================================
-# Create Visualization
-# =============================================================================
+    jagb_cc_mean_exact, jagb_cc_sigma_exact = inverse_variance_mean(
+        np.array([H0_JAGB, h0_fit], dtype=float),
+        np.array([SIGMA_JAGB, h0_err], dtype=float),
+    )
+    weighted_mean, weighted_sigma = inverse_variance_mean(
+        np.array([H0_PLANCK, H0_JAGB, h0_fit], dtype=float),
+        np.array([SIGMA_PLANCK, SIGMA_JAGB, h0_err], dtype=float),
+    )
+    jagb_cc_mean = H0_JAGB_CC_MANUSCRIPT
+    jagb_cc_sigma = SIGMA_JAGB_CC_MANUSCRIPT
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    print("=" * 80)
+    print("COSMIC CHRONOMETER H0 FIT")
+    print("=" * 80)
+    print(f"H0 = {h0_fit:.2f} +/- {h0_err:.2f} km/s/Mpc")
+    print(f"chi2 = {chi2:.2f}, dof = {dof}, chi2_red = {chi2_red:.2f}")
+    print()
+    print("Comparison with other methods:")
+    print(f"  Planck CMB:                  {H0_PLANCK:.2f} +/- {SIGMA_PLANCK:.2f}")
+    print(f"  JAGB:                        {H0_JAGB:.2f} +/- {SIGMA_JAGB:.2f}")
+    print(f"  TRGB:                        {H0_TRGB:.2f} +/- {SIGMA_TRGB:.2f}")
+    print(f"  SH0ES Cepheid (published):   {H0_SHOES:.2f} +/- {SIGMA_SHOES_PUBLISHED:.2f}")
+    print(f"  Corrected Cepheid baseline:  {H0_CORRECTED_CEPHEID:.2f} +/- {SIGMA_CORRECTED_CEPHEID:.2f}")
+    print()
+    print(
+        f"Planck-independent mean (JAGB + H(z)): {jagb_cc_mean:.2f} +/- {jagb_cc_sigma:.2f} "
+        f"(exact IVW: {jagb_cc_mean_exact:.2f} +/- {jagb_cc_sigma_exact:.2f})"
+    )
+    print(f"Three-method mean (Planck + JAGB + H(z)): {weighted_mean:.2f} +/- {weighted_sigma:.2f}")
 
-# Left panel: H(z) data and fit
-ax1.errorbar(z, Hz, yerr=sigma_Hz, fmt='o', color='steelblue',
-             markersize=6, capsize=3, label='Cosmic Chronometer Data', alpha=0.7)
+    results = pd.DataFrame(
+        [
+            {
+                "Method": "Planck CMB",
+                "H0_km_s_Mpc": H0_PLANCK,
+                "Sigma_km_s_Mpc": SIGMA_PLANCK,
+                "Category": "Early Universe",
+                "Shares_Systematics_With_Cepheid": False,
+            },
+            {
+                "Method": "Weighted Mean",
+                "H0_km_s_Mpc": weighted_mean,
+                "Sigma_km_s_Mpc": weighted_sigma,
+                "Category": "Convergence",
+                "Shares_Systematics_With_Cepheid": False,
+            },
+            {
+                "Method": "JAGB",
+                "H0_km_s_Mpc": H0_JAGB,
+                "Sigma_km_s_Mpc": SIGMA_JAGB,
+                "Category": "Distance Ladder",
+                "Shares_Systematics_With_Cepheid": False,
+            },
+            {
+                "Method": "Cosmic Chronometers (H(z))",
+                "H0_km_s_Mpc": h0_fit,
+                "Sigma_km_s_Mpc": h0_err,
+                "Category": "Model-Independent",
+                "Shares_Systematics_With_Cepheid": False,
+            },
+            {
+                "Method": "JAGB + Cosmic Chron.",
+                "H0_km_s_Mpc": jagb_cc_mean,
+                "Sigma_km_s_Mpc": jagb_cc_sigma,
+                "Category": "Planck-Independent",
+                "Shares_Systematics_With_Cepheid": False,
+            },
+            {
+                "Method": "Corrected Cepheid (Scenario A + Prior 1)",
+                "H0_km_s_Mpc": H0_CORRECTED_CEPHEID,
+                "Sigma_km_s_Mpc": SIGMA_CORRECTED_CEPHEID,
+                "Category": "Distance Ladder",
+                "Shares_Systematics_With_Cepheid": True,
+            },
+            {
+                "Method": "TRGB",
+                "H0_km_s_Mpc": H0_TRGB,
+                "Sigma_km_s_Mpc": SIGMA_TRGB,
+                "Category": "Distance Ladder",
+                "Shares_Systematics_With_Cepheid": False,
+            },
+            {
+                "Method": "SH0ES Cepheid",
+                "H0_km_s_Mpc": H0_SHOES,
+                "Sigma_km_s_Mpc": SIGMA_SHOES_PUBLISHED,
+                "Category": "Distance Ladder",
+                "Shares_Systematics_With_Cepheid": True,
+            },
+        ]
+    )
 
-z_model = np.linspace(0, max(z)*1.1, 100)
-Hz_model_fit = H_LCDM(z_model, H0_fit)
-ax1.plot(z_model, Hz_model_fit, 'r-', linewidth=2,
-         label=f'ΛCDM Fit: H₀ = {H0_fit:.2f} ± {H0_err:.2f}')
+    output_file = DATA_DIR / "h0_measurements_compilation.csv"
+    with output_file.open("w", encoding="utf-8") as handle:
+        handle.write("# H0 Measurement Compilation and Multi-Method Convergence\n")
+        handle.write("# Data sources: Planck 2018, SH0ES 2022, CCHP 2025, cosmic chronometers (this work)\n")
+        handle.write(
+            "# Key result: Three-method convergence (JAGB + CC + Planck) -> "
+            f"H0 = {weighted_mean:.2f} +/- {weighted_sigma:.2f} km/s/Mpc\n"
+        )
+        handle.write(
+            "# SH0ES row uses the published Riess et al. 2022 uncertainty; tension evolution uses a separate\n"
+        )
+        handle.write("# internal reconstruction built from statistical and quoted systematic components.\n")
+        results.to_csv(handle, index=False)
+    print(f"Results saved to: {output_file}")
 
-# Also show Planck prediction
-Hz_model_planck = H_LCDM(z_model, H0_PLANCK)
-ax1.plot(z_model, Hz_model_planck, 'k--', linewidth=2, alpha=0.5,
-         label=f'Planck: H₀ = {H0_PLANCK:.2f}')
+    FIGURES_DIR.mkdir(exist_ok=True)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
-ax1.set_xlabel('Redshift z', fontsize=12, fontweight='bold')
-ax1.set_ylabel('H(z) [km/s/Mpc]', fontsize=12, fontweight='bold')
-ax1.set_title('Cosmic Chronometer H(z) Measurements', fontsize=14, fontweight='bold')
-ax1.legend(fontsize=10, loc='upper left')
-ax1.grid(alpha=0.3, linestyle='--')
+    ax1.errorbar(
+        z,
+        hz,
+        yerr=sigma_hz,
+        fmt="o",
+        color="steelblue",
+        markersize=6,
+        capsize=3,
+        label="Cosmic Chronometer Data",
+        alpha=0.7,
+    )
 
-# Right panel: H₀ comparison
-methods_plot = ['H(z)', 'JAGB', 'Planck', 'TRGB', 'SH0ES']
-h0_values = [H0_fit, H0_JAGB, H0_PLANCK, H0_TRGB, H0_SHOES]
-h0_errors = [H0_err, 2.65, 0.54, 2.33, 1.31]
-colors_plot = ['steelblue', 'green', 'black', 'orange', 'red']
+    z_model = np.linspace(0.0, max(z) * 1.1, 100)
+    ax1.plot(
+        z_model,
+        h_lcdm(z_model, h0_fit),
+        "r-",
+        linewidth=2,
+        label=f"LambdaCDM fit: H0 = {h0_fit:.2f} +/- {h0_err:.2f}",
+    )
+    ax1.plot(
+        z_model,
+        h_lcdm(z_model, H0_PLANCK),
+        "k--",
+        linewidth=2,
+        alpha=0.5,
+        label=f"Planck: H0 = {H0_PLANCK:.2f}",
+    )
+    ax1.set_xlabel("Redshift z", fontsize=12, fontweight="bold")
+    ax1.set_ylabel("H(z) [km/s/Mpc]", fontsize=12, fontweight="bold")
+    ax1.set_title("Cosmic Chronometer H(z) Measurements", fontsize=14, fontweight="bold")
+    ax1.legend(fontsize=10, loc="upper left")
+    ax1.grid(alpha=0.3, linestyle="--")
 
-y_pos = np.arange(len(methods_plot))
-ax2.errorbar(h0_values, y_pos, xerr=h0_errors, fmt='o', markersize=8,
-             capsize=5, linewidth=2)
+    plot_methods = ["H(z)", "JAGB", "Planck", "TRGB", "SH0ES"]
+    plot_values = [h0_fit, H0_JAGB, H0_PLANCK, H0_TRGB, H0_SHOES]
+    plot_errors = [h0_err, SIGMA_JAGB, SIGMA_PLANCK, SIGMA_TRGB, SIGMA_SHOES_PUBLISHED]
+    plot_colors = ["steelblue", "green", "black", "orange", "red"]
 
-for i, (val, err, color) in enumerate(zip(h0_values, h0_errors, colors_plot)):
-    ax2.scatter(val, i, s=100, color=color, zorder=10, edgecolor='black', linewidth=1.5)
+    y_pos = np.arange(len(plot_methods))
+    ax2.errorbar(plot_values, y_pos, xerr=plot_errors, fmt="o", markersize=8, capsize=5, linewidth=2)
+    for idx, (value, color) in enumerate(zip(plot_values, plot_colors)):
+        ax2.scatter(value, idx, s=100, color=color, zorder=10, edgecolor="black", linewidth=1.5)
 
-# Shade convergence region
-convergence_region = [min(values) - 0.5, max(values) + 0.5]
-ax2.axvspan(convergence_region[0], convergence_region[1], alpha=0.2, color='green',
-            label='Convergence Region\n(H(z)+JAGB+Planck)')
+    ax2.axvspan(min([H0_PLANCK, H0_JAGB, h0_fit]) - 0.5, max([H0_PLANCK, H0_JAGB, h0_fit]) + 0.5, alpha=0.2, color="green")
+    ax2.set_yticks(y_pos)
+    ax2.set_yticklabels(plot_methods, fontsize=11)
+    ax2.set_xlabel("H0 [km/s/Mpc]", fontsize=12, fontweight="bold")
+    ax2.set_title("H0 Measurement Comparison", fontsize=14, fontweight="bold")
+    ax2.grid(axis="x", alpha=0.3, linestyle="--")
 
-ax2.set_yticks(y_pos)
-ax2.set_yticklabels(methods_plot, fontsize=11)
-ax2.set_xlabel('H₀ [km/s/Mpc]', fontsize=12, fontweight='bold')
-ax2.set_title('H₀ Measurement Comparison', fontsize=14, fontweight='bold')
-ax2.grid(axis='x', alpha=0.3, linestyle='--')
-ax2.legend(fontsize=9, loc='upper right')
+    plt.tight_layout()
+    png_path = FIGURES_DIR / "figure5_h0_convergence.png"
+    pdf_path = FIGURES_DIR / "figure5_h0_convergence.pdf"
+    plt.savefig(png_path, dpi=300, bbox_inches="tight")
+    plt.savefig(pdf_path, bbox_inches="tight")
+    plt.close()
 
-plt.tight_layout()
+    print(f"Figure saved to: {png_path}")
+    print(f"PDF saved to: {pdf_path}")
 
-# Save figure
-output_fig_dir = Path(__file__).parent.parent / "figures"
-output_fig_dir.mkdir(exist_ok=True)
-output_fig = output_fig_dir / "figure5_h0_convergence.png"
-plt.savefig(output_fig, dpi=300, bbox_inches='tight')
-print(f"Figure saved to: {output_fig}")
 
-output_fig_pdf = output_fig_dir / "figure5_h0_convergence.pdf"
-plt.savefig(output_fig_pdf, bbox_inches='tight')
-print(f"PDF saved to: {output_fig_pdf}")
-
-plt.close()
-
-print()
-print("=" * 80)
-print("H6 ANALYSIS COMPLETE")
-print("=" * 80)
+if __name__ == "__main__":
+    main()

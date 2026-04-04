@@ -2,9 +2,9 @@
 
 This document tracks all external datasets, their sources, retrieval dates, and citations used in this analysis. All data processing and derivation steps are documented to ensure complete reproducibility.
 
-**Last Updated:** 2025-11-19
-**Analysis Version:** v8.7
-**Branch:** expert-feedback-revisions
+**Last Updated:** 2026-04-03
+**Analysis Version:** v8.9
+**Branch:** main
 
 ---
 
@@ -180,16 +180,16 @@ Derived from SH0ES systematic error budget with literature-informed correlations
 - `data/systematic_budget_recalculated.csv` - 9-term budget (crowding covariance removed)
 - `data/correlation_matrix_updated.csv` - 9×9 correlation structure
 
-**Systematic Terms (9 components):**
+**Systematic Terms (9 components, our assessment, Scenario A + Prior 1):**
 1. Parallax Zero Point: 0.30 km/s/Mpc
 2. Period Distribution: 1.00 km/s/Mpc
-3. Metallicity Correction: 0.40 km/s/Mpc (Prior 1: γ = -0.2 ± 0.1)
+3. Metallicity Correction: 0.50 km/s/Mpc (Prior 1: γ = -0.2 ± 0.1)
 4. Crowding Direct: 0.30 km/s/Mpc
-5. Photometric Calibration: 0.70 km/s/Mpc
-6. Extinction/Reddening: 0.55 km/s/Mpc
-7. LMC Distance: 0.40 km/s/Mpc
-8. NGC4258 Distance: 0.35 km/s/Mpc
-9. SNe Ia Standardization: 0.45 km/s/Mpc
+5. Photometric Calibration: 0.30 km/s/Mpc
+6. Extinction/Reddening: 0.50 km/s/Mpc
+7. LMC Distance: 0.20 km/s/Mpc
+8. NGC4258 Distance: 0.20 km/s/Mpc
+9. SNe Ia Standardization: 0.50 km/s/Mpc
 
 **Key Correlations:**
 - Metallicity ↔ Extinction: ρ = 0.3
@@ -261,9 +261,9 @@ Stage, H0_km_s_Mpc, Sigma_total, Tension_vs_Planck, Description
 
 **Key Results (Scenario A + Prior 1 baseline):**
 - Stage 1: 73.04 ± 0.80 km/s/Mpc → 5.9σ (stat only)
-- Stage 2: 73.04 ± 1.31 km/s/Mpc → 4.0σ (SH0ES total)
+- Stage 2: 73.04 ± 1.31 km/s/Mpc → 4.0σ (quoted SH0ES systematic budget + stat.)
 - Stage 3: 73.04 ± 1.31 km/s/Mpc → 4.0σ (Scenario A ZP)
-- Stage 4: 70.54 ± 1.65 km/s/Mpc → 1.9σ (+ period correction)
+- Stage 4: 70.54 ± 1.65 km/s/Mpc → 1.8σ (+ period correction)
 - Stage 5: 69.54 ± 1.89 km/s/Mpc → 1.1σ (+ metallicity + corr. sys.)
 
 **Tension Calculation:**

@@ -6,9 +6,9 @@
     "stage_1_sigma": 0.8,
     "stage_1_tension": 5.9,
     "stage_5_h0": 69.54,
-    "stage_5_sigma": 1.89,
+    "stage_5_sigma": 1.8878824115924169,
     "stage_5_tension": 1.1,
-    "reduction_factor": 5.4,
+    "reduction_factor": 5.3,
     "planck_h0": 67.36,
     "planck_sigma": 0.54
   }

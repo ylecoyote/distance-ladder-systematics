@@ -2,20 +2,20 @@
 
 **Systematic Error Assessment in Cepheid Distance Ladder Measurements**
 
-[![Status](https://img.shields.io/badge/Status-Submission%20Ready-success)](manuscript_overleaf_v8.7.zip)
+[![Status](https://img.shields.io/badge/Status-Submission%20Ready-success)](manuscript_overleaf_v8.9.zip)
 [![Journal](https://img.shields.io/badge/Target-ApJ-blue)](https://iopscience.iop.org/journal/0004-637X)
 [![License](https://img.shields.io/badge/License-Pending%20Publication-orange)](LICENSE)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ylecoyote/distance-ladder-systematics/main)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ylecoyote/distance-ladder-systematics/blob/main/reproduce_key_results.ipynb)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17637857.svg)](https://doi.org/10.5281/zenodo.17637857)
 
-**Last Updated**: 2025-11-18
+**Last Updated**: 2026-04-03
 
 ---
 
 ## Overview
 
-This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis reveals that realistic systematic error accounting reduces the tension from **5.9σ to 1.1σ**, suggesting the tension is largely consistent with a measurement artifact rather than requiring new physics.
+This project provides a comprehensive reassessment of systematic uncertainties in Cepheid-based distance ladder measurements and their impact on the reported "Hubble tension." Our analysis indicates that realistic systematic error accounting reduces the tension from **~6σ to the ~1–2σ level** (baseline 1.1σ, range 0.2–1.7σ across scenarios), consistent with a measurement artifact rather than requiring new physics.
 
 For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) and the data/figures listed below.
 
@@ -23,8 +23,8 @@ For full technical details, see [`manuscript.tex`](manuscript/manuscript.tex) an
 
 - **Systematic error reassessment**: σ_sys = 1.71 km/s/Mpc (correlated), representing a 1.6× underestimation in published uncertainties
 - **Multi-method convergence**: JAGB + cosmic chronometers → H₀ = 68.22 ± 1.36 km/s/Mpc (Planck-independent)
-- **Tension reduction**: From 5.9σ → 1.1σ (Planck-relative) or 0.6σ (Planck-independent)
-- **Robustness validated**: Tension remains <2σ across all tested systematic scenarios
+- **Tension reduction**: From ~6σ → ~1–2σ (baseline 1.1σ Planck-relative; 0.6σ Planck-independent)
+- **Robustness supported**: Tension remains <2σ across all tested systematic scenarios
 - **JWST cross-validation**: TRGB–JAGB RMS ≈ 0.048 mag vs. Cepheid–TRGB RMS ≈ 0.108 mag (~2.3× larger), confirming the enlarged Cepheid systematic budget
 
 ---
@@ -68,7 +68,7 @@ Click one of the badges above to launch an interactive environment in your brows
 
 The fastest way to view or edit the manuscript is to use the pre-built Overleaf package.
 
-1. Download the pre-built package: [`manuscript_overleaf_v8.7.zip`](manuscript_overleaf_v8.7.zip)
+1. Download the pre-built package: [`manuscript_overleaf_v8.9.zip`](manuscript_overleaf_v8.9.zip)
 
 2. Upload to [Overleaf](https://www.overleaf.com):
    - Click "New Project" → "Upload Project"
@@ -120,12 +120,12 @@ pdflatex manuscript.tex
   - `cosmic_chronometers_Hz.csv` – Mirrored for self-contained reproducibility
   - `cchp_trgb_cepheid_comparison.csv`, `cchp_trgb_jagb_comparison.csv` – JWST cross-validation
   - `correlation_matrix_updated.csv` – 9×9 systematic correlation structure
-  - `tables/` – LaTeX table fragments for manuscript
+  - `data/tables/` – LaTeX table fragments for manuscript
 
 **Manuscript:**
 - `manuscript/` – LaTeX source (`manuscript.tex`), AASTeX class file, BibTeX references
 - `figures/` – Output figures (PDF + PNG for Figs. 1–5 and auxiliary plots)
-- `manuscript_overleaf_v8.7.zip` – Ready-to-upload Overleaf package (manuscript + figures + tables)
+- `manuscript_overleaf_v8.9.zip` – Ready-to-upload Overleaf package (manuscript + figures + tables)
 
 **Scripts:**
 - `scripts/prepare_overleaf_updated.sh` – Build Overleaf package
@@ -143,9 +143,9 @@ All commands below assume you have created/activated the project environment (se
 ### 1. Generate data files
 
 ```bash
-python3 analysis/calculate_error_budget.py              # → data/systematic_error_budget.csv, data/systematic_budget_recalculated.csv
+python3 analysis/calculate_error_budget.py              # → data/error_budget_summary.{csv,json}
 python3 analysis/calculate_tension_evolution.py         # → data/tension_evolution.csv
-python3 analysis/h6_h0_estimate.py                      # → data/mcmc_chains_LCDM_2D.npy
+python3 analysis/h6_h0_estimate.py                      # → data/h0_measurements_compilation.csv
 python3 analysis/cosmic_chronometer_fit_random_effects.py  # → data/cosmic_chronometer_random_effects_results.csv
 
 ```
@@ -189,11 +189,13 @@ python3 analysis/verify_manuscript_consistency.py --json
 ```
 
 **What it checks:**
-- ✅ Tension evolution values (CSV ↔ figures ↔ README)
+- ✅ Tension evolution values (CSV ↔ manuscript table)
 - ✅ Systematic budget quadrature sums
 - ✅ H₀ three-method convergence calculations
+- ✅ H₀ compilation table consistency
 - ✅ Figure metadata accuracy
 - ✅ Figure package completeness
+- ✅ Manuscript figure/table include paths
 
 **Exit codes:**
 - `0`: All checks passed (manuscript ready for submission)
@@ -241,14 +243,14 @@ For implementation details, see:
 
 ### 3. Tension Reduction
 
-**Claim:** Realistic systematics reduce tension from 5.9σ → 1.1σ (Planck-relative)
+**Claim:** Realistic systematics reduce tension from ~6σ to the ~1–2σ level (baseline 1.1σ Planck-relative)
 
 | Stage | Description | Tension vs Planck |
 |-------|-------------|-------------------|
 | 1 | SH0ES baseline (statistical only) | 5.9σ |
-| 2 | Add SH0ES total uncertainty | 4.0σ |
+| 2 | Add quoted SH0ES systematic budget + stat. | 4.0σ |
 | 3 | Scenario A zero-point | 4.0σ |
-| 4 | Add period distribution correction | 1.9σ |
+| 4 | Add period distribution correction | 1.8σ |
 | 5 | Add metallicity + correlated systematics | 1.1σ |
 
 **Scenario range:** 0.2σ to 1.7σ across conservative/aggressive assumptions
@@ -321,7 +323,7 @@ Generated by `analysis/create_manuscript_tables.py` and used directly in the man
 
 ## Manuscript Status
 
-✅ Submission-ready for ApJ (version v8.7):
+✅ Submission-ready for ApJ (version v8.9):
 - ✅ All numerical claims verified against data files
 - ✅ All citations cross-checked in bibliography
 - ✅ Computational results fully reproducible
@@ -329,10 +331,10 @@ Generated by `analysis/create_manuscript_tables.py` and used directly in the man
 - ✅ All figures and tables render correctly
 - ✅ Author metadata complete (ORCID included)
 
-**Package:** [`manuscript_overleaf_v8.7.zip`](manuscript_overleaf_v8.7.zip) (4.0 MB)
+**Package:** [`manuscript_overleaf_v8.9.zip`](manuscript_overleaf_v8.9.zip)
 
 **Submission:**  
-Package `manuscript_overleaf_v8.7.zip` has been tested on Overleaf and is ready for ApJ submission.
+Package `manuscript_overleaf_v8.9.zip` has been tested on Overleaf and is ready for ApJ submission.
 
 ---
 
@@ -364,17 +366,17 @@ pip install numpy pandas matplotlib scipy emcee corner
 If you use this work, please cite:
 
 ```bibtex
-@article{Wiley2025,
+@article{Wiley2026,
   author = {Wiley, Aaron},
   title = {{Forensic Analysis of Distance Ladder Systematics:
-           The Hubble Tension Reduced from $\sim$6$\sigma$ to $\sim$1$\sigma$}},
+           The Hubble Tension Reduced from $\sim$6$\sigma$ to $\sim$1--2$\sigma$}},
   journal = {The Astrophysical Journal},
-  year = {2025},
-  note = {Submitted}
+  year = {2026},
+  note = {Prepared for submission}
 }
 ```
 
-**Repository citation:** See tag [`v8.7`](https://github.com/ylecoyote/distance-ladder-systematics/releases/tag/v8.7) for the exact version corresponding to the submitted manuscript. GitHub also provides a "Cite this repository" button based on [`CITATION.cff`](CITATION.cff).
+**Repository citation:** The current manuscript baseline corresponds to repository version `v8.9`. Create a matching git tag or release before issuing an external repository citation; GitHub can then provide a "Cite this repository" record based on [`CITATION.cff`](CITATION.cff).
 
 **Archived release:** A permanent, citable version is archived on Zenodo: [https://doi.org/10.5281/zenodo.17637857](https://doi.org/10.5281/zenodo.17637857) (draft DOI - will be finalized upon publication)
 

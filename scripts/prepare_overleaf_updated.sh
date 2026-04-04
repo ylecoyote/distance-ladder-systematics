@@ -5,9 +5,18 @@
 
 set -e
 
+if [ -x ".venv/bin/python" ]; then
+    PYTHON=".venv/bin/python"
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON="$(command -v python3)"
+else
+    echo "❌ Error: python3 not found"
+    exit 1
+fi
+
 # Extract version from YAML (single source of truth)
-VERSION=$(python3 -c "import yaml; data = yaml.safe_load(open('config/numerical_claims.yaml')); print(data['metadata']['version'])")
-VERSION_DESC=$(python3 -c "import yaml; data = yaml.safe_load(open('config/numerical_claims.yaml')); print(data['version_history'][0]['description'])")
+VERSION=$("$PYTHON" -c "import yaml; data = yaml.safe_load(open('config/numerical_claims.yaml')); print(data['metadata']['version'])")
+VERSION_DESC=$("$PYTHON" -c "import yaml; data = yaml.safe_load(open('config/numerical_claims.yaml')); print(data['version_history'][0]['description'])")
 
 echo "=========================================="
 echo "Distance Ladder Manuscript - Overleaf Prep"
@@ -52,18 +61,18 @@ cp figures/figure_2d_correlation_sensitivity.png "$TEMP_DIR/figures/"
 cp figures/posterior_joint_delta_H0.png "$TEMP_DIR/figures/"
 cp figures/corner_joint_bias_fit.png "$TEMP_DIR/figures/"
 
-# Copy tables (only existing ones) - must be in tables/ not data/tables/
-mkdir -p "$TEMP_DIR/tables"
-cp data/tables/table1_systematic_budget.tex "$TEMP_DIR/tables/"
-cp data/tables/table2_tension_evolution.tex "$TEMP_DIR/tables/"
-cp data/tables/table3_h0_compilation.tex "$TEMP_DIR/tables/"
-cp data/tables/table4_cchp_crossval.tex "$TEMP_DIR/tables/"
-cp data/tables/table_correlation_matrix.tex "$TEMP_DIR/tables/"
+# Copy tables into data/tables/ to match manuscript include paths
+mkdir -p "$TEMP_DIR/data/tables"
+cp data/tables/table1_systematic_budget.tex "$TEMP_DIR/data/tables/"
+cp data/tables/table2_tension_evolution.tex "$TEMP_DIR/data/tables/"
+cp data/tables/table3_h0_compilation.tex "$TEMP_DIR/data/tables/"
+cp data/tables/table4_cchp_crossval.tex "$TEMP_DIR/data/tables/"
+cp data/tables/table_correlation_matrix.tex "$TEMP_DIR/data/tables/"
 
 # Copy optional tables if they exist
-[ -f "data/tables/table5_jwst_crossvalidation.tex" ] && cp data/tables/table5_jwst_crossvalidation.tex "$TEMP_DIR/tables/" || echo "   ℹ️  Skipping table5 (not found)"
-[ -f "data/tables/table6_cosmic_chronometers.tex" ] && cp data/tables/table6_cosmic_chronometers.tex "$TEMP_DIR/tables/" || echo "   ℹ️  Skipping table6 (not found)"
-[ -f "data/tables/table_anchor_weights.tex" ] && cp data/tables/table_anchor_weights.tex "$TEMP_DIR/tables/" || echo "   ℹ️  Skipping anchor_weights (not found)"
+[ -f "data/tables/table5_jwst_crossvalidation.tex" ] && cp data/tables/table5_jwst_crossvalidation.tex "$TEMP_DIR/data/tables/" || echo "   ℹ️  Skipping table5 (not found)"
+[ -f "data/tables/table6_cosmic_chronometers.tex" ] && cp data/tables/table6_cosmic_chronometers.tex "$TEMP_DIR/data/tables/" || echo "   ℹ️  Skipping table6 (not found)"
+[ -f "data/tables/table_anchor_weights.tex" ] && cp data/tables/table_anchor_weights.tex "$TEMP_DIR/data/tables/" || echo "   ℹ️  Skipping anchor_weights (not found)"
 
 echo "   ✓ Files copied"
 
@@ -74,7 +83,7 @@ echo "   References: references.bib ($(wc -l < manuscript/references.bib) lines)
 echo "   Figures:"
 ls -lh "$TEMP_DIR/figures/" | tail -n +2 | awk '{print "      " $9 " (" $5 ")"}'
 echo "   Tables:"
-ls -lh "$TEMP_DIR/tables/" | tail -n +2 | awk '{print "      " $9 " (" $5 ")"}'
+ls -lh "$TEMP_DIR/data/tables/" | tail -n +2 | awk '{print "      " $9 " (" $5 ")"}'
 
 echo ""
 echo "3. Creating Overleaf package..."
@@ -84,7 +93,7 @@ OUTPUT_ZIP="manuscript_overleaf_v${VERSION}.zip"
 rm -f "$OUTPUT_ZIP"
 
 cd "$TEMP_DIR"
-zip -r "../$OUTPUT_ZIP" manuscript/ figures/ tables/ > /dev/null
+zip -r "../$OUTPUT_ZIP" manuscript/ figures/ data/tables/ > /dev/null
 cd ..
 
 # Cleanup
@@ -100,7 +109,7 @@ echo ""
 echo "Package for v${VERSION}: ${VERSION_DESC}"
 echo ""
 echo "Key changes in this version:"
-python3 -c "
+"$PYTHON" -c "
 import yaml
 data = yaml.safe_load(open('config/numerical_claims.yaml'))
 changes = data['version_history'][0]['changes']

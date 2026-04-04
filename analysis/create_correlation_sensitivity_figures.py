@@ -11,7 +11,12 @@ Output:
 import numpy as np
 import matplotlib.pyplot as plt
 import json
+from pathlib import Path
 from matplotlib.colors import LinearSegmentedColormap
+
+
+ROOT = Path(__file__).resolve().parents[1]
+FIGURES_DIR = ROOT / "figures"
 
 # =============================================================================
 # Systematic Error Components (km/s/Mpc)
@@ -243,7 +248,8 @@ def create_1d_sensitivity_figure():
     plt.tight_layout()
 
     # Save
-    output_file = '../figures/sensitivity_correlation.png'
+    FIGURES_DIR.mkdir(exist_ok=True)
+    output_file = FIGURES_DIR / 'sensitivity_correlation.png'
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
 
     # Save JSON metadata for verification system
@@ -260,7 +266,7 @@ def create_1d_sensitivity_figure():
         }
     }
 
-    with open('../figures/sensitivity_correlation_metadata.json', 'w') as f:
+    with open(FIGURES_DIR / 'sensitivity_correlation_metadata.json', 'w') as f:
         json.dump(metadata, f, indent=2)
 
     print(f"✅ Figure saved: {output_file}")
@@ -378,7 +384,8 @@ def create_2d_sensitivity_figure():
     plt.tight_layout()
 
     # Save
-    output_file = '../figures/figure_2d_correlation_sensitivity.png'
+    FIGURES_DIR.mkdir(exist_ok=True)
+    output_file = FIGURES_DIR / 'figure_2d_correlation_sensitivity.png'
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
 
     # Save JSON metadata for verification system
@@ -393,7 +400,7 @@ def create_2d_sensitivity_figure():
         }
     }
 
-    with open('../figures/figure_2d_correlation_sensitivity_metadata.json', 'w') as f:
+    with open(FIGURES_DIR / 'figure_2d_correlation_sensitivity_metadata.json', 'w') as f:
         json.dump(metadata, f, indent=2)
 
     print(f"✅ Figure saved: {output_file}")
