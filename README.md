@@ -206,7 +206,12 @@ The repository includes a pre-commit hook that automatically runs verification b
 - ❌ **Blocks commits** with numerical errors
 - ⚠️  **Allows commits** with warnings (but shows them)
 
-The hook is installed at `.git/hooks/pre-commit` and runs automatically. To bypass (not recommended):
+Install it once per clone:
+```bash
+bash scripts/install_pre_commit_hook.sh
+```
+
+This installs a thin wrapper at `.git/hooks/pre-commit` that delegates to the tracked implementation in `scripts/pre_commit_hook.sh`. To bypass (not recommended):
 ```bash
 git commit --no-verify
 ```
