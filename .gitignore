@@ -67,7 +67,7 @@ logs/
 # Generated package files (keep only latest version in git)
 manuscript_overleaf.zip
 manuscript_overleaf_v*.zip
-!manuscript_overleaf_v8.7.zip
+!manuscript_overleaf_v8.9.zip
 overleaf_package_final/
 overleaf_package*/
 
@@ -77,3 +77,8 @@ overleaf_package*/
 # Compiled PDFs
 manuscript/*.pdf
 Forensic_Analysis*.pdf
+
+# Legacy/untracked generated artifacts not used by the manuscript pipeline
+figures/figure5_h0_convergence.pdf
+figures/figure5_h0_convergence.png
+tables/

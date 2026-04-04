@@ -1,0 +1,39 @@
+{
+  "metric": "tension_evolution",
+  "scenario": "Scenario A + Prior 1 (baseline)",
+  "initial_tension": 5.88,
+  "final_tension": 1.11,
+  "reduction_factor": 5.3,
+  "stages": {
+    "1": {
+      "name": "Statistical only",
+      "h0": 73.04,
+      "sigma": 0.8,
+      "tension": 5.88
+    },
+    "2": {
+      "name": "Quoted SH0ES sys. + stat.",
+      "h0": 73.04,
+      "sigma": 1.31,
+      "tension": 4.0
+    },
+    "3": {
+      "name": "Scenario A parallax",
+      "h0": 73.04,
+      "sigma": 1.31,
+      "tension": 4.0
+    },
+    "4": {
+      "name": "Period distribution",
+      "h0": 70.54,
+      "sigma": 1.65,
+      "tension": 1.83
+    },
+    "5": {
+      "name": "Metallicity + realistic \u03c3",
+      "h0": 69.54,
+      "sigma": 1.89,
+      "tension": 1.11
+    }
+  }
+}
